@@ -9,3 +9,8 @@ outputs/
 .DS_Store
 Thumbs.db
 *.log
+
+# design systems privados (uso interno, nunca publicar)
+/Lain Dashboard Design System/
+/Neon Genesis Evangelion Design System/
+/Norte Design System/
