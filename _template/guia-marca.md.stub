@@ -1,0 +1,195 @@
+# {{CLIENT_NAME}}, guia de marca (PT)
+
+> {{TAGLINE}}
+
+Versão {{VERSION}} ({{UPDATED}}).
+Site oficial: {{CLIENT_URL}}.
+
+**Este é o guia complementar em português.** O artefato canônico, machine-readable, é o `DESIGN.md` ao lado deste arquivo. Este `guia-marca.md` adiciona o que não cabe no spec do Google: Pantone CP, CMYK, RGB explícito, voz em PT, anti-references, prompt LLM template completo e changelog em português.
+
+Para IAs/agentes técnicos: prefiram ler o `DESIGN.md`. Ele tem token references resolvíveis e passa pelo linter `npx @google/design.md lint`.
+
+Para humanos brasileiros (cliente, designer, copywriter): este guia é mais legível.
+
+## 1. Identidade
+
+{{BRAND_DESCRIPTION_LONG}}
+
+## 2. Como uma IA deve usar este documento
+
+1. **Paleta é canônica.** Use só os 5 hex listados na seção 3. Nunca invente cor nova.
+2. **Tipografia é canônica.** Display em {{FONT_DISPLAY_FAMILY}}, body em {{FONT_BODY_FAMILY}}. Hierarquia se faz por peso e tamanho, nunca por troca de família.
+3. **Tema dominante: {{THEME}}.** Respeite o tom.
+4. **Voz:** {{VOICE_ADJECTIVES}}.
+5. **Português com acento.** `é`, `são`, `não`, `código`, `ação`. Sem exceções.
+6. **Pontuação:** nunca usar en dash (–) ou em dash (—). Substituir por parênteses, vírgula, dois-pontos ou frase separada.
+7. **CTA:** botões pill com peso semibold, nunca sentencecase aleatório.
+8. **Espaçamento:** use a escala de tokens, não valores arbitrários.
+9. **Quando faltar info:** marcar `[a definir]` em vez de inventar.
+10. **Tagline oficial:** "{{TAGLINE}}". Use exatamente assim.
+
+## 3. Paleta
+
+| Nome | Hex | Pantone | RGB | CMYK | Uso |
+|---|---|---|---|---|---|
+| {{COLOR_1_NAME}} | `{{COLOR_1_HEX}}` | {{COLOR_1_PANTONE}} | {{COLOR_1_RGB}} | {{COLOR_1_CMYK}} | {{COLOR_1_ROLE}} |
+| {{COLOR_2_NAME}} | `{{COLOR_2_HEX}}` | {{COLOR_2_PANTONE}} | {{COLOR_2_RGB}} | {{COLOR_2_CMYK}} | {{COLOR_2_ROLE}} |
+| {{COLOR_3_NAME}} | `{{COLOR_3_HEX}}` | {{COLOR_3_PANTONE}} | {{COLOR_3_RGB}} | {{COLOR_3_CMYK}} | {{COLOR_3_ROLE}} |
+| {{COLOR_4_NAME}} | `{{COLOR_4_HEX}}` | {{COLOR_4_PANTONE}} | {{COLOR_4_RGB}} | {{COLOR_4_CMYK}} | {{COLOR_4_ROLE}} |
+| {{COLOR_5_NAME}} | `{{COLOR_5_HEX}}` | {{COLOR_5_PANTONE}} | {{COLOR_5_RGB}} | {{COLOR_5_CMYK}} | {{COLOR_5_ROLE}} |
+
+### Tints derivados (uso digital)
+
+Cada cor principal tem alphas derivados via `color-mix()`:
+
+- `--color-<slug>-90` (90% opacity)
+- `--color-<slug>-60` (60% opacity, texto secundário sobre fundo claro)
+- `--color-<slug>-12` (12% opacity, bordas)
+- `--color-<slug>-06` (6% opacity, surfaces)
+
+## 4. Tipografia
+
+### Display: {{FONT_DISPLAY_FAMILY}}
+
+Pesos disponíveis: {{FONT_DISPLAY_WEIGHTS}}.
+Uso: {{FONT_DISPLAY_USAGE}}.
+
+### Body: {{FONT_BODY_FAMILY}}
+
+Pesos disponíveis: {{FONT_BODY_WEIGHTS}}.
+Uso: {{FONT_BODY_USAGE}}.
+
+### Escala
+
+| Nome | Tamanho | Line-height | Tracking | Peso |
+|---|---|---|---|---|
+| display | clamp(56px, 8vw, 120px) | 1.0 | -0.02em | 500 |
+| h1 | clamp(40px, 5vw, 72px) | 1.0 | -0.02em | 500 |
+| h2 | clamp(32px, 4vw, 56px) | 1.1 | -0.02em | 500 |
+| h3 | 24px | 1.3 | -0.01em | 600 |
+| h4 | 20px | 1.4 | 0 | 600 |
+| body-lg | 18px | 1.5 | 0 | 400 |
+| body | 16px | 1.5 | 0 | 400 |
+| small | 14px | 1.5 | 0 | 400 |
+| caption | 12px | 1.4 | 0.02em | 400 |
+| eyebrow | 13px UPPERCASE | 1.4 | 0.12em | 600 |
+
+## 5. Spacing, radius, shadow
+
+Escala de spacing em px: 4, 6, 8, 10, 12, 16, 24, 28, 32, 48, 56, 64, 80, 96, 112, 128, 160.
+
+Radius: `sm` 4px, `md` 12px, `lg` 24px, `pill` 999px.
+
+Shadow tintada com a cor de texto:
+
+- `sm`: 0 1px 2px var(--color-{{COLOR_1_SLUG}}-12)
+- `md`: 0 4px 16px var(--color-{{COLOR_1_SLUG}}-12)
+
+## 6. Componentes
+
+Documentação em `index.html`. Tipos canônicos:
+
+- **Botão pill primary**: background accent, texto contrastante
+- **Botão pill outline**: border 1.5px, fundo transparente
+- **Botão pill ghost**: sem border, hover muda surface
+- **Card**: radius lg, padding 32px (space-9), surface
+- **Eyebrow**: caption uppercase com tracking 0.12em
+- **Input**: radius pill, padding interno 16/24, border var(--border)
+
+## 7. Voz e copy
+
+Adjetivos canônicos: {{VOICE_ADJECTIVES}}.
+Público: {{VOICE_AUDIENCE}}.
+
+Exemplos:
+{{VOICE_EXAMPLES}}
+
+Anti-exemplos:
+{{VOICE_ANTIEXAMPLES}}
+
+## 8. Do / Don't
+
+| Do | Don't |
+|---|---|
+| {{RULE_1}} | {{ANTI_1}} |
+| {{RULE_2}} | {{ANTI_2}} |
+| {{RULE_3}} | {{ANTI_3}} |
+| {{RULE_4}} | (idem) |
+| {{RULE_5}} | (idem) |
+
+## 9. Estrutura de arquivos
+
+```
+{{CLIENT_SLUG}}/
+├── index.html          (showcase navegável)
+├── design.md           (este arquivo)
+├── tokens.css          (CSS variables)
+├── tokens.json         (DTCG pra Figma Tokens)
+├── fonts.css           (se HAS_LOCAL_FONTS = true)
+├── fonts/              (TTF/OTF locais)
+├── assets/
+│   ├── logo/           (SVGs oficiais)
+│   └── materiais/      (JPGs de aplicação)
+└── README.md
+```
+
+## 10. Prompt para outras IAs
+
+Cole isto no início do chat com qualquer LLM. Substitua `{{TAREFA}}` pela sua pergunta.
+
+---
+
+Você é designer e copywriter do(a) **{{CLIENT_NAME}}**. {{BRAND_DESCRIPTION_SHORT}}.
+
+### Identidade
+
+- Tagline: "{{TAGLINE}}"
+- Tom de voz: {{VOICE_ADJECTIVES}}
+- Público: {{VOICE_AUDIENCE}}
+
+### Paleta (use sempre, nunca invente)
+
+| Nome | Hex | Pantone | Uso |
+|---|---|---|---|
+| {{COLOR_1_NAME}} | {{COLOR_1_HEX}} | {{COLOR_1_PANTONE}} | {{COLOR_1_ROLE}} |
+| {{COLOR_2_NAME}} | {{COLOR_2_HEX}} | {{COLOR_2_PANTONE}} | {{COLOR_2_ROLE}} |
+| {{COLOR_3_NAME}} | {{COLOR_3_HEX}} | {{COLOR_3_PANTONE}} | {{COLOR_3_ROLE}} |
+| {{COLOR_4_NAME}} | {{COLOR_4_HEX}} | {{COLOR_4_PANTONE}} | {{COLOR_4_ROLE}} |
+| {{COLOR_5_NAME}} | {{COLOR_5_HEX}} | {{COLOR_5_PANTONE}} | {{COLOR_5_ROLE}} |
+
+### Tipografia
+
+- Display: {{FONT_DISPLAY_FAMILY}} ({{FONT_DISPLAY_WEIGHTS}})
+- Body: {{FONT_BODY_FAMILY}} ({{FONT_BODY_WEIGHTS}})
+- Hierarquia se faz por peso e tamanho, nunca por troca de família.
+
+### Regras de uso
+
+- {{RULE_1}}
+- {{RULE_2}}
+- {{RULE_3}}
+
+### Anti-patterns
+
+- {{ANTI_1}}
+- {{ANTI_2}}
+- {{ANTI_3}}
+
+### Tarefa
+
+{{TAREFA}}
+
+Responda em português brasileiro, com acentos corretos, sem en dash (–) ou em dash (—). Se precisar de placeholder, marque como `[a definir]` em vez de inventar.
+
+---
+
+## Changelog
+
+| Versão | Data | Mudança |
+|---|---|---|
+| 1.0.0 | {{UPDATED}} | Versão inicial gerada via design-system-builder |
+
+## Referências
+
+- Site oficial: {{CLIENT_URL}}
+- Manual de marca: (interno do cliente, não-versionado)

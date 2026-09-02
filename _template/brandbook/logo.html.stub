@@ -1,0 +1,161 @@
+<!--
+  logo.html.stub, página do brandbook, sistema de logo do cliente.
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+
+  Placeholders esperados:
+    {{CLIENT_NAME}}             nome do cliente
+    {{LOGO_PRIMARY_DARK_HTML}}  img ou svg da logo branca sobre dark
+    {{LOGO_PRIMARY_LIGHT_HTML}} img ou svg da logo escura sobre light
+    {{LOGO_VARIANTS_HTML}}      cards .symbol-card iterados das variantes do schema.logo.variants
+    {{LOGO_CONSTRUCTION_SVG}}   SVG da grade construtiva com marcações de safe-space
+    {{LOGO_CLEAR_SPACE}}        valor textual do schema.logo.clear_space (ex.: "1x da altura do X")
+    {{USAGE_RULES_HTML}}        4 cards (1 approved, 3 banned) iterados do schema.logo.prohibited
+    {{COLOR_CONTEXTS_HTML}}     cards de aplicação iterados do schema.logo.color_contexts
+-->
+
+<section class="section">
+  <span class="side-left">SECTION 01</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} / LOGO PRIMARY</p>
+    <h2 class="section-heading">Logo principal</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Existem duas aplicações primárias do logo. A versão em fundo escuro é a expressão padrão da marca.
+      A versão em fundo claro garante legibilidade em contextos institucionais e impressos.
+    </p>
+    <p style="max-width: 60ch; color: var(--text-muted); margin-top: var(--space-sm);">
+      Toda aplicação parte de uma das duas. Variantes (próxima seção) existem apenas quando a primária
+      não cabe no espaço, no canal ou no crop disponível.
+    </p>
+    <div class="symbol-grid" style="margin-top: var(--space-lg);">
+      <div class="symbol-card" style="background: var(--color-primary); color: var(--color-on-primary); min-height: 320px; align-items: center; justify-content: center;">
+        {{LOGO_PRIMARY_DARK_HTML}}
+        <span class="name" style="margin-top: var(--space-md);">Sobre fundo dark</span>
+      </div>
+      <div class="symbol-card" style="background: var(--color-on-primary); color: var(--color-primary); min-height: 320px; align-items: center; justify-content: center;">
+        {{LOGO_PRIMARY_LIGHT_HTML}}
+        <span class="name" style="margin-top: var(--space-md);">Sobre fundo light</span>
+      </div>
+    </div>
+  </div>
+  <span class="side-right">01</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 02</span>
+  <div class="content">
+    <p class="eyebrow">LOGO / VARIANTS</p>
+    <h2 class="section-heading">Variantes do sistema</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Cada variante existe para uma situação específica. Use a versão primária por padrão.
+      Compactas, monogramas e favicons entram quando o espaço, o canal ou o crop exigem.
+    </p>
+    <ul style="max-width: 60ch; color: var(--text-muted); margin-top: var(--space-sm); padding-left: var(--space-md); line-height: 1.6;">
+      <li><strong>primary</strong>: padrão de uso, todas as superfícies institucionais.</li>
+      <li><strong>horizontal</strong>: assinatura em rodapés, banners e cabeçalhos largos.</li>
+      <li><strong>compact</strong>: aplicações com largura reduzida, como tooltips ou cards.</li>
+      <li><strong>favicon</strong>: 16px a 64px, sempre raster otimizado.</li>
+      <li><strong>monogram</strong>: avatar, badge, sello de aprovação.</li>
+    </ul>
+    <div class="symbol-grid" style="margin-top: var(--space-lg);">
+      {{LOGO_VARIANTS_HTML}}
+    </div>
+    <p class="eyebrow" style="margin-top: var(--space-lg); color: var(--text-muted);">
+      Estrutura esperada de cada card iterado:
+    </p>
+    <pre style="font-family: var(--font-code-body, ui-monospace, monospace); font-size: 11px; color: var(--text-muted); white-space: pre-wrap;">
+&lt;div class="symbol-card"&gt;
+  &lt;div class="symbol"&gt;{{LOGO_VARIANT_VISUAL}}&lt;/div&gt;
+  &lt;span class="name"&gt;{{LOGO_VARIANT_NAME}}&lt;/span&gt;
+  &lt;p class="description"&gt;{{LOGO_VARIANT_USAGE}}&lt;/p&gt;
+&lt;/div&gt;
+    </pre>
+  </div>
+  <span class="side-right">02</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 03</span>
+  <div class="content">
+    <p class="eyebrow">LOGO / CLEAR SPACE</p>
+    <h2 class="section-heading">Área de respiro</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Nenhum elemento gráfico, tipográfico ou de imagem deve invadir a zona de respiro do logo.
+      Essa margem garante reconhecimento e dignidade visual em qualquer aplicação.
+    </p>
+    <div class="logo-construction" style="margin-top: var(--space-lg);">
+      <span class="safe-space-label">Safe space</span>
+      {{LOGO_CONSTRUCTION_SVG}}
+    </div>
+    <p class="subheading" style="margin-top: var(--space-md);">
+      Minimum Clear Space = <strong>{{LOGO_CLEAR_SPACE}}</strong>
+    </p>
+    <p style="color: var(--text-muted); max-width: 60ch;">
+      A unidade de medida é proporcional à própria marca, portanto o respiro escala com o tamanho do logo.
+      Em aplicações reduzidas, mantenha a proporção mesmo que o resultado pareça generoso.
+    </p>
+    <p style="color: var(--text-muted); max-width: 60ch; margin-top: var(--space-sm);">
+      Em peças impressas, considere também a margem de sangria do material. Em peças digitais, considere
+      o padding do container imediato, evitando logos colados em bordas ou conteúdo adjacente.
+    </p>
+  </div>
+  <span class="side-right">03</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 04</span>
+  <div class="content">
+    <p class="eyebrow">LOGO / USAGE RULES</p>
+    <h2 class="section-heading">Usos permitidos e proibidos</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O logo é estável. Não é palco para criatividade isolada. Quatro regras governam toda aplicação,
+      uma permitida como referência e três proibições que não admitem exceção.
+    </p>
+    <ul style="max-width: 60ch; color: var(--text-muted); margin-top: var(--space-sm); padding-left: var(--space-md); line-height: 1.6;">
+      <li>Não rotacionar, nem mesmo em vinhetas decorativas.</li>
+      <li>Não distorcer proporção horizontal ou vertical.</li>
+      <li>Não aplicar cor fora da paleta oficial.</li>
+      <li>Não sobrepor gradiente, textura, sombra dura ou efeito tridimensional.</li>
+    </ul>
+    <div class="symbol-grid" style="margin-top: var(--space-lg); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+      {{USAGE_RULES_HTML}}
+    </div>
+    <p class="eyebrow" style="margin-top: var(--space-lg); color: var(--text-muted);">
+      Estrutura esperada de cada card iterado:
+    </p>
+    <pre style="font-family: var(--font-code-body, ui-monospace, monospace); font-size: 11px; color: var(--text-muted); white-space: pre-wrap;">
+&lt;div class="symbol-card"&gt;
+  &lt;div class="symbol"&gt;{{USAGE_VISUAL}}&lt;/div&gt;
+  &lt;span class="chip approved"&gt;✓ permitido&lt;/span&gt;  &lt;!-- ou --&gt;
+  &lt;span class="chip banned"&gt;✷ proibido&lt;/span&gt;
+  &lt;p class="description"&gt;{{USAGE_LABEL}}&lt;/p&gt;
+&lt;/div&gt;
+    </pre>
+  </div>
+  <span class="side-right">04</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 05</span>
+  <div class="content">
+    <p class="eyebrow">LOGO / COLOR CONTEXTS</p>
+    <h2 class="section-heading">Contextos de cor</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O logo aceita um conjunto fechado de combinações com a paleta da marca. Cada contexto preserva contraste
+      mínimo WCAG AA e respeita o equilíbrio de identidade. Aplicações fora desta lista não são permitidas.
+    </p>
+    <div class="symbol-grid" style="margin-top: var(--space-lg);">
+      {{COLOR_CONTEXTS_HTML}}
+    </div>
+    <p class="eyebrow" style="margin-top: var(--space-lg); color: var(--text-muted);">
+      Estrutura esperada de cada card iterado:
+    </p>
+    <pre style="font-family: var(--font-code-body, ui-monospace, monospace); font-size: 11px; color: var(--text-muted); white-space: pre-wrap;">
+&lt;div class="symbol-card" style="background: {{CONTEXT_BG_HEX}}; color: {{CONTEXT_LOGO_HEX}};"&gt;
+  &lt;div class="symbol"&gt;{{CONTEXT_LOGO_VISUAL}}&lt;/div&gt;
+  &lt;span class="name"&gt;BG {{CONTEXT_BG_HEX}}&lt;/span&gt;
+  &lt;p class="description"&gt;logo color: {{CONTEXT_LOGO_HEX}}&lt;/p&gt;
+&lt;/div&gt;
+    </pre>
+  </div>
+  <span class="side-right">05</span>
+</section>

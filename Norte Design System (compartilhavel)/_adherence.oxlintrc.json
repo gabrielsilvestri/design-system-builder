@@ -1,0 +1,309 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/card/**",
+              "components/data/**",
+              "components/goals/**",
+              "components/instruments/**",
+              "components/surface/**",
+              "ui_kits/norte/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:IBM Plex Mono|Chakra Petch))/i]",
+        "message": "Font not provided by the design system. Available: IBM Plex Mono, Chakra Petch."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Card'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|mark|seal|code|tick|children|key|ref|className|style|children)$/]",
+        "message": "<Card> doesn't accept that prop. Declared props: title, mark, seal, code, tick, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute > JSXIdentifier[name!=/^(?:month|value|variant|key|ref|className|style|children)$/]",
+        "message": "<Chip> doesn't accept that prop. Declared props: month, value, variant."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Chip'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:up|down|now)$/]",
+        "message": "<Chip> variant must be one of 'up' | 'down' | 'now'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Crown'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|key|ref|className|style|children)$/]",
+        "message": "<Crown> doesn't accept that prop. Declared props: size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Group'] > JSXAttribute > JSXIdentifier[name!=/^(?:label|total|key|ref|className|style|children)$/]",
+        "message": "<Group> doesn't accept that prop. Declared props: label, total."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Hud'] > JSXAttribute > JSXIdentifier[name!=/^(?:brand|badge|link|session|seal|sync|key|ref|className|style|children)$/]",
+        "message": "<Hud> doesn't accept that prop. Declared props: brand, badge, link, session, seal, sync."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Meter'] > JSXAttribute > JSXIdentifier[name!=/^(?:value|key|ref|className|style|children)$/]",
+        "message": "<Meter> doesn't accept that prop. Declared props: value."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='RadarContact'] > JSXAttribute > JSXIdentifier[name!=/^(?:angle|dist|variant|lock|key|ref|className|style|children)$/]",
+        "message": "<RadarContact> doesn't accept that prop. Declared props: angle, dist, variant, lock."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='RadarContact'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:accent|accent2|crit)$/]",
+        "message": "<RadarContact> variant must be one of 'accent' | 'accent2' | 'crit'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Row'] > JSXAttribute > JSXIdentifier[name!=/^(?:k|v|variant|sub|key|ref|className|style|children)$/]",
+        "message": "<Row> doesn't accept that prop. Declared props: k, v, variant, sub."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Row'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:soft|accent|accent2)$/]",
+        "message": "<Row> variant must be one of 'soft' | 'accent' | 'accent2'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Split'] > JSXAttribute > JSXIdentifier[name!=/^(?:a|b|key|ref|className|style|children)$/]",
+        "message": "<Split> doesn't accept that prop. Declared props: a, b."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Surface'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|key|ref|className|style|children)$/]",
+        "message": "<Surface> doesn't accept that prop. Declared props: children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Tile'] > JSXAttribute > JSXIdentifier[name!=/^(?:icon|name|goal|progress|sub|active|badge|key|ref|className|style|children)$/]",
+        "message": "<Tile> doesn't accept that prop. Declared props: icon, name, goal, progress, sub, active, badge."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Value'] > JSXAttribute > JSXIdentifier[name!=/^(?:prefix|cents|suffix|variant|children|key|ref|className|style|children)$/]",
+        "message": "<Value> doesn't accept that prop. Declared props: prefix, cents, suffix, variant, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Value'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:positive|attention)$/]",
+        "message": "<Value> variant must be one of 'positive' | 'attention'."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "Card": {
+        "replaces": []
+      },
+      "Chip": {
+        "replaces": []
+      },
+      "Crown": {
+        "replaces": []
+      },
+      "Group": {
+        "replaces": []
+      },
+      "Hud": {
+        "replaces": []
+      },
+      "Meter": {
+        "replaces": []
+      },
+      "RadarContact": {
+        "replaces": []
+      },
+      "Row": {
+        "replaces": []
+      },
+      "Split": {
+        "replaces": []
+      },
+      "Surface": {
+        "replaces": []
+      },
+      "Tile": {
+        "replaces": []
+      },
+      "Value": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--card-bg",
+      "--card-border",
+      "--card-bracket",
+      "--card-pad",
+      "--card-radius",
+      "--card-shadow",
+      "--color-accent",
+      "--color-accent-2",
+      "--color-attention",
+      "--color-danger",
+      "--color-positive",
+      "--font-display",
+      "--font-mono",
+      "--glow",
+      "--glow-2",
+      "--hud-pad",
+      "--meter-h",
+      "--meter-tick",
+      "--meter-tick-gap",
+      "--meter-track",
+      "--p-blue",
+      "--p-blue-dim",
+      "--p-blur",
+      "--p-danger",
+      "--p-deep",
+      "--p-font-disp",
+      "--p-font-mono",
+      "--p-fs-2xl",
+      "--p-fs-2xs",
+      "--p-fs-base",
+      "--p-fs-lg",
+      "--p-fs-md",
+      "--p-fs-sm",
+      "--p-fs-xl",
+      "--p-fs-xs",
+      "--p-fw-bold",
+      "--p-fw-med",
+      "--p-fw-reg",
+      "--p-fw-semi",
+      "--p-grid",
+      "--p-ink",
+      "--p-ink-dim",
+      "--p-ink-faint",
+      "--p-on-accent",
+      "--p-panel",
+      "--p-r-md",
+      "--p-r-sm",
+      "--p-sp-1",
+      "--p-sp-2",
+      "--p-sp-3",
+      "--p-sp-4",
+      "--p-sp-5",
+      "--p-sp-6",
+      "--p-track-mid",
+      "--p-track-wide",
+      "--p-violet",
+      "--p-violet-dim",
+      "--p-void",
+      "--surface-deep",
+      "--surface-grid",
+      "--surface-line",
+      "--surface-line-str",
+      "--surface-panel",
+      "--surface-void",
+      "--text-dim",
+      "--text-faint",
+      "--text-ink",
+      "--text-on-accent",
+      "--tile-bg",
+      "--value-glow"
+    ],
+    "tokenKinds": {
+      "--p-void": "color",
+      "--p-deep": "color",
+      "--p-panel": "color",
+      "--p-grid": "color",
+      "--p-blue": "color",
+      "--p-blue-dim": "color",
+      "--p-violet": "color",
+      "--p-violet-dim": "color",
+      "--p-ink": "color",
+      "--p-ink-dim": "color",
+      "--p-ink-faint": "color",
+      "--p-on-accent": "color",
+      "--p-danger": "color",
+      "--color-accent": "color",
+      "--color-accent-2": "color",
+      "--color-positive": "color",
+      "--color-attention": "color",
+      "--color-danger": "color",
+      "--glow": "color",
+      "--glow-2": "color",
+      "--surface-void": "color",
+      "--surface-deep": "color",
+      "--surface-panel": "color",
+      "--surface-grid": "color",
+      "--surface-line": "color",
+      "--surface-line-str": "color",
+      "--text-ink": "font",
+      "--text-dim": "font",
+      "--text-faint": "font",
+      "--text-on-accent": "font",
+      "--p-font-mono": "font",
+      "--p-font-disp": "font",
+      "--p-fs-2xs": "spacing",
+      "--p-fs-xs": "spacing",
+      "--p-fs-sm": "spacing",
+      "--p-fs-md": "spacing",
+      "--p-fs-base": "spacing",
+      "--p-fs-lg": "spacing",
+      "--p-fs-xl": "spacing",
+      "--p-fs-2xl": "spacing",
+      "--p-fw-reg": "font",
+      "--p-fw-med": "font",
+      "--p-fw-semi": "font",
+      "--p-fw-bold": "font",
+      "--p-track-wide": "spacing",
+      "--p-track-mid": "spacing",
+      "--font-display": "font",
+      "--font-mono": "font",
+      "--p-sp-1": "spacing",
+      "--p-sp-2": "spacing",
+      "--p-sp-3": "spacing",
+      "--p-sp-4": "spacing",
+      "--p-sp-5": "spacing",
+      "--p-sp-6": "spacing",
+      "--p-r-sm": "spacing",
+      "--p-r-md": "spacing",
+      "--p-blur": "spacing",
+      "--card-pad": "spacing",
+      "--card-radius": "radius",
+      "--card-bg": "color",
+      "--card-border": "color",
+      "--card-bracket": "color",
+      "--card-shadow": "shadow",
+      "--value-glow": "shadow",
+      "--meter-h": "spacing",
+      "--meter-track": "color",
+      "--meter-tick": "color",
+      "--meter-tick-gap": "spacing",
+      "--tile-bg": "color",
+      "--hud-pad": "spacing"
+    },
+    "fontFamilies": [
+      "Chakra Petch",
+      "IBM Plex Mono"
+    ]
+  }
+}

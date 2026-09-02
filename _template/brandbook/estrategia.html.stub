@@ -1,0 +1,311 @@
+<!--
+  estrategia.html.stub · página condicional de estratégia de marca.
+  Gerada apenas se schema tem QUALQUER um destes blocos:
+    positioning, archetypes, voice, manifesto, hero_journey, evidence, testimonials.
+  Cada seção é envelopada em marcadores <!-- IF_X --> ... <!-- END_IF -->.
+  O showcase-builder remove o bloco inteiro se o schema não tem o bloco correspondente;
+  caso contrário, remove apenas os marcadores e preserva o conteúdo.
+
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+
+  Placeholders dinâmicos por seção:
+    01 POSITIONING   · {{POSITIONING_GRID_HTML}}
+    02 ARCHETYPES    · {{ARCHETYPES_BARS_HTML}}, {{ARCHETYPE_SYNTHESIS}}
+    03 VOICE         · {{VOICE_SPLIT_HTML}}, {{BANLIST_CHIPS_HTML}}, {{APPROVED_CHIPS_HTML}}
+    04 MANIFESTO     · {{MANIFESTO_QUOTE}}, {{MANIFESTO_BODY_HTML}}
+    05 HERO JOURNEY  · {{JOURNEY_HTML}}
+    06 EVIDENCE      · {{EVIDENCE_GRID_HTML}}
+    07 TESTIMONIALS  · {{TESTIMONIALS_HTML}}
+
+  Placeholders globais: {{CLIENT_NAME}}, {{YEAR}}.
+-->
+
+<section class="section">
+  <span class="side-left">ESTRATÉGIA</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · STRATEGY LAYER</p>
+    <h1 class="display-hero">Estratégia</h1>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O sistema visual existe a serviço de uma narrativa. Posicionamento, arquétipos, voz, manifesto, jornada, evidências e testemunhos compõem a camada estratégica que orienta toda decisão de design, copy e comunicação da marca.
+    </p>
+  </div>
+  <span class="side-right">{{YEAR}}</span>
+</section>
+
+<!-- IF_POSITIONING -->
+<section class="section alt">
+  <span class="side-left">SECTION 01</span>
+  <div class="content">
+    <p class="eyebrow">POSITIONING · STRATEGY</p>
+    <h2 class="section-heading">Posicionamento</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Três coordenadas definem onde a marca disputa atenção: o inimigo (o que combatemos), a audiência (para quem existimos) e a categoria (em qual território jogamos). O cartão central destaca a audiência como sujeito central da história.
+    </p>
+
+    <!-- showcase-builder injeta 3 cards .position dentro de .positioning-grid.
+         Esperado: .position com .label ("THE ENEMY"), .position.accent com .label ("THE AUDIENCE"),
+         .position com .label ("THE CATEGORY"). Cada um com seu .value. -->
+    {{POSITIONING_GRID_HTML}}
+  </div>
+  <span class="side-right">01</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_ARCHETYPES -->
+<section class="section">
+  <span class="side-left">SECTION 02</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · ARQUÉTIPOS</p>
+    <h2 class="section-heading">Arquétipos de marca</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      A personalidade da marca não é única, é uma mistura. Cada arquétipo carrega um peso percentual e uma essência. A barra preenchida mostra a proporção; a síntese ao final descreve o caráter resultante da combinação.
+    </p>
+
+    <!-- showcase-builder injeta N .archetype-row, uma por entry em schema.archetypes
+         (exceto a synthesis). Cada row: .name + .bar com .fill (style="width: NN%") + .pct
+         + .essence (linha-síntese full-width abaixo). O arquétipo com maior peso recebe
+         .archetype-row.active. -->
+    <div class="archetypes-list">
+      {{ARCHETYPES_BARS_HTML}}
+    </div>
+
+    <div class="card accent" style="margin-top: var(--space-xl);">
+      <p class="label-small">SÍNTESE</p>
+      <p style="font-family: var(--font-section-heading); font-size: 20px; margin: 0;">
+        {{ARCHETYPE_SYNTHESIS}}
+      </p>
+    </div>
+  </div>
+  <span class="side-right">02</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_VOICE -->
+<section class="section alt">
+  <span class="side-left">SECTION 03</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · VOZ</p>
+    <h2 class="section-heading">Voz da marca</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Toda peça de copy passa pelo filtro de voz. Quando a marca tem voz dupla (brand voice institucional e founder voice pessoal), as duas convivem lado a lado, cada uma com seu tom, traços e exemplo. Em seguida, vocabulário aprovado e banlist definem o léxico permitido.
+    </p>
+
+    <!-- showcase-builder injeta dentro de .voice-split:
+         .voice (brand voice) e .voice.alt (founder voice) quando schema.voice.founder_voice existe.
+         Caso contrário, injeta apenas um .card com a brand voice.
+         Cada .voice tem .label + .traits + .example. -->
+    {{VOICE_SPLIT_HTML}}
+
+    <div style="margin-top: var(--space-2xl);">
+      <p class="eyebrow">VOCABULÁRIO PROIBIDO</p>
+      <p style="max-width: 60ch; color: var(--text-muted); margin-bottom: var(--space-md);">
+        Palavras que erodem a autoridade da marca. Riscadas porque não devem aparecer em nenhuma peça oficial.
+      </p>
+      <!-- showcase-builder injeta N .chip.banned, uma por entry em schema.voice.banlist. -->
+      <div class="chip-group">
+        {{BANLIST_CHIPS_HTML}}
+      </div>
+    </div>
+
+    <div style="margin-top: var(--space-2xl);">
+      <p class="eyebrow">VOCABULÁRIO APROVADO</p>
+      <p style="max-width: 60ch; color: var(--text-muted); margin-bottom: var(--space-md);">
+        Termos cunhados ou favorecidos pela marca. Sempre que possível, usar literalmente para construir consistência semântica.
+      </p>
+      <!-- showcase-builder injeta N .chip.approved, uma por entry em schema.voice.approved_vocabulary. -->
+      <div class="chip-group">
+        {{APPROVED_CHIPS_HTML}}
+      </div>
+    </div>
+  </div>
+  <span class="side-right">03</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_MANIFESTO -->
+<section class="section">
+  <span class="side-left">SECTION 04</span>
+  <div class="content">
+    <p class="eyebrow">CORE BELIEF</p>
+    <h2 class="section-heading">Manifesto</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O manifesto é a frase-pilar que organiza toda a comunicação. A citação em display age como bandeira; os parágrafos de corpo desdobram a crença em argumento.
+    </p>
+
+    <blockquote style="
+      font-family: var(--font-display-large);
+      font-size: clamp(40px, 6vw, 88px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      font-weight: 800;
+      margin: var(--space-2xl) 0;
+      padding-left: var(--space-lg);
+      border-left: 4px solid var(--accent);
+      max-width: 24ch;
+    ">
+      {{MANIFESTO_QUOTE}}
+    </blockquote>
+
+    <!-- showcase-builder injeta N <p> tags, um por entry em schema.manifesto.body_paragraphs.
+         Cada parágrafo é renderizado em coluna; o CSS columns abaixo distribui em 2 colunas
+         responsivas. -->
+    <div style="
+      columns: 2;
+      column-gap: var(--space-2xl);
+      max-width: 80ch;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text);
+    ">
+      {{MANIFESTO_BODY_HTML}}
+    </div>
+  </div>
+  <span class="side-right">04</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_HERO_JOURNEY -->
+<section class="section alt">
+  <span class="side-left">SECTION 05</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · JORNADA DO HERÓI</p>
+    <h2 class="section-heading">A jornada do herói</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O cliente é o herói da história, não a marca. Quatro atos descrevem a transformação do estado inicial até o despertar. Toda peça de comunicação pode ser ancorada em algum desses atos.
+    </p>
+
+    <!-- showcase-builder injeta 4 .act dentro de .journey, um por entry em schema.hero_journey.acts.
+         Cada .act tem .num (01, 02, 03, 04) + .name + .description. Em mobile a grid colapsa
+         para 1 coluna (declarado em components.css). -->
+    {{JOURNEY_HTML}}
+  </div>
+  <span class="side-right">05</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_EVIDENCE -->
+<section class="section">
+  <span class="side-left">SECTION 06</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · EVIDÊNCIA</p>
+    <h2 class="section-heading">Evidências e resultados</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Números que sustentam a promessa da marca. Cada cartão exibe a métrica em display, o contexto que dá significado e a fonte que valida o dado. Sempre que possível, fonte interna ou citável.
+    </p>
+
+    <!-- showcase-builder injeta N .card dentro de .evidence-grid, um por entry em schema.evidence.
+         Cada .card tem:
+           - .label-small "MÉTRICA"
+           - <h3> com a métrica em display (ex: R$500K, 6 dias)
+           - <p> com o contexto
+           - <p class="label-small"> com "FONTE: {source}"
+         Layout: grid responsivo de cards. -->
+    <div class="evidence-grid" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    ">
+      {{EVIDENCE_GRID_HTML}}
+    </div>
+  </div>
+  <span class="side-right">06</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_TESTIMONIALS -->
+<section class="section alt">
+  <span class="side-left">SECTION 07</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · TESTEMUNHOS</p>
+    <h2 class="section-heading">Testemunhos</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Vozes reais que validam a transformação prometida. Cada testemunho inclui a fala, o autor, o contexto profissional e o resultado obtido (destacado em accent).
+    </p>
+
+    <!-- showcase-builder injeta N .card dentro de .testimonials-grid, um por entry em
+         schema.testimonials. Cada .card tem:
+           - <span class="quote-mark"> com ícone de aspa (caractere unicode " ou SVG)
+           - <p class="quote"> com o texto do testemunho em itálico
+           - <p class="author"> com o nome
+           - <p class="context"> com o contexto profissional em label-small
+           - <p class="result" style="color: var(--accent);"> com o resultado em destaque
+         Layout: grid responsivo, cards em .card padrão. -->
+    <div class="testimonials-grid" style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    ">
+      {{TESTIMONIALS_HTML}}
+    </div>
+  </div>
+  <span class="side-right">07</span>
+</section>
+<!-- END_IF -->
+
+<section class="section">
+  <span class="side-left">FIM</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · PRÓXIMOS PASSOS</p>
+    <h2 class="section-heading">Da estratégia à execução</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Este documento é vivo. Posicionamento, voz e manifesto orientam toda decisão de copy. Arquétipos calibram tom e direção de arte. Jornada, evidência e testemunhos alimentam landing pages, ads e materiais de venda. Quando o sistema visual de <code>guidelines.html</code> conversa com a camada estratégica desta página, a marca para de ser um conjunto de elementos e vira uma narrativa coerente.
+    </p>
+  </div>
+  <span class="side-right">FIM</span>
+</section>
+
+<!--
+  Snippets de exemplo que o showcase-builder injeta nos placeholders:
+
+  POSITIONING_GRID_HTML (3 cards .position, o do meio com .accent):
+    <div class="positioning-grid">
+      <div class="position">
+        <span class="label">THE ENEMY</span>
+        <p class="value">A complexidade</p>
+      </div>
+      <div class="position accent">
+        <span class="label">THE AUDIENCE</span>
+        <p class="value">Os criadores não-técnicos</p>
+      </div>
+      <div class="position">
+        <span class="label">THE CATEGORY</span>
+        <p class="value">AI Orchestration Experience</p>
+      </div>
+    </div>
+
+  ARCHETYPES_BARS_HTML (uma .archetype-row por arquétipo; o de maior peso recebe .active):
+    <div class="archetype-row active">
+      <span class="name">Magician</span>
+      <div class="bar"><span class="fill" style="width: 60%;"></span></div>
+      <span class="pct">60%</span>
+      <p class="essence">Poder transformacional</p>
+    </div>
+
+  VOICE_SPLIT_HTML (dual voice quando founder_voice presente):
+    <div class="voice-split">
+      <div class="voice">
+        <p class="label">BRAND VOICE</p>
+        <p>Frio, implacável, minimalista, sábio.</p>
+        <p class="traits">Tom: Direto, objetivo, institucional-premium.</p>
+        <p class="example">"A IA é a seta. O X é meu."</p>
+      </div>
+      <div class="voice alt">
+        <p class="label">FOUNDER VOICE</p>
+        <p>Caloroso, apaixonado, expansivo.</p>
+        <p class="traits">Tom: Provocativo, social-first.</p>
+        <p class="example">"Você não está pronto pra Matrix."</p>
+      </div>
+    </div>
+
+  Se não houver founder_voice, injetar apenas <div class="card"> com a brand voice dentro.
+
+  JOURNEY_HTML:
+    <div class="journey">
+      <div class="act"><span class="num">01</span><p class="name">O Sono</p><p class="description">Preso na matrix de ferramentas visuais.</p></div>
+      <div class="act"><span class="num">02</span><p class="name">O Chamado</p><p class="description">Terminal + metodologia oferecidos.</p></div>
+      <div class="act"><span class="num">03</span><p class="name">A Toca do Coelho</p><p class="description">Aprendizado profundo, fluxo, resultados reais.</p></div>
+      <div class="act"><span class="num">04</span><p class="name">O Despertar</p><p class="description">Transformado de observador em criador poderoso.</p></div>
+    </div>
+-->

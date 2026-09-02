@@ -1,0 +1,52 @@
+/* ============================================================
+   NORTE · COLOR TOKENS
+   Tema: Ghost in the Shell / cyberpunk neon glass. Azul + violeta.
+   Base escura tintada de violeta-azul. Análise: Soft Summer (frio).
+   Camadas: PRIMITIVO (--p-*) -> SEMÂNTICO (papel). Nunca cor crua em componente.
+   ============================================================ */
+:root{
+
+  /* ---------- PRIMITIVO · superfícies (base escura tintada) ---------- */
+  --p-void:        oklch(0.110 0.025 268);
+  --p-deep:        oklch(0.135 0.035 268);
+  --p-panel:       oklch(0.200 0.050 270);
+  --p-grid:        oklch(0.115 0.030 268);
+
+  /* ---------- PRIMITIVO · acentos neon (vibrantes) ---------- */
+  --p-blue:        oklch(0.750 0.160 262);   /* ciano-azul holográfico */
+  --p-blue-dim:    oklch(0.620 0.120 262);
+  --p-violet:      oklch(0.740 0.180 302);   /* violeta neon */
+  --p-violet-dim:  oklch(0.620 0.140 304);
+
+  /* ---------- PRIMITIVO · tinta (texto), branco SUAVIZADO de propósito ---------- */
+  --p-ink:         oklch(0.850 0.025 265);
+  --p-ink-dim:     oklch(0.720 0.035 268);
+  --p-ink-faint:   oklch(0.560 0.040 270);
+  --p-on-accent:   oklch(0.120 0.020 268);   /* texto sobre fundo de acento */
+
+  /* ---------- PRIMITIVO · perigo real (reservada: só insolvência) ---------- */
+  --p-danger:      oklch(0.640 0.200 025);
+
+  /* ---------- SEMÂNTICO · papéis de cor ---------- */
+  --color-accent:     var(--p-blue);      /* estrutura, "temos", Pessoa A, medidores */
+  --color-accent-2:   var(--p-violet);    /* destaque, Pessoa B, "devemos" */
+  --color-positive:   var(--p-blue);      /* o que entra / o que temos */
+  --color-attention:  var(--p-violet);    /* o que sai / dívida — atenção fria, NÃO alarme */
+  --color-danger:     var(--p-danger);    /* só insolvência real */
+  --glow:             color-mix(in oklch, var(--color-accent), transparent 45%);
+  --glow-2:           color-mix(in oklch, var(--color-accent-2), transparent 45%);
+
+  /* ---------- SEMÂNTICO · superfícies e bordas ---------- */
+  --surface-void:     var(--p-void);
+  --surface-deep:     var(--p-deep);
+  --surface-panel:    var(--p-panel);
+  --surface-grid:     var(--p-grid);
+  --surface-line:     color-mix(in oklch, var(--color-accent), transparent 80%);
+  --surface-line-str: color-mix(in oklch, var(--color-accent), transparent 62%);
+
+  /* ---------- SEMÂNTICO · tinta ---------- */
+  --text-ink:        var(--p-ink);
+  --text-dim:        var(--p-ink-dim);
+  --text-faint:      var(--p-ink-faint);
+  --text-on-accent:  var(--p-on-accent);
+}

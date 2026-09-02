@@ -1,0 +1,19 @@
+<!-- @dsCard group="Brand" viewport="700x190" name="Brackets de canto" subtitle="A moldura luminosa — não cantos arredondados" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:22px;display:flex;gap:22px;align-items:center}
+  .frame{position:relative;flex:1;height:120px;background:var(--card-bg);border:1px solid var(--card-border);box-shadow:var(--card-shadow);backdrop-filter:blur(var(--p-blur));display:flex;align-items:center;justify-content:center}
+  .frame .b{position:absolute;width:16px;height:16px}
+  .tl{left:-1px;top:-1px;border-top:2px solid var(--color-accent);border-left:2px solid var(--color-accent)}
+  .br{right:-1px;bottom:-1px;border-bottom:2px solid var(--color-accent);border-right:2px solid var(--color-accent)}
+  .tick{width:40px;height:9px;background:repeating-linear-gradient(90deg,color-mix(in oklch,var(--color-accent),transparent 55%) 0 2px,transparent 2px 5px)}
+  .cap{font-size:var(--p-fs-xs);color:var(--text-dim);max-width:230px}
+</style></head>
+<body>
+  <div class="frame"><span class="b tl"></span><div class="tick"></div><span class="b br"></span></div>
+  <div class="cap">Todo módulo de vidro carrega um bracket no canto superior-esquerdo e inferior-direito. É a assinatura de cockpit — telemetria, não planilha.</div>
+</body></html>

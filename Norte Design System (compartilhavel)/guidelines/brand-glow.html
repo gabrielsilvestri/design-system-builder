@@ -1,0 +1,23 @@
+<!-- @dsCard group="Brand" viewport="700x180" name="Glow nas molduras, nunca nos dígitos" subtitle="Regra absoluta — valores sempre limpos" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:18px;display:flex;gap:16px}
+  .col{flex:1;border:1px solid var(--surface-line);border-radius:var(--p-r-md);padding:14px}
+  .ok{border-color:var(--surface-line-str)}
+  .no{border-color:color-mix(in oklch,var(--color-danger),transparent 55%)}
+  h4{margin:0 0 10px;font-family:var(--font-display);font-size:var(--p-fs-2xs);letter-spacing:.12em;text-transform:uppercase}
+  .ok h4{color:var(--color-accent);text-shadow:0 0 9px var(--glow)}
+  .no h4{color:var(--color-danger)}
+  .v{font-variant-numeric:tabular-nums;font-size:var(--p-fs-2xl);font-weight:600;color:var(--color-positive)}
+  .clean{text-shadow:none}
+  .glowy{text-shadow:0 0 16px var(--color-positive),0 0 8px var(--color-positive)}
+  .cap{font-size:var(--p-fs-2xs);color:var(--text-faint);margin-top:8px}
+</style></head>
+<body>
+  <div class="col ok"><h4>◢ Faça — título com glow</h4><div class="v clean">R$ 12.000</div><div class="cap">dígitos limpos · glow vive no título/moldura</div></div>
+  <div class="col no"><h4>✕ Não faça — glow no número</h4><div class="v glowy">R$ 12.000</div><div class="cap">ofusca a leitura · proibido</div></div>
+</body></html>

@@ -1,0 +1,41 @@
+<!-- @dsCard group="Components" viewport="700x230" name="Meter · Split · Crown" subtitle="Segmented gauge, two-proportion bar, contributor crown" -->
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../styles.css">
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);padding:20px;font-family:var(--font-mono)}
+  #root{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Card, Value, Sub, Rows, Row, Meter, Split, Crown } = window.NorteDesignSystem_23eb33;
+  function Demo(){
+    return (<>
+      <Card title="Tanque" seal="燃料" code="FUEL">
+        <Value variant="attention" prefix="R$ " style={{marginBottom:10}}>8.000</Value>
+        <Meter value={55} />
+        <Sub>já entraram R$ 10.000 · 55% · meta R$ 18.000</Sub>
+      </Card>
+      <Card title="Quem fez" seal="収入">
+        <Rows style={{marginTop:0}}>
+          <Row k="Pessoa A" v="R$ 12.000" variant="accent" />
+          <Row k="Pessoa B" v={<>R$ 12.000 <Crown/></>} variant="accent2" />
+        </Rows>
+        <Split a={50} style={{marginTop:11}} />
+      </Card>
+    </>);
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo/>);
+</script>
+</body>
+</html>

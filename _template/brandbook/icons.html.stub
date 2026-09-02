@@ -1,0 +1,218 @@
+<!--
+  icons.html.stub · página condicional do brandbook focada em sistema de ícones.
+  Só é gerada pelo showcase-builder se schema.icons está populado E o cliente tem
+  SVGs em <cliente>/assets/icons/. Inspirada em /brandbook/icons de referencia premium.
+  Apenas conteúdo de <main>; substitui {{PAGE_CONTENT}} no layout.
+
+  Placeholders esperados:
+    {{ICONS_COUNT}}, {{ICONS_CATEGORIES_COUNT}}, {{ICONS_INVENTORY_HTML}},
+    {{GRID_SIZES_HTML}}, {{STYLE_RULES_HTML}}, {{COLOR_VARIANTS_HTML}},
+    {{ACCESSIBILITY_RULES_HTML}}, {{CANONICAL_VIEWBOX}}, {{STROKE_WIDTH}},
+    {{MIN_TOUCH_TARGET}}
+-->
+
+<style>
+  /* Classes específicas de icons. Componentes globais ficam em components.css. */
+  .icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .icon-cell {
+    background: var(--bg);
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    text-align: center;
+    min-height: 140px;
+  }
+  .icon-cell .glyph {
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text);
+  }
+  .icon-cell .glyph svg { width: 100%; height: 100%; }
+  .icon-cell .name {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text);
+  }
+  .icon-cell .category {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .size-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-md);
+  }
+  .size-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    display: flex; flex-direction: column; gap: var(--space-md);
+    align-items: flex-start;
+  }
+  .size-card .preview {
+    display: flex; align-items: center; justify-content: center;
+    width: 100%;
+    min-height: 96px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+  .size-card .label {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .size-card .px {
+    font-family: var(--font-display-large);
+    font-size: 28px;
+    font-weight: 800;
+  }
+  .size-card .usage { font-size: 13px; color: var(--text-muted); }
+
+  .variant-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .variant-cell {
+    background: var(--bg);
+    padding: var(--space-lg) var(--space-md);
+    display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);
+  }
+  .variant-cell .glyph { width: 32px; height: 32px; }
+  .variant-cell .glyph svg { width: 100%; height: 100%; }
+  .variant-cell .name {
+    font-family: var(--font-button-small);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .variant-cell.default .glyph { color: var(--text); }
+  .variant-cell.brand   .glyph { color: var(--accent); }
+  .variant-cell.muted   .glyph { color: var(--text-muted); }
+  .variant-cell.error   .glyph { color: var(--color-error); }
+  .variant-cell.info    .glyph { color: var(--color-info, #38bdf8); }
+  .variant-cell.warning .glyph { color: var(--color-warning, #fbbf24); }
+
+  .rule-list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-sm); }
+  .rule-list li {
+    padding: var(--space-sm) var(--space-md);
+    border-left: 2px solid var(--accent);
+    background: var(--bg-alt);
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .stats-row {
+    display: flex; gap: var(--space-2xl); flex-wrap: wrap;
+    margin-top: var(--space-md);
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .stats-row strong { color: var(--text); font-weight: 700; }
+</style>
+
+<section class="section">
+  <span class="side-left">SECTION 01 · INVENTORY</span>
+  <div class="content">
+    <p class="eyebrow">Inventário</p>
+    <h2 class="section-heading">Sistema de ícones</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Cada ícone abaixo é desenhado sobre o viewBox canônico {{CANONICAL_VIEWBOX}} e
+      respeita o stroke {{STROKE_WIDTH}}. A consistência geométrica é o que torna a
+      família reconhecível mesmo fora de contexto.
+    </p>
+    <div class="stats-row">
+      <span><strong>{{ICONS_COUNT}}</strong> ícones</span>
+      <span>em <strong>{{ICONS_CATEGORIES_COUNT}}</strong> categorias</span>
+    </div>
+    <div class="icon-grid" style="margin-top: var(--space-lg);">
+      {{ICONS_INVENTORY_HTML}}
+    </div>
+  </div>
+  <span class="side-right">01</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 02 · SIZES</span>
+  <div class="content">
+    <p class="eyebrow">Grid de tamanhos</p>
+    <h2 class="section-heading">Tamanhos canônicos</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Quatro tamanhos canônicos cobrem todas as densidades de UI. Use o tamanho mais
+      próximo do alvo visual; não escale fora desta grade.
+    </p>
+    <div class="size-grid" style="margin-top: var(--space-lg);">
+      {{GRID_SIZES_HTML}}
+    </div>
+  </div>
+  <span class="side-right">02</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 03 · STYLE</span>
+  <div class="content">
+    <p class="eyebrow">Regras de desenho</p>
+    <h2 class="section-heading">Guia de estilo</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Regras geométricas que mantêm a família coesa: stroke, terminações, viewBox,
+      preenchimento e herança de cor.
+    </p>
+    <ul class="rule-list" style="margin-top: var(--space-lg);">
+      {{STYLE_RULES_HTML}}
+    </ul>
+  </div>
+  <span class="side-right">03</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 04 · COLOR</span>
+  <div class="content">
+    <p class="eyebrow">Variantes de cor</p>
+    <h2 class="section-heading">Mesmo ícone, papéis diferentes</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Os ícones usam <code>currentColor</code>, então respondem à cor do contexto.
+      Abaixo, o mesmo glyph aplicado nos seis papéis canônicos.
+    </p>
+    <div class="variant-strip" style="margin-top: var(--space-lg);">
+      {{COLOR_VARIANTS_HTML}}
+    </div>
+  </div>
+  <span class="side-right">04</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 05 · A11Y</span>
+  <div class="content">
+    <p class="eyebrow">Acessibilidade</p>
+    <h2 class="section-heading">Alvo de toque e padding</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Ícones interativos (botões, toggles, links) precisam de alvo de toque mínimo
+      {{MIN_TOUCH_TARGET}}. Para glyphs menores que 24px, o padding ao redor
+      compensa a diferença até atingir o alvo.
+    </p>
+    <ul class="rule-list" style="margin-top: var(--space-lg);">
+      {{ACCESSIBILITY_RULES_HTML}}
+    </ul>
+  </div>
+  <span class="side-right">05</span>
+</section>

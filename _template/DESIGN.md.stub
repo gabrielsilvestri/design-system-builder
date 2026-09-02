@@ -1,0 +1,440 @@
+---
+schema_version: 2.0
+client_name: {{CLIENT_NAME}}
+client_slug: {{CLIENT_SLUG}}
+description: {{BRAND_DESCRIPTION_SHORT}}
+language: pt-br
+edition: {{EDITION}}
+year: {{YEAR}}
+
+style_archetype: {{STYLE_ARCHETYPE}}
+style_confidence: {{STYLE_CONFIDENCE}}
+default_theme: {{DEFAULT_THEME}}
+themes_available:
+  - {{THEME_PRIMARY}}
+
+confidence_summary:
+  high: {{CONFIDENCE_HIGH_COUNT}}
+  medium: {{CONFIDENCE_MEDIUM_COUNT}}
+  low: {{CONFIDENCE_LOW_COUNT}}
+  total: {{CONFIDENCE_TOTAL_COUNT}}
+
+colors:
+  primary: "{{COLOR_PRIMARY_HEX}}"
+  on-primary: "{{COLOR_ON_PRIMARY_HEX}}"
+  secondary: "{{COLOR_SECONDARY_HEX}}"
+  on-secondary: "{{COLOR_ON_SECONDARY_HEX}}"
+  tertiary: "{{COLOR_TERTIARY_HEX}}"
+  on-tertiary: "{{COLOR_ON_TERTIARY_HEX}}"
+  neutral: "{{COLOR_NEUTRAL_HEX}}"
+  surface: "{{COLOR_SURFACE_HEX}}"
+  on-surface: "{{COLOR_ON_SURFACE_HEX}}"
+  surface-variant: "{{COLOR_SURFACE_VARIANT_HEX}}"
+  on-surface-variant: "{{COLOR_ON_SURFACE_VARIANT_HEX}}"
+  outline: "{{COLOR_OUTLINE_HEX}}"
+  error: "{{COLOR_ERROR_HEX}}"
+  on-error: "{{COLOR_ON_ERROR_HEX}}"
+  success: "{{COLOR_SUCCESS_HEX}}"
+  warning: "{{COLOR_WARNING_HEX}}"
+  info: "{{COLOR_INFO_HEX}}"
+  named:
+    {{NAMED_COLORS_YAML}}
+
+typography:
+  display-hero:
+    fontFamily: "{{FONT_DISPLAY_FAMILY}}"
+    fontSize: "{{TYPE_DISPLAY_HERO_SIZE}}"
+    fontWeight: {{TYPE_DISPLAY_HERO_WEIGHT}}
+    lineHeight: "{{TYPE_DISPLAY_HERO_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_DISPLAY_HERO_TRACKING}}"
+    features: "{{TYPE_DISPLAY_HERO_FEATURES}}"
+    role: "hero billboard"
+  display-large:
+    fontFamily: "{{FONT_DISPLAY_FAMILY}}"
+    fontSize: "{{TYPE_DISPLAY_LARGE_SIZE}}"
+    fontWeight: {{TYPE_DISPLAY_LARGE_WEIGHT}}
+    lineHeight: "{{TYPE_DISPLAY_LARGE_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_DISPLAY_LARGE_TRACKING}}"
+    role: "title large"
+  section-heading:
+    fontFamily: "{{FONT_HEADING_FAMILY}}"
+    fontSize: "{{TYPE_SECTION_HEADING_SIZE}}"
+    fontWeight: {{TYPE_SECTION_HEADING_WEIGHT}}
+    lineHeight: "{{TYPE_SECTION_HEADING_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_SECTION_HEADING_TRACKING}}"
+    role: "section header"
+  subheading-large:
+    fontFamily: "{{FONT_HEADING_FAMILY}}"
+    fontSize: "{{TYPE_SUBHEADING_LARGE_SIZE}}"
+    fontWeight: {{TYPE_SUBHEADING_LARGE_WEIGHT}}
+    lineHeight: "{{TYPE_SUBHEADING_LARGE_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_SUBHEADING_LARGE_TRACKING}}"
+  subheading:
+    fontFamily: "{{FONT_HEADING_FAMILY}}"
+    fontSize: "{{TYPE_SUBHEADING_SIZE}}"
+    fontWeight: {{TYPE_SUBHEADING_WEIGHT}}
+    lineHeight: "{{TYPE_SUBHEADING_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_SUBHEADING_TRACKING}}"
+  body-large:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_BODY_LARGE_SIZE}}"
+    fontWeight: {{TYPE_BODY_LARGE_WEIGHT}}
+    lineHeight: "{{TYPE_BODY_LARGE_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_BODY_LARGE_TRACKING}}"
+  body:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_BODY_SIZE}}"
+    fontWeight: {{TYPE_BODY_WEIGHT}}
+    lineHeight: "{{TYPE_BODY_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_BODY_TRACKING}}"
+  body-small:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_BODY_SMALL_SIZE}}"
+    fontWeight: {{TYPE_BODY_SMALL_WEIGHT}}
+    lineHeight: "{{TYPE_BODY_SMALL_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_BODY_SMALL_TRACKING}}"
+  button:
+    fontFamily: "{{FONT_BUTTON_FAMILY}}"
+    fontSize: "{{TYPE_BUTTON_SIZE}}"
+    fontWeight: {{TYPE_BUTTON_WEIGHT}}
+    lineHeight: "{{TYPE_BUTTON_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_BUTTON_TRACKING}}"
+    role: "interactive label"
+  button-small:
+    fontFamily: "{{FONT_BUTTON_FAMILY}}"
+    fontSize: "{{TYPE_BUTTON_SMALL_SIZE}}"
+    fontWeight: {{TYPE_BUTTON_SMALL_WEIGHT}}
+    lineHeight: "{{TYPE_BUTTON_SMALL_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_BUTTON_SMALL_TRACKING}}"
+  link:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_LINK_SIZE}}"
+    fontWeight: {{TYPE_LINK_WEIGHT}}
+    lineHeight: "{{TYPE_LINK_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_LINK_TRACKING}}"
+  caption:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_CAPTION_SIZE}}"
+    fontWeight: {{TYPE_CAPTION_WEIGHT}}
+    lineHeight: "{{TYPE_CAPTION_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_CAPTION_TRACKING}}"
+  caption-small:
+    fontFamily: "{{FONT_BODY_FAMILY}}"
+    fontSize: "{{TYPE_CAPTION_SMALL_SIZE}}"
+    fontWeight: {{TYPE_CAPTION_SMALL_WEIGHT}}
+    lineHeight: "{{TYPE_CAPTION_SMALL_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_CAPTION_SMALL_TRACKING}}"
+  micro:
+    fontFamily: "{{FONT_BUTTON_FAMILY}}"
+    fontSize: "{{TYPE_MICRO_SIZE}}"
+    fontWeight: {{TYPE_MICRO_WEIGHT}}
+    lineHeight: "{{TYPE_MICRO_LINE_HEIGHT}}"
+    letterSpacing: "{{TYPE_MICRO_TRACKING}}"
+
+rounded:
+  none: "0px"
+  sm: "{{RADIUS_SM}}"
+  md: "{{RADIUS_MD}}"
+  lg: "{{RADIUS_LG}}"
+  xl: "{{RADIUS_XL}}"
+  full: "9999px"
+
+spacing:
+  xs: "{{SPACING_XS}}"
+  sm: "{{SPACING_SM}}"
+  md: "{{SPACING_MD}}"
+  lg: "{{SPACING_LG}}"
+  xl: "{{SPACING_XL}}"
+  "2xl": "{{SPACING_2XL}}"
+  "3xl": "{{SPACING_3XL}}"
+  "4xl": "{{SPACING_4XL}}"
+  "5xl": "{{SPACING_5XL}}"
+  gutter: "{{SPACING_GUTTER}}"
+  container-padding: "{{SPACING_CONTAINER_PADDING}}"
+
+breakpoints:
+  mobile: "0px"
+  tablet: "{{BREAKPOINT_TABLET}}"
+  desktop: "{{BREAKPOINT_DESKTOP}}"
+  wide: "{{BREAKPOINT_WIDE}}"
+
+shadows:
+  flat: "none"
+  ambient: "{{SHADOW_AMBIENT}}"
+  standard: "{{SHADOW_STANDARD}}"
+  elevated: "{{SHADOW_ELEVATED}}"
+  deep: "{{SHADOW_DEEP}}"
+
+motion:
+  durations:
+    fast: "160ms"
+    base: "240ms"
+    slow: "480ms"
+  easings:
+    ease-out: "cubic-bezier(0.16, 1, 0.3, 1)"
+    ease-in-out: "cubic-bezier(0.65, 0, 0.35, 1)"
+  reduced-motion-respected: true
+
+z-index:
+  base: 0
+  raised: 10
+  sticky: 100
+  modal: 1000
+  toast: 10000
+
+opacity:
+  invisible: "0"
+  faint: "0.05"
+  muted: "0.4"
+  prominent: "0.7"
+  full: "1"
+
+preview_tokens:
+  button_primary_bg: "{{COLOR_PRIMARY_HEX}}"
+  button_primary_text: "{{COLOR_ON_PRIMARY_HEX}}"
+  button_primary_border: "{{COLOR_PRIMARY_HEX}}"
+  button_secondary_bg: "transparent"
+  button_secondary_text: "{{COLOR_ON_SURFACE_HEX}}"
+  button_secondary_border: "{{COLOR_OUTLINE_HEX}}"
+  button_tertiary_text: "{{COLOR_TERTIARY_HEX}}"
+  surface_bg: "{{COLOR_SURFACE_HEX}}"
+  card_bg: "{{COLOR_SURFACE_VARIANT_HEX}}"
+  text: "{{COLOR_ON_SURFACE_HEX}}"
+  text_muted: "{{COLOR_NEUTRAL_HEX}}"
+  border: "{{COLOR_OUTLINE_HEX}}"
+  accent: "{{COLOR_TERTIARY_HEX}}"
+  button_radius: "{{RADIUS_MD}}"
+  card_radius: "{{RADIUS_LG}}"
+  input_radius: "{{RADIUS_SM}}"
+
+components:
+  button-primary:
+    bg: "{colors.primary}"
+    text: "{colors.on-primary}"
+    border: "{colors.primary}"
+    radius: "{rounded.md}"
+    padding: "{{BUTTON_PADDING}}"
+    font: "{{BUTTON_FONT_SPEC}}"
+    states:
+      hover: { bg: "{{BUTTON_HOVER_BG}}" }
+      focus: { ring: "0 0 0 2px {colors.tertiary}" }
+      disabled: { opacity: 0.4 }
+  button-secondary:
+    bg: "transparent"
+    text: "{colors.on-surface}"
+    border: "{colors.outline}"
+    radius: "{rounded.md}"
+    padding: "{{BUTTON_PADDING}}"
+    font: "{{BUTTON_FONT_SPEC}}"
+    states:
+      hover: { border: "{colors.tertiary}", text: "{colors.tertiary}" }
+  button-ghost:
+    bg: "transparent"
+    text: "{colors.on-surface}"
+    border: "transparent"
+    radius: "{rounded.md}"
+    padding: "{{BUTTON_PADDING}}"
+    font: "{{BUTTON_FONT_SPEC}}"
+    states:
+      hover: { bg: "{colors.surface-variant}" }
+  card:
+    bg: "{colors.surface-variant}"
+    border: "{colors.outline}"
+    radius: "{rounded.lg}"
+    padding: "{{CARD_PADDING}}"
+    shadow: "{shadows.standard}"
+  input-text:
+    bg: "transparent"
+    text: "{colors.on-surface}"
+    border: "{colors.outline}"
+    radius: "{rounded.sm}"
+    padding: "{{INPUT_PADDING}}"
+    font: "{{INPUT_FONT_SPEC}}"
+    states:
+      focus: { border: "{colors.tertiary}" }
+      error: { border: "{colors.error}", text: "{colors.error}" }
+      disabled: { opacity: 0.4 }
+  badge-default:
+    bg: "{colors.surface-variant}"
+    text: "{colors.on-surface}"
+    border: "{colors.outline}"
+    radius: "{rounded.full}"
+    padding: "2px 8px"
+    font: "{{BADGE_FONT_SPEC}}"
+  nav-header:
+    bg: "{{NAV_HEADER_BG}}"
+    text: "{colors.on-surface}"
+    border_bottom: "{colors.outline}"
+    backdrop_filter: "blur(16px)"
+    height: "56px"
+---
+
+## 1. Visual Theme & Atmosphere
+
+{{VISUAL_THEME_NARRATIVE}}
+
+**Key Characteristics:**
+
+{{KEY_CHARACTERISTICS_BULLETS}}
+
+## 2. Color Palette & Roles
+
+### Primary
+
+{{PRIMARY_COLORS_LIST}}
+
+### Brand & Dark
+
+{{BRAND_DARK_COLORS_LIST}}
+
+### Accent Colors
+
+{{ACCENT_COLORS_LIST}}
+
+### Interactive
+
+{{INTERACTIVE_COLORS_LIST}}
+
+### Neutral Scale
+
+{{NEUTRAL_COLORS_LIST}}
+
+### Surface & Borders
+
+{{SURFACE_COLORS_LIST}}
+
+### Color Philosophy
+
+{{COLOR_PHILOSOPHY_PARAGRAPH}}
+
+## 3. Typography Rules
+
+### Font Family
+
+{{FONT_FAMILY_NARRATIVE}}
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Features | Notes |
+|---|---|---|---|---|---|---|---|
+{{TYPOGRAPHY_TABLE_ROWS}}
+
+### Principles
+
+{{TYPOGRAPHY_PRINCIPLES_BULLETS}}
+
+## 4. Components
+
+### Buttons
+
+{{BUTTONS_PROSE}}
+
+### Cards & Containers
+
+{{CARDS_PROSE}}
+
+### Inputs & Forms
+
+{{INPUTS_PROSE}}
+
+### Badges / Tags / Pills
+
+{{BADGES_PROSE}}
+
+### Navigation
+
+{{NAV_PROSE}}
+
+### Decorative Elements
+
+{{DECORATIVE_PROSE}}
+
+## 5. Layout Principles
+
+### Spacing System
+
+{{SPACING_NARRATIVE}}
+
+### Grid & Container
+
+{{GRID_NARRATIVE}}
+
+### Whitespace Philosophy
+
+{{WHITESPACE_NARRATIVE}}
+
+### Border Radius Scale
+
+{{RADIUS_NARRATIVE}}
+
+## 6. Depth & Elevation
+
+| Level | Treatment | Use |
+|---|---|---|
+{{ELEVATION_TABLE_ROWS}}
+
+### Shadow Philosophy
+
+{{SHADOW_PHILOSOPHY_OR_COVERAGE_NOTE}}
+
+## 7. Do's and Don'ts
+
+### Do's (brand-specific)
+
+{{BRAND_DOS_BULLETS}}
+
+### Don'ts (brand-specific)
+
+{{BRAND_DONTS_BULLETS}}
+
+## 8. Responsive Behavior
+
+### Breakpoints
+
+| Name | Width | Key Changes |
+|---|---|---|
+{{BREAKPOINTS_TABLE_ROWS}}
+
+### Touch Targets
+
+{{TOUCH_TARGETS_NARRATIVE}}
+
+### Collapsing Strategy
+
+{{COLLAPSING_NARRATIVE}}
+
+### Image Behavior
+
+{{IMAGE_BEHAVIOR_NARRATIVE}}
+
+## 9. Agent Prompt Guide
+
+Cole isto no início do chat com qualquer LLM. Substitua `{{TAREFA}}` pela sua pergunta.
+
+---
+
+Você é designer e copywriter da **{{CLIENT_NAME}}**. {{BRAND_DESCRIPTION_SHORT}}
+
+### Quick Color Reference
+
+{{QUICK_COLOR_REF_BULLETS}}
+
+### Tipografia
+
+{{FONT_QUICK_REF}}
+
+### Example Component Prompts
+
+{{EXAMPLE_COMPONENT_PROMPTS}}
+
+### Iteration Guide
+
+{{ITERATION_GUIDE_NUMBERED}}
+
+### Tarefa
+
+{{TAREFA}}
+
+Responda em português brasileiro, com acentos corretos, sem en dash ou em dash. Se precisar de placeholder, marque como `[a definir]` em vez de inventar.
+
+---

@@ -1,0 +1,23 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Tinta + bordas" subtitle="Branco suavizado de propósito — nunca puro aceso" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-deep);font-family:var(--font-mono);padding:18px}
+  .ink{display:flex;flex-direction:column;gap:7px}
+  .ink div{font-size:var(--p-fs-md)}
+  .a{color:var(--text-ink)} .b{color:var(--text-dim)} .c{color:var(--text-faint)}
+  .lines{display:flex;gap:0;margin-top:14px;border-radius:var(--p-r-sm);overflow:hidden;height:30px}
+  .l1{flex:1;border:1px solid var(--surface-line)} .l2{flex:1;border:1px solid var(--surface-line-str)}
+  .cap{font-size:var(--p-fs-2xs);color:var(--text-faint);margin-top:5px;display:flex;justify-content:space-between}
+</style></head>
+<body>
+  <div class="ink">
+    <div class="a">text-ink — tinta principal (oklch .85, não ofusca)</div>
+    <div class="b">text-dim — secundário, rótulos e chaves</div>
+    <div class="c">text-faint — legendas, datas, unidades</div>
+  </div>
+  <div class="lines"><div class="l1"></div><div class="l2"></div></div>
+  <div class="cap"><span>surface-line — divisor padrão</span><span>surface-line-str — borda de card</span></div>
+</body></html>

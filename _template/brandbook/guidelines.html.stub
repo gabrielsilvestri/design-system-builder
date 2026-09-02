@@ -1,0 +1,425 @@
+<!--
+  guidelines.html.stub · master single-page do brandbook do cliente.
+  Equivalente a um /brandbook/guidelines de referencia premium.
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+
+  Seções:
+    01. Identity System         (sempre)
+    02. Typography System       (sempre)
+    03. Color Palette           (sempre)
+    04. Logo Construction       (sempre)
+    05. Manifesto               (condicional, IF_MANIFESTO)
+    06. Symbols & Glyphs        (condicional, IF_SYMBOLS)
+    07. Naming / Concept Flow   (condicional, IF_NAMING)
+    08. Positioning             (condicional, IF_POSITIONING)
+    09. Brand Archetypes        (condicional, IF_ARCHETYPES)
+    10. Evidence & Results      (condicional, IF_EVIDENCE)
+    11. Hero's Journey          (condicional, IF_JOURNEY)
+    12. Testimonials            (condicional, IF_TESTIMONIALS)
+    13. Personality / Voice     (condicional, IF_VOICE)
+    14. Components              (sempre)
+
+  Placeholders (preenchidos pelo showcase-builder a partir do DESIGN.md):
+    Sempre:
+      {{CLIENT_NAME}}, {{YEAR}},
+      {{LOGO_HERO_HTML}}, {{BRAND_HIERARCHY_HTML}}, {{IDENTITY_DESCRIPTION}},
+      {{TYPOGRAPHY_BLOCK_HTML}},
+      {{PALETTE_COLUMNS_HTML}},
+      {{LOGO_CONSTRUCTION_BLOCK}},
+      {{COMPONENTS_DEMO_HTML}}
+    Condicionais:
+      {{MANIFESTO_QUOTE}}, {{MANIFESTO_BODY_HTML}},
+      {{SYMBOLS_GRID_HTML}},
+      {{NAMING_FLOW_HTML}},
+      {{POSITIONING_GRID_HTML}},
+      {{ARCHETYPES_BARS_HTML}}, {{ARCHETYPE_SYNTHESIS}},
+      {{EVIDENCE_GRID_HTML}},
+      {{JOURNEY_HTML}},
+      {{TESTIMONIALS_HTML}},
+      {{VOICE_SPLIT_HTML}}, {{BANLIST_CHIPS_HTML}}, {{APPROVED_CHIPS_HTML}}
+
+  Convenção condicional:
+    <!-- IF_NOME -->  ...  <!-- END_IF -->
+  O showcase-builder remove o bloco inteiro se a seção não foi populada,
+  ou apenas os marcadores se foi.
+-->
+
+<!-- ============================================================
+     01. IDENTITY SYSTEM
+     Logo gigante centralizado + brand hierarchy breadcrumb.
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 01</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · BRAND IDENTITY</p>
+    <h2 class="section-heading">Identity System</h2>
+
+    <div class="logo-hero" style="display: flex; align-items: center; justify-content: center; min-height: 360px; padding: var(--space-2xl) 0;">
+      {{LOGO_HERO_HTML}}
+    </div>
+
+    <p style="max-width: 64ch; color: var(--text-muted); font-size: var(--text-body-large, 18px); line-height: 1.5;">
+      {{IDENTITY_DESCRIPTION}}
+    </p>
+
+    <div class="brand-hierarchy" style="margin-top: var(--space-2xl); padding-top: var(--space-md); border-top: 1px solid var(--border);">
+      {{BRAND_HIERARCHY_HTML}}
+    </div>
+  </div>
+  <span class="side-right">01</span>
+</section>
+
+<!-- ============================================================
+     02. TYPOGRAPHY SYSTEM
+     Fontes principais com weight tabs + specimen "Aa" + character set.
+     ============================================================ -->
+<section class="section alt">
+  <span class="side-left">SECTION 02 · TYPE SYSTEM</span>
+  <div class="content">
+    <p class="eyebrow">Typography</p>
+    <h2 class="section-heading">Type System</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      A tipografia carrega a voz da marca. Cada peso tem função: thin para detalhe, regular para corpo, bold para hierarquia, black para impacto.
+    </p>
+
+    <div class="typography-block" style="margin-top: var(--space-xl);">
+      {{TYPOGRAPHY_BLOCK_HTML}}
+    </div>
+  </div>
+  <span class="side-right">02</span>
+</section>
+
+<!-- ============================================================
+     03. COLOR PALETTE
+     Full-bleed palette columns (premium style).
+     ============================================================ -->
+<section class="section" style="padding: 0;">
+  <span class="side-left">SECTION 03 · COLOR PALETTE</span>
+
+  <div class="content" style="padding-bottom: var(--space-lg);">
+    <p class="eyebrow">Color System</p>
+    <h2 class="section-heading">Core Identity Palette</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Cada cor tem um papel. Nome, hex, role e códigos completos abaixo. Clique para copiar.
+    </p>
+  </div>
+
+  <div class="palette-columns">
+    {{PALETTE_COLUMNS_HTML}}
+  </div>
+
+  <span class="side-right">03</span>
+</section>
+
+<!-- ============================================================
+     04. LOGO CONSTRUCTION
+     Safe space dashed yellow + brand mark.
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 04 · LOGO METRICS</span>
+  <div class="content">
+    <p class="eyebrow">Logo Construction</p>
+    <h2 class="section-heading">Safe Space & Construction Grid</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      O logo respira. A área de proteção garante legibilidade em qualquer aplicação. Nunca invada esse espaço.
+    </p>
+
+    <div class="logo-construction" style="margin-top: var(--space-xl);">
+      <span class="safe-space-label">SAFE SPACE (X)</span>
+      {{LOGO_CONSTRUCTION_BLOCK}}
+    </div>
+  </div>
+  <span class="side-right">04</span>
+</section>
+
+<!-- IF_MANIFESTO -->
+<!-- ============================================================
+     05. MANIFESTO
+     Quote enorme + body paragraphs em 2 colunas.
+     ============================================================ -->
+<section class="section alt">
+  <span class="side-left">SECTION 05 · CORE BELIEF</span>
+  <div class="content">
+    <p class="eyebrow">The Manifesto</p>
+    <h2 class="section-heading">O que acreditamos</h2>
+
+    <blockquote class="display-large" style="margin: var(--space-2xl) 0 var(--space-xl); padding: 0; border: 0; max-width: 28ch; line-height: 1.05;">
+      {{MANIFESTO_QUOTE}}
+    </blockquote>
+
+    <div class="manifesto-body" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-xl); color: var(--text-muted); font-size: var(--text-body, 16px); line-height: 1.65;">
+      {{MANIFESTO_BODY_HTML}}
+    </div>
+  </div>
+  <span class="side-right">05</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_SYMBOLS -->
+<!-- ============================================================
+     06. SYMBOLS & GLYPHS
+     .symbol-grid com cards (default + accent variants).
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 06 · VISUAL LANGUAGE</span>
+  <div class="content" style="padding-bottom: var(--space-lg);">
+    <p class="eyebrow">Symbols & Meaning</p>
+    <h2 class="section-heading">Glyphs</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Cada símbolo carrega significado. A biblioteca visual codifica a marca em formas reusáveis.
+    </p>
+  </div>
+
+  <div class="symbol-grid">
+    {{SYMBOLS_GRID_HTML}}
+  </div>
+
+  <span class="side-right">06</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_NAMING -->
+<!-- ============================================================
+     07. NAMING / CONCEPT FLOW
+     .naming-flow com 4 steps (uma letra ou pilar da marca por step).
+     ============================================================ -->
+<section class="section alt">
+  <span class="side-left">SECTION 07 · SEMANTICS</span>
+  <div class="content">
+    <p class="eyebrow">Naming & Concept Flow</p>
+    <h2 class="section-heading">Concept Architecture</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      O nome conta uma história. Cada letra ou parte é uma camada de significado que constrói a narrativa.
+    </p>
+
+    <div class="naming-flow" style="margin-top: var(--space-xl);">
+      {{NAMING_FLOW_HTML}}
+    </div>
+  </div>
+  <span class="side-right">07</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_POSITIONING -->
+<!-- ============================================================
+     08. POSITIONING
+     3 cards: enemy, audience (accent), category.
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 08 · MARKET STRATEGY</span>
+  <div class="content" style="padding-bottom: var(--space-lg);">
+    <p class="eyebrow">Positioning</p>
+    <h2 class="section-heading">Brand Position</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Contra quem lutamos, para quem servimos, e em que categoria jogamos. A clareza estratégica que ancora cada decisão.
+    </p>
+  </div>
+
+  <div class="positioning-grid">
+    {{POSITIONING_GRID_HTML}}
+  </div>
+
+  <span class="side-right">08</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_ARCHETYPES -->
+<!-- ============================================================
+     09. BRAND ARCHETYPES
+     .archetype-row bars com %.
+     ============================================================ -->
+<section class="section alt">
+  <span class="side-left">SECTION 09 · PERSONALITY CORE</span>
+  <div class="content">
+    <p class="eyebrow">Brand Archetypes</p>
+    <h2 class="section-heading">DNA da personalidade</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Toda marca é uma mistura. As proporções definem como a marca pensa, fala e age. A síntese fecha o retrato.
+    </p>
+
+    <div class="archetypes" style="margin-top: var(--space-xl);">
+      {{ARCHETYPES_BARS_HTML}}
+    </div>
+
+    <p class="archetype-synthesis" style="margin-top: var(--space-xl); color: var(--accent); font-family: var(--font-section-heading); font-size: 18px; font-weight: 700;">
+      {{ARCHETYPE_SYNTHESIS}}
+    </p>
+  </div>
+  <span class="side-right">09</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_EVIDENCE -->
+<!-- ============================================================
+     10. EVIDENCE & RESULTS
+     Grid de cards (metric + context + source).
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 10 · PROOF</span>
+  <div class="content">
+    <p class="eyebrow">Evidence & Compression of Time</p>
+    <h2 class="section-heading">Resultados reais</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Números, casos, marcos. A prova que sustenta a promessa.
+    </p>
+
+    <div class="evidence-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl);">
+      {{EVIDENCE_GRID_HTML}}
+    </div>
+  </div>
+  <span class="side-right">10</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_JOURNEY -->
+<!-- ============================================================
+     11. HERO'S JOURNEY
+     .journey 4 atos.
+     ============================================================ -->
+<section class="section alt" style="padding: 0;">
+  <span class="side-left">SECTION 11 · NARRATIVE</span>
+
+  <div class="content" style="padding-bottom: var(--space-lg);">
+    <p class="eyebrow">Hero's Journey</p>
+    <h2 class="section-heading">A jornada do herói</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Quatro atos. O cliente sai do sono, escuta o chamado, atravessa a toca, e desperta transformado.
+    </p>
+  </div>
+
+  <div class="journey">
+    {{JOURNEY_HTML}}
+  </div>
+
+  <span class="side-right">11</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_TESTIMONIALS -->
+<!-- ============================================================
+     12. TESTIMONIALS
+     Grid de quote cards (.card).
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 12 · SOCIAL PROOF</span>
+  <div class="content">
+    <p class="eyebrow">Testimonials</p>
+    <h2 class="section-heading">Vozes reais</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Histórias de quem atravessou a jornada. Sem retoques, sem marketing.
+    </p>
+
+    <div class="testimonials-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); margin-top: var(--space-xl);">
+      {{TESTIMONIALS_HTML}}
+    </div>
+  </div>
+  <span class="side-right">12</span>
+</section>
+<!-- END_IF -->
+
+<!-- IF_VOICE -->
+<!-- ============================================================
+     13. PERSONALITY / VOICE
+     .voice-split dual + chip-group (banlist / approved).
+     ============================================================ -->
+<section class="section alt" style="padding: 0;">
+  <span class="side-left">SECTION 13 · VOICE & TONE</span>
+
+  <div class="content" style="padding-bottom: var(--space-lg);">
+    <p class="eyebrow">Personality & Voice</p>
+    <h2 class="section-heading">Como a marca fala</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      A voz é a impressão digital sonora. Direta, consistente, reconhecível. Abaixo o vocabulário aprovado e o que nunca é dito.
+    </p>
+  </div>
+
+  <div class="voice-split">
+    {{VOICE_SPLIT_HTML}}
+  </div>
+
+  <div class="content" style="padding-top: var(--space-2xl);">
+    <p class="eyebrow" style="color: var(--color-error);">Banlist · nunca usar</p>
+    <div class="chip-group" style="margin-top: var(--space-md); margin-bottom: var(--space-xl);">
+      {{BANLIST_CHIPS_HTML}}
+    </div>
+
+    <p class="eyebrow" style="color: var(--accent);">Vocabulário aprovado</p>
+    <div class="chip-group" style="margin-top: var(--space-md);">
+      {{APPROVED_CHIPS_HTML}}
+    </div>
+  </div>
+
+  <span class="side-right">13</span>
+</section>
+<!-- END_IF -->
+
+<!-- ============================================================
+     14. COMPONENTS
+     Botões (primary/secondary/ghost), cards, inputs (estados).
+     ============================================================ -->
+<section class="section">
+  <span class="side-left">SECTION 14 · COMPONENT LIBRARY</span>
+  <div class="content">
+    <p class="eyebrow">Components</p>
+    <h2 class="section-heading">Component Demo</h2>
+    <p class="subheading" style="max-width: 60ch; color: var(--text-muted);">
+      Os átomos visuais. Interaja: hover, focus, error, disabled. Cada estado documentado.
+    </p>
+
+    <!-- Buttons -->
+    <div class="component-block" style="margin-top: var(--space-2xl);">
+      <p class="eyebrow" style="margin-bottom: var(--space-md);">Buttons</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center;">
+        <button class="btn primary" type="button">Primary action</button>
+        <button class="btn secondary" type="button">Secondary</button>
+        <button class="btn ghost" type="button">Ghost</button>
+        <button class="btn primary" type="button" disabled>Disabled</button>
+      </div>
+      <p style="margin-top: var(--space-sm); color: var(--text-muted); font-size: 13px;">
+        Hover, focus-visible, active e disabled funcionam direto. Foco com ring de 2px no accent.
+      </p>
+    </div>
+
+    <!-- Inputs -->
+    <div class="component-block" style="margin-top: var(--space-2xl);">
+      <p class="eyebrow" style="margin-bottom: var(--space-md);">Inputs</p>
+      <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center;">
+        <input class="input-demo" type="text" placeholder="Default state" />
+        <input class="input-demo" type="text" value="Focused" autofocus />
+        <input class="input-demo error" type="text" value="Error state" />
+        <input class="input-demo" type="text" value="Disabled" disabled />
+      </div>
+      <p style="margin-top: var(--space-sm); color: var(--text-muted); font-size: 13px;">
+        Borda muda para accent no focus, error vermelho com texto vermelho, disabled atenuado.
+      </p>
+    </div>
+
+    <!-- Cards -->
+    <div class="component-block" style="margin-top: var(--space-2xl);">
+      <p class="eyebrow" style="margin-bottom: var(--space-md);">Cards</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-lg);">
+        <div class="card">
+          <div class="label-small">Default</div>
+          <h3>Card padrão</h3>
+          <p>Background alt, borda sutil, radius médio. Use para agrupar conteúdo neutro.</p>
+        </div>
+        <div class="card accent">
+          <div class="label-small">Accent</div>
+          <h3>Card de destaque</h3>
+          <p>Background accent, texto em on-tertiary. Use com parcimônia para chamar atenção.</p>
+        </div>
+        <div class="card">
+          <div class="label-small">Metric</div>
+          <h3 style="font-family: var(--font-display-large); font-size: 36px; color: var(--accent);">99%</h3>
+          <p>Métricas ganham peso visual. Combine com contexto curto abaixo.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slot para variantes específicas do cliente (preenchido pelo showcase-builder se houver) -->
+    <div class="component-block" style="margin-top: var(--space-2xl);">
+      {{COMPONENTS_DEMO_HTML}}
+    </div>
+  </div>
+  <span class="side-right">14</span>
+</section>

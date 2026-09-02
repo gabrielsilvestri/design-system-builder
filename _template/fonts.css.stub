@@ -1,0 +1,27 @@
+/*
+ * {{CLIENT_NAME}}, fontes locais.
+ * Importar antes de tokens.css.
+ *
+ * Este arquivo só existe se há TTF/OTF/WOFF em <cliente>/fonts/.
+ * Caso contrário, o showcase-builder usa Google Fonts via <link> no <head>.
+ */
+
+/* ============================================ */
+/*  {{FONT_DISPLAY_FAMILY}}, display             */
+/* ============================================ */
+
+/* @font-face
+   font-family: "{{FONT_DISPLAY_FAMILY}}";
+   src: url("./fonts/<slug>/<arquivo>.ttf") format("truetype");
+   font-weight: <peso>;
+   font-style: normal;
+   font-display: swap;
+ */
+
+/* (showcase-builder gera um @font-face por arquivo encontrado em <cliente>/fonts/<slug>/) */
+
+/* ============================================ */
+/*  {{FONT_BODY_FAMILY}}, body                   */
+/* ============================================ */
+
+/* (idem) */

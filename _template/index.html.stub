@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="{{LANGUAGE}}" data-theme="{{THEME}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{CLIENT_NAME}}, Design System</title>
+  <meta name="description" content="{{TAGLINE}}" />
+
+  {{FONTS_HEAD}}
+  <link rel="stylesheet" href="./tokens.css" />
+
+  <style>
+    /*
+     * Aliases semânticos e tokens de motion.
+     * tokens.css (gerado por _scripts/export.mjs) já define:
+     *   --color-primary, --color-on-primary, --color-secondary, --color-tertiary,
+     *   --color-neutral, --color-surface, --color-on-surface,
+     *   --color-surface-variant, --color-on-surface-variant, --color-outline,
+     *   --color-error, --color-on-error
+     *   --font-display-lg, --font-headline-lg, --font-headline-md, --font-headline-sm,
+     *   --font-body-lg, --font-body-md, --font-body-sm, --font-label-md
+     *   --text-display-lg, --text-headline-lg, ... (font-size por level)
+     *   --leading-display-lg, --tracking-display-lg, --font-weight-display-lg, ...
+     *   --radius-sm, --radius-md, --radius-lg, --radius-full
+     *   --space-xs, --space-sm, --space-md, --space-lg, --space-xl,
+     *   --space-2xl, --space-3xl, --space-4xl, --space-5xl
+     *
+     * Motion não é parte do spec DESIGN.md; definido localmente abaixo.
+     */
+    :root {
+      --bg:      var(--color-surface);
+      --text:    var(--color-on-surface);
+      --muted:   color-mix(in srgb, var(--color-on-surface) 60%, transparent);
+      --border:  var(--color-outline);
+      --accent:  var(--color-tertiary);
+
+      --ease-out:      cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out:   cubic-bezier(0.65, 0, 0.35, 1);
+      --duration-fast: 160ms;
+      --duration-base: 240ms;
+      --duration-slow: 480ms;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body-md);
+      font-size: var(--text-body-md);
+      line-height: var(--leading-body-md);
+      color: var(--text);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .display {
+      font-family: var(--font-display-lg);
+      font-size: var(--text-display-lg);
+      line-height: var(--leading-display-lg);
+      letter-spacing: var(--tracking-display-lg);
+      font-weight: var(--font-weight-display-lg);
+    }
+    .h1 {
+      font-family: var(--font-headline-lg);
+      font-size: var(--text-headline-lg);
+      line-height: var(--leading-headline-lg);
+      letter-spacing: var(--tracking-headline-lg);
+      font-weight: var(--font-weight-headline-lg);
+    }
+    .h2 {
+      font-family: var(--font-headline-md);
+      font-size: var(--text-headline-md);
+      line-height: var(--leading-headline-md);
+      letter-spacing: var(--tracking-headline-md);
+      font-weight: var(--font-weight-headline-md);
+    }
+    .h3 {
+      font-family: var(--font-headline-sm);
+      font-size: var(--text-headline-sm);
+      line-height: var(--leading-headline-sm);
+      letter-spacing: var(--tracking-headline-sm);
+      font-weight: var(--font-weight-headline-sm);
+    }
+    .body-lg { font-size: var(--text-body-lg); line-height: var(--leading-body-lg); }
+    .body-sm { font-size: var(--text-body-sm); line-height: var(--leading-body-sm); }
+    .eyebrow {
+      font-family: var(--font-label-md);
+      font-size: var(--text-label-md);
+      letter-spacing: var(--tracking-label-md);
+      font-weight: var(--font-weight-label-md);
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 var(--space-lg); }
+    section { padding: var(--space-5xl) 0; border-top: 1px solid var(--border); }
+    section.alt { background: var(--color-surface-variant); }
+
+    /* Header sticky */
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 96%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .site-header .row { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .site-header nav { display: flex; gap: var(--space-lg); }
+    .site-header a { color: var(--text); text-decoration: none; font-size: var(--text-body-sm); }
+    .site-header a:hover { color: var(--accent); }
+
+    /* Hero (card-feature do DESIGN.md) */
+    .hero {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5xl) var(--space-2xl);
+      margin: var(--space-2xl) 0;
+    }
+    .hero .tagline { max-width: 18ch; }
+
+    /* Botões pill (button-primary / outline / ghost do DESIGN.md) */
+    .btn {
+      display: inline-flex; align-items: center; gap: var(--space-sm);
+      padding: var(--space-sm) var(--space-lg);
+      border-radius: var(--radius-full);
+      font-family: var(--font-label-md);
+      font-weight: var(--font-weight-label-md);
+      font-size: var(--text-label-md);
+      letter-spacing: var(--tracking-label-md);
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+      transition: transform var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out);
+    }
+    .btn--primary { background: var(--color-primary);  color: var(--color-on-primary); }
+    .btn--solid   { background: var(--color-tertiary); color: var(--color-on-tertiary); }
+    .btn--outline { background: transparent; color: var(--text); border-color: var(--border); }
+    .btn--ghost   { background: transparent; color: var(--text); }
+    .btn:hover { transform: translateY(-1px); }
+
+    /* Palette grid */
+    .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-md); }
+    .swatch {
+      padding: var(--space-lg); border-radius: var(--radius-md);
+      cursor: pointer; border: 1px solid var(--border);
+      transition: transform var(--duration-fast) var(--ease-out);
+      background: var(--color-surface);
+    }
+    .swatch:hover { transform: translateY(-2px); }
+    .swatch .chip { height: 96px; border-radius: var(--radius-sm); margin-bottom: var(--space-md); }
+    .swatch .name { font-weight: 600; }
+    .swatch .meta { font-size: var(--text-body-sm); color: var(--muted); margin-top: var(--space-xs); }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: var(--space-lg); left: 50%;
+      transform: translateX(-50%) translateY(120%);
+      background: var(--color-primary); color: var(--color-on-primary);
+      padding: var(--space-sm) var(--space-lg); border-radius: var(--radius-full);
+      transition: transform var(--duration-base) var(--ease-out);
+      z-index: 100;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* Spacing scale viz */
+    .spacing-row { display: flex; align-items: center; gap: var(--space-md); padding: var(--space-sm) 0; border-bottom: 1px solid var(--border); }
+    .spacing-row .bar { background: var(--accent); height: 12px; border-radius: 6px; }
+    .spacing-row .label { font-size: var(--text-body-sm); color: var(--muted); min-width: 80px; }
+
+    /* Applications */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-lg); }
+    .gallery img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; border-radius: var(--radius-md); }
+
+    /* Footer */
+    footer { padding: var(--space-5xl) 0 var(--space-2xl); color: var(--muted); font-size: var(--text-body-sm); border-top: 1px solid var(--border); }
+    footer a { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container row">
+    <div>{{LOGO_HEADER_HTML}}</div>
+    <nav>
+      <a href="#brand">Marca</a>
+      <a href="#palette">Paleta</a>
+      <a href="#type">Tipografia</a>
+      <a href="#components">Componentes</a>
+      <a href="#tokens">Tokens</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <p class="eyebrow" style="color: var(--color-on-primary); opacity: 0.7;">{{CLIENT_NAME}}</p>
+    <h1 class="display tagline">{{TAGLINE}}</h1>
+    <p class="body-lg" style="margin-top: var(--space-xl); max-width: 50ch; opacity: 0.9;">{{BRAND_DESCRIPTION_SHORT}}</p>
+    <div style="margin-top: var(--space-2xl); display: flex; gap: var(--space-md);">
+      <a href="#palette" class="btn btn--primary" style="background: var(--color-on-primary); color: var(--color-primary);">Ver paleta</a>
+      <a href="{{CLIENT_URL}}" class="btn btn--outline" style="color: var(--color-on-primary); border-color: color-mix(in srgb, var(--color-on-primary) 40%, transparent);" target="_blank" rel="noopener">Site oficial</a>
+    </div>
+  </section>
+
+  <section id="brand">
+    <p class="eyebrow">01, Marca</p>
+    <h2 class="h2">Identidade</h2>
+    <p class="body-lg" style="max-width: 60ch; margin-top: var(--space-lg);">{{BRAND_DESCRIPTION_LONG}}</p>
+    {{LOGO_VARIATIONS_HTML}}
+  </section>
+
+  <section id="palette" class="alt">
+    <p class="eyebrow">02, Paleta</p>
+    <h2 class="h2">Cores oficiais</h2>
+    <p style="max-width: 60ch; margin-top: var(--space-lg);">Clique em qualquer swatch para copiar o hex.</p>
+    <div class="palette" style="margin-top: var(--space-2xl);">
+      {{PALETTE_SWATCHES_HTML}}
+    </div>
+  </section>
+
+  <section id="type">
+    <p class="eyebrow">03, Tipografia</p>
+    <h2 class="h2">Sistema tipográfico</h2>
+    {{TYPOGRAPHY_SPECIMEN_HTML}}
+  </section>
+
+  <section id="spacing" class="alt">
+    <p class="eyebrow">04, Spacing</p>
+    <h2 class="h2">Escala</h2>
+    <div style="margin-top: var(--space-2xl);">
+      {{SPACING_SCALE_HTML}}
+    </div>
+  </section>
+
+  <section id="components">
+    <p class="eyebrow">05, Componentes</p>
+    <h2 class="h2">Botões e ações</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: var(--space-md); margin-top: var(--space-2xl);">
+      <button class="btn btn--primary">Primary</button>
+      <button class="btn btn--solid">Solid</button>
+      <button class="btn btn--outline">Outline</button>
+      <button class="btn btn--ghost">Ghost</button>
+    </div>
+  </section>
+
+  {{IDENTITY_STATEMENT_HTML}}
+
+  {{APPLICATIONS_GALLERY_HTML}}
+
+  <section id="tokens" class="alt">
+    <p class="eyebrow">06, Tokens</p>
+    <h2 class="h2">Como integrar</h2>
+    <pre style="background: var(--color-primary); color: var(--color-on-primary); padding: var(--space-lg); border-radius: var(--radius-md); overflow-x: auto; margin-top: var(--space-2xl);"><code>@import url('./tokens.css');
+
+body {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body-md);
+}</code></pre>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>{{CLIENT_NAME}}, Design System v{{VERSION}}.</p>
+    <p>Site oficial: <a href="{{CLIENT_URL}}" target="_blank" rel="noopener">{{CLIENT_URL}}</a></p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Copiado</div>
+
+<script>
+  document.querySelectorAll('.swatch').forEach(el => {
+    el.addEventListener('click', () => {
+      const hex = el.dataset.hex;
+      if (!hex) return;
+      navigator.clipboard.writeText(hex).then(() => {
+        const t = document.getElementById('toast');
+        t.textContent = hex + ' copiado';
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 1600);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

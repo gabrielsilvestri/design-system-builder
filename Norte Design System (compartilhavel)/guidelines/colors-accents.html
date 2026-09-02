@@ -1,0 +1,20 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Acentos neon" subtitle="Azul = temos/Pessoa A · Violeta = devemos/Pessoa B" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .sw{border:1px solid var(--surface-line);border-radius:var(--p-r-md);overflow:hidden}
+  .chip{height:64px;box-shadow:inset 0 0 24px color-mix(in oklch,black,transparent 70%)}
+  .lab{padding:9px 12px;font-size:var(--p-fs-sm);color:var(--text-dim);background:color-mix(in oklch,var(--surface-panel),transparent 35%)}
+  .lab b{display:block;color:var(--text-ink);font-weight:600;letter-spacing:.04em;margin-bottom:2px;font-family:var(--font-display)}
+  code{color:var(--text-faint);font-size:var(--p-fs-xs)}
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--color-accent)"></div><div class="lab"><b>--color-accent</b><code>p-blue · oklch(.75 .16 262)</code></div></div>
+    <div class="sw"><div class="chip" style="background:var(--color-accent-2)"></div><div class="lab"><b>--color-accent-2</b><code>p-violet · oklch(.74 .18 302)</code></div></div>
+  </div>
+</body></html>

@@ -1,0 +1,19 @@
+/* ============================================================
+   NORTE · SPACING + RADIUS TOKENS
+   Espaço em grade 4/8. Raio discreto — cantos quase retos,
+   os brackets de canto fazem o resto.
+   ============================================================ */
+:root{
+
+  /* ---------- PRIMITIVO · espaço (grade 4/8) ---------- */
+  --p-sp-1: 4px;
+  --p-sp-2: 8px;
+  --p-sp-3: 12px;
+  --p-sp-4: 16px;
+  --p-sp-5: 20px;
+  --p-sp-6: 24px;
+
+  /* ---------- PRIMITIVO · raio (discreto) ---------- */
+  --p-r-sm: 2px;
+  --p-r-md: 3px;
+}

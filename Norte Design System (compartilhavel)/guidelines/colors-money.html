@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x170" name="Cor de dinheiro" subtitle="Entra=azul · Sai=violeta (atenção fria) · Perigo só insolvência" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:18px}
+  .row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .sw{border:1px solid var(--surface-line);border-radius:var(--p-r-md);overflow:hidden}
+  .chip{height:56px}
+  .lab{padding:8px 11px;font-size:var(--p-fs-xs);color:var(--text-dim);background:color-mix(in oklch,var(--surface-panel),transparent 35%)}
+  .lab b{display:block;color:var(--text-ink);font-weight:600;margin-bottom:2px;font-family:var(--font-display);letter-spacing:.03em}
+  .note{margin-top:12px;font-size:var(--p-fs-xs);color:var(--text-faint)}
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--color-positive)"></div><div class="lab"><b>positive</b>o que entra / temos</div></div>
+    <div class="sw"><div class="chip" style="background:var(--color-attention)"></div><div class="lab"><b>attention</b>o que sai / dívida</div></div>
+    <div class="sw"><div class="chip" style="background:var(--color-danger)"></div><div class="lab"><b>danger</b>só insolvência real</div></div>
+  </div>
+  <div class="note">Atenção é violeta frio, NÃO alarme. Vermelho fica reservado — nunca decorativo.</div>
+</body></html>

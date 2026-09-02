@@ -1,0 +1,22 @@
+{
+  "name": "design-system-workspace",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Workspace para construir design systems de clientes. Skill orquestradora + 3 subagents + templates. Adota o spec google-labs-code/design.md como formato canônico.",
+  "scripts": {
+    "serve":          "node _scripts/serve.mjs",
+    "capture":        "node _scripts/capture-reference.mjs",
+    "static-extract": "node _scripts/static-extract.mjs",
+    "drift":          "node _scripts/drift.mjs",
+    "score":          "node _scripts/score.mjs",
+    "telemetry":      "node _scripts/telemetry.mjs",
+    "verify":         "node _scripts/verify.mjs",
+    "export":         "node _scripts/export.mjs",
+    "lint":           "node _scripts/lint.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0",
+    "js-yaml": "^4.1.0"
+  }
+}

@@ -1,0 +1,80 @@
+<!--
+  index.html.stub · landing TOC do brandbook do cliente.
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+  Placeholders adicionais aqui:
+    {{BRAND_DESCRIPTION_LONG}}, {{TAGLINE_BLOCK}}, {{YEAR}},
+    {{TOC_CARD_ICONS}}, {{TOC_CARD_MOODBOARD}}, {{TOC_CARD_ESTRATEGIA}}
+  As 3 cards condicionais (ICONS, MOODBOARD, ESTRATEGIA) recebem string vazia se a página não foi gerada.
+-->
+
+<section class="section">
+  <span class="side-left">SECTION 00</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · BRANDBOOK</p>
+    <h1 class="display-hero">{{CLIENT_NAME}}</h1>
+    <p style="max-width: 60ch; color: var(--text-muted);">{{BRAND_DESCRIPTION_LONG}}</p>
+    {{TAGLINE_BLOCK}}
+  </div>
+  <span class="side-right">{{YEAR}}</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">CONTENTS</span>
+  <div class="content">
+    <p class="eyebrow">Navegar o brandbook</p>
+    <h2 class="section-heading">Documentos</h2>
+    <div class="toc-grid">
+
+      <a class="toc-card" href="guidelines.html">
+        <div class="number">01</div>
+        <h3>Guidelines</h3>
+        <p>Master document. Identidade, tipografia, paleta, manifesto, símbolos, voz.</p>
+      </a>
+
+      <a class="toc-card" href="foundations.html">
+        <div class="number">02</div>
+        <h3>Foundations</h3>
+        <p>Tokens primitivos. Cor, tipografia, spacing, motion, acessibilidade, elevation.</p>
+      </a>
+
+      <a class="toc-card" href="logo.html">
+        <div class="number">03</div>
+        <h3>Logo</h3>
+        <p>Construção, safe space, usos permitidos, contextos de cor.</p>
+      </a>
+
+      {{TOC_CARD_ICONS}}
+
+      {{TOC_CARD_MOODBOARD}}
+
+      {{TOC_CARD_ESTRATEGIA}}
+
+    </div>
+  </div>
+  <span class="side-right">00</span>
+</section>
+
+<!--
+  Snippets que o showcase-builder substitui em {{TOC_CARD_*}}:
+
+  TOC_CARD_ICONS quando icons gerada:
+    <a class="toc-card" href="icons.html">
+      <div class="number">04</div>
+      <h3>Icons</h3>
+      <p>Inventário, grid sizes, regras de estilo, variantes de cor.</p>
+    </a>
+
+  TOC_CARD_MOODBOARD quando moodboard gerada:
+    <a class="toc-card" href="moodboard.html">
+      <div class="number">05</div>
+      <h3>Moodboard</h3>
+      <p>Referências visuais, princípios de design, paleta inspiracional.</p>
+    </a>
+
+  TOC_CARD_ESTRATEGIA quando estrategia gerada:
+    <a class="toc-card" href="estrategia.html">
+      <div class="number">06</div>
+      <h3>Estratégia</h3>
+      <p>Posicionamento, arquétipos, voz, manifesto, jornada.</p>
+    </a>
+-->

@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Superfícies" subtitle="Base escura tintada de violeta-azul — void → panel" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:18px}
+  .row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .sw{border:1px solid var(--surface-line);border-radius:var(--p-r-md);overflow:hidden}
+  .chip{height:54px}
+  .lab{padding:8px 10px;font-size:var(--p-fs-2xs);color:var(--text-dim);background:color-mix(in oklch,var(--surface-panel),transparent 35%)}
+  .lab b{display:block;color:var(--text-ink);font-weight:600;margin-bottom:2px;font-family:var(--font-display)}
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--surface-void)"></div><div class="lab"><b>void</b>fundo base</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-deep)"></div><div class="lab"><b>deep</b>recuo</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-grid)"></div><div class="lab"><b>grid</b>linha de grade</div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-panel)"></div><div class="lab"><b>panel</b>card</div></div>
+  </div>
+</body></html>

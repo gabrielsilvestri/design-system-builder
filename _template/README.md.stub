@@ -1,0 +1,40 @@
+# {{CLIENT_NAME}}, Design System
+
+Showcase + tokens + spec da identidade visual de {{CLIENT_NAME}}.
+
+## Como abrir
+
+```bash
+# Servidor local
+node ../_scripts/serve.mjs {{CLIENT_SLUG}} 3000
+# Abre http://localhost:3000
+```
+
+Ou abre o `index.html` direto no navegador (algumas fontes podem falhar em `file://` por CORS).
+
+## Estrutura
+
+- `DESIGN.md`: artefato canônico, formato google-labs-code/design.md, machine-readable
+- `guia-marca.md`: complemento PT com Pantone, CMYK, voz e prompt LLM template
+- `index.html`: showcase navegável
+- `tokens.css`: CSS custom properties em `:root`, derivado do DESIGN.md
+- `tokens.json`: formato DTCG, derivado do DESIGN.md (importar no Figma Tokens)
+- `tailwind.config.js`: Tailwind v3 theme.extend, derivado do DESIGN.md
+- `fonts.css`: @font-face das fontes locais (se houver)
+- `assets/`: logos SVG, materiais de aplicação
+
+## Validar e re-exportar
+
+```bash
+# Lint do DESIGN.md (broken refs, contraste WCAG, section order)
+node ../node_modules/@google/design.md/dist/index.js lint DESIGN.md
+
+# Re-exportar tokens.css/json/tailwind.config.js depois de mudar DESIGN.md
+node ../_scripts/export.mjs .
+```
+
+## Próximos passos
+
+1. Validar com o cliente
+2. Deploy (Vercel, Netlify, GitHub Pages)
+3. Conectar com outras IAs usando o template no fim de `guia-marca.md`

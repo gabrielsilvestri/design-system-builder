@@ -1,0 +1,11 @@
+node_modules/
+**/.screenshots/
+**/temporary screenshots/
+**/Branding*/
+**/_inputs/
+**/_inputs/static/
+outputs/
+.claude/skills/design-md-static/outputs/
+.DS_Store
+Thumbs.db
+*.log

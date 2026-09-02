@@ -1,0 +1,431 @@
+<!--
+  foundations.html.stub · página de tokens primitivos do brandbook do cliente.
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+  Estrutura inspirada em brandbooks de referencia premium
+  com 10 seções numeradas (side annotations SECTION 01 a SECTION 10).
+
+  Placeholders dinâmicos:
+    {{CLIENT_NAME}}, {{DEFAULT_THEME}}, {{TYPE_SPECS_HTML}},
+    {{NAMED_COLOR_COLUMNS_HTML}}, {{CANONICAL_SWATCHES_HTML}},
+    {{SPACING_VIS_HTML}}, {{BREAKPOINTS_TABLE_HTML}},
+    {{RADIUS_VIS_HTML}}, {{BORDERS_TABLE_HTML}},
+    {{MOTION_TABLE_HTML}}, {{SEMANTIC_TOKENS_LIST_HTML}},
+    {{CONTRAST_MATRIX_HTML}}, {{ACCESSIBILITY_PRINCIPLES_HTML}},
+    {{DARK_LIGHT_PAIRING_HTML}}, {{ELEVATION_VIS_HTML}},
+    {{AUDIO_IDENTITY_HTML}}
+-->
+
+<section class="section">
+  <span class="side-left">SECTION 01</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · TIPOGRAFIA</p>
+    <h2 class="section-heading">Escala tipográfica</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Cada papel tipográfico carrega função, peso e métricas próprias. A escala é derivada das fontes oficiais da marca e expressa em <code>tokens.css</code> como <code>--text-*</code>, <code>--font-*</code>, <code>--leading-*</code> e <code>--tracking-*</code>.
+    </p>
+
+    <!-- showcase-builder injeta uma lista de .type-spec, uma por role do schema.
+         Loop esperado: display-hero, display-large, section-heading, subheading-large,
+         subheading, body-large, body, body-small, button, button-small, link,
+         caption, caption-small, micro, code-body (quando presentes). -->
+    <div class="type-specs">
+      {{TYPE_SPECS_HTML}}
+    </div>
+  </div>
+  <span class="side-right">01</span>
+</section>
+
+<section class="section alt full-bleed">
+  <span class="side-left">SECTION 02</span>
+  <div class="content">
+
+    <div style="padding: var(--space-2xl) var(--space-lg) var(--space-lg);">
+      <p class="eyebrow">{{CLIENT_NAME}} · COR</p>
+      <h2 class="section-heading">Tokens de cor</h2>
+      <p style="max-width: 60ch; color: var(--text-muted);">
+        Cores nomeadas pelo manual da marca acima; abaixo, slots canônicos do design system mapeando essas cores para papéis de UI (primary, surface, accent, outline). Clique em qualquer cor para copiar o hex.
+      </p>
+    </div>
+
+    <!-- Bloco full-bleed: colunas com as cores NOMEADAS do manual.
+         showcase-builder gera N .column dentro de .palette-columns,
+         uma por entry em colors.named.*. Cada column tem .label-rotated,
+         .meta com .hex, .role, .codes (Pantone/RGB/CMYK). -->
+    <div class="palette-columns">
+      {{NAMED_COLOR_COLUMNS_HTML}}
+    </div>
+
+    <div style="padding: var(--space-2xl) var(--space-lg) 0;">
+      <p class="eyebrow">SLOTS CANÔNICOS · SEMÂNTICA DE UI</p>
+      <!-- showcase-builder gera 17 .swatch (primary, on-primary, ..., info)
+           dentro de .palette-grid. Cada .swatch tem .chip + .name + .value +
+           .meta-row com .confidence (.high/.medium/.low). -->
+      <div class="palette-grid">
+        {{CANONICAL_SWATCHES_HTML}}
+      </div>
+    </div>
+
+  </div>
+  <span class="side-right">02</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 03</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · ESPAÇAMENTO</p>
+    <h2 class="section-heading">Spacing e layout</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      A escala de espaçamento é proporcional e nomeada por tamanho (xs até 5xl). Use sempre o token semântico, nunca um valor literal em px.
+    </p>
+
+    <!-- showcase-builder injeta linhas Token | Value | Bar para cada token de spacing.
+         Cada row segue o padrão:
+         <div class="spacing-row">
+           <code class="spacing-token">space-md</code>
+           <code class="spacing-value">16px</code>
+           <div class="spacing-bar" style="width: 16px"></div>
+         </div> -->
+    <div class="spacing-vis">
+      {{SPACING_VIS_HTML}}
+    </div>
+
+    <div style="margin-top: var(--space-xl);">
+      <p class="eyebrow">BREAKPOINTS</p>
+      <!-- showcase-builder substitui por uma <table> simples com Mobile/Tablet/Desktop/Wide
+           e seus min-widths em px. Mantém vazio se schema não declara breakpoints. -->
+      {{BREAKPOINTS_TABLE_HTML}}
+    </div>
+  </div>
+  <span class="side-right">03</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 04</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · SUPERFÍCIES</p>
+    <h2 class="section-heading">Surfaces e borders</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Border-radius e bordas definem o caráter de superfície. Cada raio tem uso recomendado (chips, inputs, cards, modais).
+    </p>
+
+    <!-- showcase-builder injeta 5-6 caixas demonstrando cada radius do schema.rounded.
+         Padrão de cada uma:
+         <div class="radius-box" style="border-radius: var(--radius-sm);">
+           <span class="label">sm</span>
+           <span class="value">4px</span>
+         </div> -->
+    <div class="radius-vis">
+      {{RADIUS_VIS_HTML}}
+    </div>
+
+    <div style="margin-top: var(--space-xl);">
+      <p class="eyebrow">BORDAS</p>
+      <!-- showcase-builder gera tabela com tokens de outline + thickness padrão.
+           Vazio se schema não declara variantes explícitas (fallback: outline default). -->
+      {{BORDERS_TABLE_HTML}}
+    </div>
+  </div>
+  <span class="side-right">04</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 05</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · MOVIMENTO</p>
+    <h2 class="section-heading">Motion e easing</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Durações curtas para feedback, médias para transições principais, longas para entradas dramáticas. Easing de saída suaviza o final; in-out equilibra início e fim.
+    </p>
+
+    <!-- showcase-builder injeta tabela com fast/base/slow + ease-out/ease-in-out + cubic-bezier values.
+         Estrutura recomendada:
+         <table class="motion-table">...</table> -->
+    {{MOTION_TABLE_HTML}}
+
+    <div style="margin-top: var(--space-lg); display: flex; gap: var(--space-md); align-items: center;">
+      <div class="motion-demo" style="width: 48px; height: 48px; background: var(--accent); border-radius: var(--radius-md); animation: pulse var(--duration-slow) var(--ease-in-out) infinite alternate;"></div>
+      <span class="eyebrow">DEMO · pulse com duração slow e easing in-out</span>
+    </div>
+    <style>
+      @keyframes pulse {
+        from { transform: scale(1); opacity: 1; }
+        to { transform: scale(1.18); opacity: 0.5; }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .motion-demo { animation: none; }
+      }
+    </style>
+  </div>
+  <span class="side-right">05</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 06</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · SEMÂNTICA</p>
+    <h2 class="section-heading">Tokens semânticos</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Tokens canônicos do design system mapeiam papéis (primary, on-primary, surface, outline, error) para os valores reais da marca. Componentes consomem sempre o token semântico, nunca o hex direto.
+    </p>
+
+    <!-- showcase-builder gera lista hierárquica:
+         <dl class="semantic-list">
+           <dt><code>--color-primary</code></dt>
+           <dd>Identidade da marca. Aplicado em logo, hero, CTA principal.</dd>
+           ...
+         </dl> -->
+    {{SEMANTIC_TOKENS_LIST_HTML}}
+  </div>
+  <span class="side-right">06</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 07</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · ACESSIBILIDADE</p>
+    <h2 class="section-heading">Acessibilidade e contraste</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Toda combinação background ÷ texto é checada contra WCAG. Pares com ratio &lt; 4.5 não passam AA para texto normal; &lt; 3 não passam para texto grande.
+    </p>
+
+    <!-- showcase-builder gera matriz:
+         <table class="contrast-matrix">
+           <thead><tr><th></th><th>on-primary</th>...</tr></thead>
+           <tbody><tr><th>primary</th><td>4.7:1 <span class="badge aa">AA</span></td>...</tr></tbody>
+         </table>
+         Badges: .aa, .aaa, .fail -->
+    <div class="contrast-matrix-wrap">
+      {{CONTRAST_MATRIX_HTML}}
+    </div>
+
+    <div style="margin-top: var(--space-xl);">
+      <p class="eyebrow">PRINCÍPIOS</p>
+      <!-- showcase-builder lista bullets: focus ring spec (token + thickness + offset),
+           touch target mínimo (44x44 ou conforme schema.icons.min_touch_target),
+           reduced-motion respected (true/false do schema.motion). -->
+      {{ACCESSIBILITY_PRINCIPLES_HTML}}
+    </div>
+  </div>
+  <span class="side-right">07</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION 08</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · TEMAS</p>
+    <h2 class="section-heading">Pareamento light e dark</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Quando há mais de um tema, cada slot canônico mantém seu papel. Cores trocam de valor, mas tokens semânticos permanecem estáveis. Componentes não precisam saber qual tema está ativo.
+    </p>
+
+    <!-- showcase-builder:
+         - Se schema.themes_available tem >= 2 temas: gera side-by-side de paleta + botão/card em cada tema.
+         - Se só 1 tema: substitui por <p class="eyebrow">ÚNICO TEMA: {{DEFAULT_THEME}}</p> + bloco curto. -->
+    {{DARK_LIGHT_PAIRING_HTML}}
+  </div>
+  <span class="side-right">08</span>
+</section>
+
+<section class="section">
+  <span class="side-left">SECTION 09</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · ELEVAÇÃO</p>
+    <h2 class="section-heading">Glow e elevation</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      Sombras codificam hierarquia. Flat para superfícies primárias; ambient e standard para cards e botões; elevated e deep para modais e overlays. Glow é opcional e expressa identidade quando a marca pede.
+    </p>
+
+    <!-- showcase-builder injeta 5 cards (flat/ambient/standard/elevated/deep + glow se houver),
+         cada card aplica o respectivo box-shadow do schema.shadows. Padrão:
+         <div class="elevation-card" style="box-shadow: var(--shadow-standard);">
+           <span class="label">standard</span>
+           <code class="value">0 2px 8px rgba(0,0,0,0.08)</code>
+         </div>
+         Se schema.shadows é apenas "flat: none" sem mais variantes, showcase-builder
+         insere coverage note explicando intent: marca usa superfícies planas. -->
+    <div class="elevation-vis">
+      {{ELEVATION_VIS_HTML}}
+    </div>
+  </div>
+  <span class="side-right">09</span>
+</section>
+
+<!--
+  SECTION 10 · Audio Identity
+  Condicional: showcase-builder só renderiza esta seção se schema.audio existe.
+  Caso ausente, a seção inteira é substituída por string vazia em {{AUDIO_IDENTITY_HTML}}.
+
+  Quando presente, showcase-builder envolve no padrão completo:
+    <section class="section alt">
+      <span class="side-left">SECTION 10</span>
+      <div class="content">
+        <p class="eyebrow">{{CLIENT_NAME}} · ÁUDIO</p>
+        <h2 class="section-heading">Identidade sonora</h2>
+        <p>... descrição curta ...</p>
+        <ul class="audio-cues">...</ul>
+        <dl class="audio-specs">...</dl>
+      </div>
+      <span class="side-right">10</span>
+    </section>
+-->
+{{AUDIO_IDENTITY_HTML}}
+
+<!-- Estilos auxiliares específicos da página foundations.
+     Reutilizam tokens já expostos por base.css/components.css.
+     Não introduzem dependências novas. -->
+<style>
+  .type-specs { display: grid; gap: 0; }
+
+  .spacing-vis { display: grid; gap: var(--space-sm); }
+  .spacing-row {
+    display: grid;
+    grid-template-columns: 140px 80px 1fr;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xs) 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .spacing-token {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 12px;
+    color: var(--text);
+  }
+  .spacing-value {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .spacing-bar {
+    height: 8px;
+    background: var(--accent);
+    border-radius: var(--radius-sm);
+  }
+
+  .radius-vis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: var(--space-md);
+  }
+  .radius-box {
+    background: var(--bg-alt);
+    border: 1px solid var(--border);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    min-height: 120px;
+  }
+  .radius-box .label {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .radius-box .value {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+
+  .motion-table,
+  .contrast-matrix,
+  .borders-table,
+  .breakpoints-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  .motion-table th,
+  .contrast-matrix th,
+  .borders-table th,
+  .breakpoints-table th,
+  .motion-table td,
+  .contrast-matrix td,
+  .borders-table td,
+  .breakpoints-table td {
+    border-bottom: 1px solid var(--border);
+    padding: var(--space-sm) var(--space-md);
+    text-align: left;
+  }
+  .motion-table th,
+  .contrast-matrix th,
+  .borders-table th,
+  .breakpoints-table th {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .motion-table td,
+  .borders-table td,
+  .breakpoints-table td {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+  }
+
+  .contrast-matrix-wrap { overflow-x: auto; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-button-small);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-left: var(--space-xs);
+  }
+  .badge.aa { background: color-mix(in srgb, var(--color-success) 20%, transparent); color: var(--color-success); }
+  .badge.aaa { background: color-mix(in srgb, var(--accent) 20%, transparent); color: var(--accent); }
+  .badge.fail { background: color-mix(in srgb, var(--color-error) 20%, transparent); color: var(--color-error); }
+
+  .semantic-list { display: grid; gap: var(--space-md); margin: 0; }
+  .semantic-list dt {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .semantic-list dd {
+    margin: 4px 0 0;
+    color: var(--text-muted);
+    font-size: 13px;
+  }
+
+  .elevation-vis {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-lg);
+  }
+  .elevation-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-sm);
+  }
+  .elevation-card .label {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .elevation-card .value {
+    font-family: var(--font-code-body, ui-monospace, monospace);
+    font-size: 10px;
+    color: var(--text-muted);
+    word-break: break-all;
+  }
+
+  @media (max-width: 768px) {
+    .spacing-row { grid-template-columns: 100px 70px 1fr; }
+  }
+</style>

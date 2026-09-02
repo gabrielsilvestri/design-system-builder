@@ -1,0 +1,24 @@
+/* ============================================================
+   NORTE · MOTION — keyframes + animation utility classes.
+   Instrumentos de cockpit animam de forma FUNCIONAL (varredura
+   de radar, sinal vital, scan de casco), nunca decorativa.
+   Respeita prefers-reduced-motion.
+   ============================================================ */
+
+@keyframes nt-sweep   { to   { transform: rotate(360deg); } }
+@keyframes nt-drift   { from { transform: translateX(0);   } to { transform: translateX(-50%); } }
+@keyframes nt-pulse   { 0%,100% { opacity: 1; } 50% { opacity: .32; } }
+@keyframes nt-scanY   { 0%,100% { transform: translateY(-46%); } 50% { transform: translateY(46%); } }
+@keyframes nt-blip    { 0% { opacity: 0; transform: translate(-50%,-50%) scale(.5); }
+                        18% { opacity: 1; }
+                        100% { opacity: .15; transform: translate(-50%,-50%) scale(1.5); } }
+
+.nt-sweep { animation: nt-sweep 4.2s linear infinite; transform-origin: 50% 50%; }
+.nt-wave  { animation: nt-drift 3.4s linear infinite; }
+.nt-pulse { animation: nt-pulse 1.9s ease-in-out infinite; }
+.nt-scan  { animation: nt-scanY 3.8s ease-in-out infinite; }
+.nt-blip  { animation: nt-blip 2.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nt-sweep, .nt-wave, .nt-pulse, .nt-scan, .nt-blip { animation: none; }
+}

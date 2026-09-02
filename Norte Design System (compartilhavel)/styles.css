@@ -1,0 +1,11 @@
+/* ============================================================
+   NORTE · DESIGN SYSTEM — global entry point
+   Consumers link this one file. Imports only — never inline rules.
+   Ghost in the Shell / cyberpunk neon glass. Azul + violeta.
+   ============================================================ */
+@import "tokens/fonts.css";
+@import "tokens/colors.css";
+@import "tokens/typography.css";
+@import "tokens/spacing.css";
+@import "tokens/effects.css";
+@import "tokens/motion.css";

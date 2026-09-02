@@ -1,0 +1,187 @@
+<!--
+  moodboard.html.stub · página condicional do brandbook, moodboard e referências visuais.
+  Só é gerada se schema.moodboard estiver populado no DESIGN.md.
+  showcase-builder embebe este conteúdo via layout.html (substitui {{PAGE_CONTENT}}).
+
+  Placeholders esperados:
+    {{CLIENT_NAME}}                   · nome do cliente
+    {{MOODBOARD_TITLE}}               · título do moodboard (ex.: "Referências visuais")
+    {{MOODBOARD_REFS_COUNT}}          · total de referências, agregado de todas as categorias
+    {{MOODBOARD_CATEGORIES_COUNT}}    · número de categorias em schema.moodboard.categories[]
+    {{MOODBOARD_INTRO}}               · parágrafo introdutório explicando o recorte de referências
+    {{CATEGORY_BLOCKS_HTML}}          · N <section> iterados, um por schema.moodboard.categories[]
+    {{DESIGN_PRINCIPLES_HTML}}        · <ul> com os tenets de schema.moodboard.design_principles[]
+-->
+
+<style>
+  .moodboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+  .moodboard-card {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  .moodboard-card .ref-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    background: var(--bg-alt);
+  }
+  .moodboard-card .ref-label {
+    font-family: var(--font-button-small);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .moodboard-card .ref-description {
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .moodboard-card .ref-influences {
+    font-size: 11px;
+    color: var(--accent);
+    margin-top: auto;
+  }
+  .principles-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-lg) 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+  .principles-list li {
+    background: var(--bg);
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+  .principles-list li .num {
+    font-family: var(--font-button-small);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .principles-list li .tenet {
+    font-family: var(--font-section-heading);
+    font-size: 16px;
+    line-height: 1.3;
+  }
+  .influences-mapped {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    align-items: baseline;
+  }
+  .influences-mapped .label {
+    font-family: var(--font-button-small);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>
+
+<section class="section">
+  <span class="side-left">SECTION 01</span>
+  <div class="content">
+    <p class="eyebrow">{{CLIENT_NAME}} · MOODBOARD</p>
+    <h2 class="section-heading">{{MOODBOARD_TITLE}} ({{MOODBOARD_REFS_COUNT}} referências em {{MOODBOARD_CATEGORIES_COUNT}} categorias)</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      {{MOODBOARD_INTRO}}
+    </p>
+    <p style="max-width: 60ch; color: var(--text-muted); margin-top: var(--space-sm);">
+      As referências abaixo não são modelos a copiar. São pontos de calibragem visual que orientam decisões
+      de tipografia, hierarquia, ritmo e atmosfera. Cada categoria mapeia influências específicas para áreas
+      concretas do design system.
+    </p>
+  </div>
+  <span class="side-right">01</span>
+</section>
+
+{{CATEGORY_BLOCKS_HTML}}
+
+<section class="section">
+  <span class="side-left">SECTION ZZ</span>
+  <div class="content">
+    <p class="eyebrow">MOODBOARD · TEMPLATE</p>
+    <h2 class="section-heading">Estrutura esperada de cada bloco de categoria</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      O showcase-builder gera um <code>&lt;section class="section alt"&gt;</code> por entrada em
+      <code>schema.moodboard.categories[]</code>. A numeração começa em 02 (logo após o overview) e
+      segue até a última categoria. Cada bloco contém o grid de referências e uma linha de influences
+      mapeadas para o sistema.
+    </p>
+    <pre style="font-family: var(--font-code-body, ui-monospace, monospace); font-size: 11px; color: var(--text-muted); white-space: pre-wrap; margin-top: var(--space-md);">
+&lt;section class="section alt"&gt;
+  &lt;span class="side-left"&gt;SECTION 02&lt;/span&gt;
+  &lt;div class="content"&gt;
+    &lt;p class="eyebrow"&gt;CATEGORY 02&lt;/p&gt;
+    &lt;h2 class="section-heading"&gt;{{CATEGORY_NAME}}&lt;/h2&gt;
+    &lt;div class="moodboard-grid"&gt;
+      &lt;div class="card moodboard-card"&gt;
+        &lt;img class="ref-image" src="_inputs/refs-visuais/{{REF_SLUG}}.jpg"
+             alt="{{REF_NAME}}" onerror="this.style.display='none'" /&gt;
+        &lt;div class="ref-label"&gt;{{REF_NAME}}&lt;/div&gt;
+        &lt;div class="ref-description"&gt;{{REF_DESCRIPTION}}&lt;/div&gt;
+        &lt;div class="ref-influences"&gt;Influences: {{REF_INFLUENCES}}&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;!-- repetir para cada referência da categoria --&gt;
+    &lt;/div&gt;
+    &lt;div class="influences-mapped"&gt;
+      &lt;span class="label"&gt;Influences mapped to:&lt;/span&gt;
+      &lt;span&gt;{{CATEGORY_INFLUENCES}}&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;span class="side-right"&gt;02&lt;/span&gt;
+&lt;/section&gt;
+    </pre>
+    <p style="max-width: 60ch; color: var(--text-muted); margin-top: var(--space-md);">
+      A imagem do card é resiliente: se o JPG não existir em <code>&lt;cliente&gt;/_inputs/refs-visuais/</code>,
+      o <code>onerror</code> esconde o elemento e o card permanece legível com label, descrição e influências.
+      Categorias sem imagens funcionam normalmente como cartelas textuais.
+    </p>
+  </div>
+  <span class="side-right">ZZ</span>
+</section>
+
+<section class="section alt">
+  <span class="side-left">SECTION NN</span>
+  <div class="content">
+    <p class="eyebrow">MOODBOARD · DESIGN PRINCIPLES</p>
+    <h2 class="section-heading">Princípios de design destilados</h2>
+    <p style="max-width: 60ch; color: var(--text-muted);">
+      As referências consolidam um conjunto curto de tenets. Cada princípio orienta decisões concretas
+      em components, layout e voz visual. São compromissos, não sugestões; aparecem como critério de
+      aceite em revisões de design.
+    </p>
+    {{DESIGN_PRINCIPLES_HTML}}
+    <p class="eyebrow" style="margin-top: var(--space-lg); color: var(--text-muted);">
+      Estrutura esperada da lista de princípios:
+    </p>
+    <pre style="font-family: var(--font-code-body, ui-monospace, monospace); font-size: 11px; color: var(--text-muted); white-space: pre-wrap;">
+&lt;ul class="principles-list"&gt;
+  &lt;li&gt;
+    &lt;span class="num"&gt;Tenet 01&lt;/span&gt;
+    &lt;span class="tenet"&gt;{{PRINCIPLE_TEXT}}&lt;/span&gt;
+  &lt;/li&gt;
+  &lt;!-- repetir até esgotar schema.moodboard.design_principles --&gt;
+&lt;/ul&gt;
+    </pre>
+  </div>
+  <span class="side-right">NN</span>
+</section>

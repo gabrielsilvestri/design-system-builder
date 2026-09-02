@@ -1,0 +1,24 @@
+<!-- @dsCard group="Type" viewport="700x230" name="Escala tipográfica" subtitle="2xs (.66) → 2xl (2rem) · piso de leitura = base (1rem)" -->
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../styles.css">
+<style>
+  html,body{margin:0}
+  body{background:var(--surface-void);font-family:var(--font-mono);color:var(--text-ink);padding:16px 18px}
+  .r{display:flex;align-items:baseline;gap:14px;padding:5px 0;border-top:1px solid var(--surface-line)}
+  .r:first-child{border-top:none}
+  .tok{font-size:var(--p-fs-2xs);color:var(--text-faint);width:120px;flex:none}
+  .sp{color:var(--text-ink)}
+  .base{color:var(--color-accent)}
+</style></head>
+<body>
+  <div class="r"><span class="tok">--p-fs-2xs · .66</span><span class="sp" style="font-size:var(--p-fs-2xs)">R$ 1.000 selo 残高</span></div>
+  <div class="r"><span class="tok">--p-fs-xs · .72</span><span class="sp" style="font-size:var(--p-fs-xs)">R$ 1.000 selo 残高</span></div>
+  <div class="r"><span class="tok">--p-fs-sm · .78</span><span class="sp" style="font-size:var(--p-fs-sm)">R$ 1.000 selo 残高</span></div>
+  <div class="r"><span class="tok">--p-fs-md · .88</span><span class="sp" style="font-size:var(--p-fs-md)">R$ 1.000 selo 残高</span></div>
+  <div class="r"><span class="tok base">--p-fs-base · 1.0 ◂ piso</span><span class="sp base" style="font-size:var(--p-fs-base)">R$ 1.000 selo 残高</span></div>
+  <div class="r"><span class="tok">--p-fs-lg · 1.15</span><span class="sp" style="font-size:var(--p-fs-lg)">R$ 1.000</span></div>
+  <div class="r"><span class="tok">--p-fs-xl · 1.7</span><span class="sp" style="font-size:var(--p-fs-xl)">R$ 1.000</span></div>
+  <div class="r"><span class="tok">--p-fs-2xl · 2.0</span><span class="sp" style="font-size:var(--p-fs-2xl)">R$ 1.000</span></div>
+</body></html>

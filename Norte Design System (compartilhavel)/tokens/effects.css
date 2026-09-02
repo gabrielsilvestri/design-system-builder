@@ -1,0 +1,35 @@
+/* ============================================================
+   NORTE · EFFECT + COMPONENT TOKENS
+   Vidro (backdrop-blur), glow (mix do acento), e os tokens de
+   componente: card, medidor, tile, hud. Glow vive nas molduras,
+   barras, títulos e ícones — NUNCA nos dígitos (--value-glow: none).
+   ============================================================ */
+:root{
+
+  /* ---------- PRIMITIVO · efeito ---------- */
+  --p-blur:  11px;
+
+  /* ---------- COMPONENTE · card (módulo glass) ---------- */
+  --card-pad:        var(--p-sp-4);
+  --card-radius:     var(--p-r-md);
+  --card-bg:         linear-gradient(150deg,
+                       color-mix(in oklch, var(--color-accent), transparent 90%),
+                       color-mix(in oklch, var(--surface-panel), transparent 20%) 55%);
+  --card-border:     var(--surface-line-str);
+  --card-bracket:    var(--color-accent);
+  --card-shadow:     0 0 20px color-mix(in oklch, var(--color-accent), transparent 88%),
+                     inset 0 0 22px color-mix(in oklch, var(--color-accent), transparent 93%);
+
+  /* ---------- COMPONENTE · valor (DECISÃO: números sempre limpos) ---------- */
+  --value-glow:      none;  /* @kind shadow */
+
+  /* ---------- COMPONENTE · medidor (gauge) ---------- */
+  --meter-h:         15px;
+  --meter-track:     color-mix(in oklch, var(--surface-deep), black 25%);
+  --meter-tick:      color-mix(in oklch, var(--surface-deep), black 45%);
+  --meter-tick-gap:  14px;
+
+  /* ---------- COMPONENTE · tile + hud ---------- */
+  --tile-bg:         color-mix(in oklch, var(--color-accent), transparent 93%);
+  --hud-pad:         9px 14px;
+}

@@ -1,0 +1,36 @@
+/* ============================================================
+   NORTE · TYPOGRAPHY TOKENS
+   Display: Chakra Petch (títulos de card, marca, rótulos de HUD).
+   Mono: IBM Plex Mono (corpo + TODOS os valores, tabular-nums).
+   Piso de leitura: --p-fs-base (1rem). Conteúdo nunca menor.
+   ============================================================ */
+:root{
+
+  /* ---------- PRIMITIVO · famílias ---------- */
+  --p-font-mono:   "IBM Plex Mono", ui-monospace, monospace;
+  --p-font-disp:   "Chakra Petch", "IBM Plex Mono", sans-serif;
+
+  /* ---------- PRIMITIVO · escala (.66rem -> 2rem) ---------- */
+  --p-fs-2xs:      .66rem;
+  --p-fs-xs:       .72rem;
+  --p-fs-sm:       .78rem;
+  --p-fs-md:       .88rem;
+  --p-fs-base:     1rem;       /* piso de leitura — nada menor em conteúdo */
+  --p-fs-lg:       1.15rem;
+  --p-fs-xl:       1.7rem;
+  --p-fs-2xl:      2rem;
+
+  /* ---------- PRIMITIVO · pesos ---------- */
+  --p-fw-reg:      400;  /* @kind font */
+  --p-fw-med:      500;  /* @kind font */
+  --p-fw-semi:     600;  /* @kind font */
+  --p-fw-bold:     700;  /* @kind font */
+
+  /* ---------- PRIMITIVO · tracking ---------- */
+  --p-track-wide:  .13em;
+  --p-track-mid:   .08em;
+
+  /* ---------- SEMÂNTICO · famílias ---------- */
+  --font-display:    var(--p-font-disp);
+  --font-mono:       var(--p-font-mono);
+}
