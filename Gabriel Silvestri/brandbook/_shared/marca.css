@@ -1,0 +1,202 @@
+/* marca.css · camada da marca Gabriel Silvestri sobre base.css e components.css.
+   Importado DEPOIS dos dois, em toda página do brandbook.
+
+   Duas coisas moram aqui, e só elas:
+   1. o remapeamento da edição light, que consome os tokens --color-light-* que o
+      export.mjs já gerou dentro do tokens.css. Nenhum token é escrito à mão aqui.
+   2. os poucos ajustes de superfície e de tipografia que o base.css genérico não cobre. */
+
+/* ============ EDIÇÃO LIGHT ============ */
+/* O toggle põe data-theme="light" no <html>. Os valores vêm todos de tokens.css. */
+
+[data-theme="light"] {
+  --color-primary: var(--color-light-esmeralda);
+  --color-on-primary: var(--color-light-on-esmeralda);
+  --color-secondary: var(--color-light-superficie-tinta);
+  --color-on-secondary: var(--color-light-tinta);
+  --color-tertiary: var(--color-light-esmeralda-texto);
+  --color-on-tertiary: var(--color-light-surface);
+  --color-neutral: var(--color-light-tinta-meta);
+  --color-surface: var(--color-light-surface);
+  --color-on-surface: var(--color-light-tinta);
+  --color-surface-variant: var(--color-light-surface-variant);
+  --color-on-surface-variant: var(--color-light-tinta);
+  --color-outline: var(--color-light-outline);
+  --color-error: var(--color-light-erro);
+  --color-warning: var(--color-light-atencao);
+  --color-info: var(--color-light-turquesa-sinal);
+  --color-success: var(--color-light-esmeralda-texto);
+
+  /* Os tokens nomeados da edição dark apontam para os pares light aqui dentro.
+     É o que faz toda regra escrita com o nome de trabalho da marca (pílula, fio,
+     superfície-alta, tinta) funcionar nas duas edições sem regra duplicada. */
+  --color-superficie: var(--color-light-surface);
+  --color-superficie-cartao: var(--color-light-surface-variant);
+  --color-superficie-alta: var(--color-light-superficie-alta);
+  --color-pilula: var(--color-light-superficie-alta);
+  --color-superficie-tinta: var(--color-light-superficie-tinta);
+  --color-fio: var(--color-light-fio);
+  --color-fio-alto: var(--color-light-fio-alto);
+  --color-contorno: var(--color-light-outline);
+  --color-tinta: var(--color-light-tinta);
+  --color-tinta-corpo: var(--color-light-tinta-corpo);
+  --color-tinta-meta: var(--color-light-tinta-meta);
+  --color-esmeralda-texto: var(--color-light-esmeralda-texto);
+
+  --bg: var(--color-light-surface);
+  --bg-alt: var(--color-light-surface-variant);
+  --text: var(--color-light-tinta);
+  --text-muted: var(--color-light-tinta-meta);
+  --border: var(--color-light-fio-alto);
+  --accent: var(--color-light-esmeralda-texto);
+}
+
+[data-theme="dark"] {
+  --text-muted: var(--color-tinta-meta);
+  --border: var(--color-fio-alto);
+}
+
+/* ============ SUPERFÍCIE E TIPOGRAFIA DA MARCA ============ */
+
+body {
+  color: var(--color-tinta-corpo);
+  letter-spacing: var(--tracking-body);
+  text-wrap: pretty;
+}
+
+h1, h2, h3, h4, .display-hero, .display-large, .section-heading, .subheading, .subheading-large {
+  color: var(--text);
+  text-wrap: balance;
+}
+
+/* Measure: o teto de linha mora no elemento de texto, nunca no container. */
+p, li, figcaption, .prosa {
+  max-width: var(--space-measure);
+}
+
+.prosa-larga { max-width: var(--space-measure-max); }
+
+/* O acento do brandbook é o esmeralda-texto, o mesmo do sistema. */
+.section .side-right { color: var(--color-esmeralda-texto); }
+
+/* Cartão: profundidade por degrau de superfície e fio de 1px, nunca por sombra. */
+.card, .toc-card, .swatch {
+  box-shadow: none;
+  transition: background var(--duration-base) var(--ease-release),
+              border-color var(--duration-base) var(--ease-release),
+              transform var(--duration-base) var(--ease-release);
+}
+
+.card:hover, .toc-card:hover { background: var(--color-superficie-alta); }
+.swatch:hover { transform: none; border-color: var(--accent); }
+
+/* O pressionar: entra rápido no dedo, volta devagar pelo mesmo caminho. */
+.toc-card:active, .btn:active, .swatch:active {
+  transform: scale(.985);
+  transition-duration: var(--duration-fast);
+  transition-timing-function: var(--ease-press);
+}
+
+.btn:hover { transform: none; }
+.btn.primary:hover { background: var(--color-esmeralda-texto); border-color: var(--color-esmeralda-texto); }
+.btn.secondary { background: var(--color-pilula); border-color: var(--color-pilula); }
+.btn.secondary:hover { background: var(--color-fio); border-color: var(--color-fio); }
+.btn.ghost { color: var(--accent); }
+.btn.ghost:hover { background: var(--color-secondary); }
+.btn { min-height: 44px; border-radius: var(--radius-full); }
+
+/* Foco: um anel só, em todo controle. */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible, .input-demo:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Tabela de medição: o brandbook mostra o número, não a impressão. */
+table.medida {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-caption);
+  max-width: none;
+}
+
+table.medida th, table.medida td {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--color-fio);
+  vertical-align: top;
+}
+
+table.medida th {
+  font-family: var(--font-micro);
+  font-size: var(--text-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  font-weight: var(--font-weight-micro);
+}
+
+table.medida td.num { font-variant-numeric: tabular-nums; }
+
+/* Faixa tingida de turquesa: callout calmo, sem cor de aviso. */
+.tinta-bloco {
+  background: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  border: 1px solid var(--color-fio);
+}
+
+.tinta-bloco p { margin: 0; }
+
+/* Amostra tipográfica */
+.type-spec .sample { color: var(--text); }
+
+/* Nada de movimento para quem pediu para não ter. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* O toast vazio tem altura ~0, e translateY(120%) não o tira da tela.
+   Some de verdade enquanto não há o que copiar. */
+.toast { opacity: 0; visibility: hidden; }
+.toast.show { opacity: 1; visibility: visible; }
+
+/* Os pontos de confiança do stub genérico vêm em verde, âmbar e vermelho.
+   Âmbar é família vetada nesta marca, e cor sozinha não pode ser o portador da
+   informação. Aqui a confiança se lê pela quantidade de pontos cheios, e a cor
+   fica dentro do sistema. */
+.swatch .confidence.high { color: var(--color-esmeralda-texto); }
+.swatch .confidence.medium { color: var(--color-tinta-meta); }
+.swatch .confidence.low { color: var(--color-contorno); }
+
+/* No celular, o stub genérico trava o cabeçalho em 56px e deixa a navegação
+   quebrar linha, o que faz os itens transbordarem por cima da brand bar.
+   Aqui o cabeçalho ganha altura própria e a navegação rola na horizontal. */
+@media (max-width: 768px) {
+  .site-header .row {
+    height: auto;
+    min-height: 56px;
+    padding: 0.5rem var(--space-md);
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+  .site-header .wordmark { font-size: 16px; }
+  .site-header nav {
+    order: 3;
+    flex: 1 0 100%;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: var(--space-lg);
+    padding-bottom: 2px;
+    scrollbar-width: none;
+  }
+  .site-header nav::-webkit-scrollbar { display: none; }
+  .site-header nav a { white-space: nowrap; }
+  .brand-bar { flex-wrap: nowrap; gap: var(--space-sm); }
+  .brand-bar span:nth-child(2) { display: none; }
+}

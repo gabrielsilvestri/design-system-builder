@@ -1,0 +1,58 @@
+<!--
+  layout.html.stub · partial usado pelo showcase-builder em cada página do brandbook.
+  Placeholders: {{CLIENT_NAME}}, {{PAGE_TITLE}}, {{PAGE_DESCRIPTION}}, {{EDITION}},
+  {{YEAR}}, {{NAV_ITEMS_HTML}}, {{THEME_TOGGLE_HTML}}, {{CLIENT_URL}},
+  {{BRANDBOOK_VERSION}}, {{DEFAULT_THEME}}, {{PAGE_CONTENT}}
+-->
+<!doctype html>
+<html lang="pt-br" data-theme="{{DEFAULT_THEME}}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{PAGE_TITLE}} · {{CLIENT_NAME}}</title>
+  <meta name="description" content="{{PAGE_DESCRIPTION}}" />
+  <link rel="stylesheet" href="_shared/base.css" />
+  <link rel="stylesheet" href="_shared/components.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="row">
+    <a href="index.html" class="wordmark">{{CLIENT_NAME}}</a>
+    <nav>
+      {{NAV_ITEMS_HTML}}
+    </nav>
+    {{THEME_TOGGLE_HTML}}
+  </div>
+</header>
+
+<div class="brand-bar">
+  <span>{{CLIENT_NAME}}</span>
+  <span>{{PAGE_TITLE}}</span>
+  <span>{{EDITION}}</span>
+</div>
+
+<main class="brandbook">
+  {{PAGE_CONTENT}}
+</main>
+
+<footer class="site-footer">
+  <div class="row">
+    <span>{{CLIENT_NAME}}, Brandbook {{BRANDBOOK_VERSION}} · {{YEAR}}</span>
+    <span>
+      <a href="{{CLIENT_URL}}" target="_blank" rel="noopener">{{CLIENT_URL}}</a>
+      &nbsp;·&nbsp; <a href="../guia-marca.md">Guia de marca (PT)</a>
+      &nbsp;·&nbsp; <a href="../DESIGN.md">DESIGN.md raw</a>
+      &nbsp;·&nbsp; <a href="../tokens.css">tokens.css</a>
+      &nbsp;·&nbsp; <a href="../tokens.json">tokens.json</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<script src="_shared/theme-toggle.js"></script>
+<script src="_shared/copy.js"></script>
+
+</body>
+</html>

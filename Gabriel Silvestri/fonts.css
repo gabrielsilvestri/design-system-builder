@@ -1,0 +1,33 @@
+/*
+ * Gabriel Silvestri, fontes locais.
+ * Dois arquivos woff2 variáveis, subset latin, 62,6 KB somados.
+ * Importado por brandbook/_shared/base.css antes de tokens.css.
+ *
+ * Os arquivos vêm do link na bio v3 (bio-gabriel/assets/fonts/). A família é
+ * declarada aqui como "Hanken Grotesk" (o nome real da fonte); a v3 declarava
+ * a mesma woff2 como "Hanken". O sistema usa o nome longo em todo lugar.
+ */
+
+/* ============================================ */
+/*  Hanken Grotesk, display e títulos            */
+/* ============================================ */
+
+@font-face {
+  font-family: "Hanken Grotesk";
+  src: url("./fonts/hanken-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================ */
+/*  Geist, corpo, rótulo e interface             */
+/* ============================================ */
+
+@font-face {
+  font-family: "Geist";
+  src: url("./fonts/geist-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}

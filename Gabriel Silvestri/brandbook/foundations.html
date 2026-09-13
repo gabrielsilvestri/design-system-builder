@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="pt-br" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Foundations · Gabriel Silvestri</title>
+  <meta name="description" content="Tokens de Gabriel Silvestri: cor, tipografia, espaço, raio, sombra, movimento, breakpoints, opacidade e z-index." />
+  <link rel="stylesheet" href="_shared/base.css" />
+  <link rel="stylesheet" href="_shared/components.css" />
+  <link rel="stylesheet" href="_shared/marca.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="row">
+    <a href="index.html" class="wordmark">Gabriel Silvestri</a>
+    <nav>
+      <a href="index.html">Início</a>
+      <a href="guidelines.html">Guidelines</a>
+      <a href="logo.html">Identidade</a>
+      <a href="estrategia.html">Estratégia</a>
+    </nav>
+    <div class="theme-toggle" data-default="dark" data-themes='["dark","light"]'>
+      <button type="button" data-theme="dark">dark</button>
+      <button type="button" data-theme="light">light</button>
+    </div>
+  </div>
+</header>
+
+<div class="brand-bar">
+  <span>Gabriel Silvestri</span>
+  <span>Foundations</span>
+  <span>Esmeralda 2026</span>
+</div>
+
+<main class="brandbook">
+  <section class="section">
+    <span class="side-left">SECTION 01 -- PALETA CANÔNICA -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">Os 17 slots canônicos do schema. O ponto colorido em cada amostra é a confiança da origem do token: três cheios significa CSS var declarada na v3 ou rotação determinística dela, dois significa declaração medida ou ajuste sobre origem conhecida, um significa valor novo calculado para esta marca.</p>
+    <div class="palette-grid">
+      <div class="swatch" data-copy="#4CC28F" data-hex="#4CC28F" title="acento único: ação, foco, estado -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #4CC28F">
+        <div class="chip" style="background:#4CC28F"></div>
+        <div class="name">primary</div>
+        <div class="value">#4CC28F</div>
+        <div class="meta-row"><span>acento único: ação, foco, estado</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#0E1A16" data-hex="#0E1A16" title="tinta sobre o esmeralda cheio (8,00:1) -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #0E1A16">
+        <div class="chip" style="background:#0E1A16"></div>
+        <div class="name">on-primary</div>
+        <div class="value">#0E1A16</div>
+        <div class="meta-row"><span>tinta sobre o esmeralda cheio (8,00:1)</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1C2926" data-hex="#1C2926" title="superfície tingida de turquesa, não é acento -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #1C2926">
+        <div class="chip" style="background:#1C2926"></div>
+        <div class="name">secondary</div>
+        <div class="value">#1C2926</div>
+        <div class="meta-row"><span>superfície tingida de turquesa, não é acento</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#C7D0CF" data-hex="#C7D0CF" title="tinta sobre a superfície tingida (9,57:1) -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #C7D0CF">
+        <div class="chip" style="background:#C7D0CF"></div>
+        <div class="name">on-secondary</div>
+        <div class="value">#C7D0CF</div>
+        <div class="meta-row"><span>tinta sobre a superfície tingida (9,57:1)</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#67CBA0" data-hex="#67CBA0" title="o esmeralda quando vira texto ou anel de foco -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #67CBA0">
+        <div class="chip" style="background:#67CBA0"></div>
+        <div class="name">tertiary</div>
+        <div class="value">#67CBA0</div>
+        <div class="meta-row"><span>o esmeralda quando vira texto ou anel de foco</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#0E1A16" data-hex="#0E1A16" title="tinta sobre o esmeralda-texto (9,02:1) -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #0E1A16">
+        <div class="chip" style="background:#0E1A16"></div>
+        <div class="name">on-tertiary</div>
+        <div class="value">#0E1A16</div>
+        <div class="meta-row"><span>tinta sobre o esmeralda-texto (9,02:1)</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#929E9D" data-hex="#929E9D" title="metadado, rótulo, legenda (6,26:1) -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #929E9D">
+        <div class="chip" style="background:#929E9D"></div>
+        <div class="name">neutral</div>
+        <div class="value">#929E9D</div>
+        <div class="meta-row"><span>metadado, rótulo, legenda (6,26:1)</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#151C1B" data-hex="#151C1B" title="o canvas, grafite esverdeado -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #151C1B">
+        <div class="chip" style="background:#151C1B"></div>
+        <div class="name">surface</div>
+        <div class="value">#151C1B</div>
+        <div class="meta-row"><span>o canvas, grafite esverdeado</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#C7D0CF" data-hex="#C7D0CF" title="título e alta ênfase (11,00:1, o teto) -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #C7D0CF">
+        <div class="chip" style="background:#C7D0CF"></div>
+        <div class="name">on-surface</div>
+        <div class="value">#C7D0CF</div>
+        <div class="meta-row"><span>título e alta ênfase (11,00:1, o teto)</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1E2726" data-hex="#1E2726" title="o cartão em repouso -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #1E2726">
+        <div class="chip" style="background:#1E2726"></div>
+        <div class="name">surface-variant</div>
+        <div class="value">#1E2726</div>
+        <div class="meta-row"><span>o cartão em repouso</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#C7D0CF" data-hex="#C7D0CF" title="tinta sobre o cartão (9,72:1) -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #C7D0CF">
+        <div class="chip" style="background:#C7D0CF"></div>
+        <div class="name">on-surface-variant</div>
+        <div class="value">#C7D0CF</div>
+        <div class="meta-row"><span>tinta sobre o cartão (9,72:1)</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#6A7E7C" data-hex="#6A7E7C" title="fronteira de campo e controle (3,75:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #6A7E7C">
+        <div class="chip" style="background:#6A7E7C"></div>
+        <div class="name">outline</div>
+        <div class="value">#6A7E7C</div>
+        <div class="meta-row"><span>fronteira de campo e controle (3,75:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#E77987" data-hex="#E77987" title="erro (6,16:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #E77987">
+        <div class="chip" style="background:#E77987"></div>
+        <div class="name">error</div>
+        <div class="value">#E77987</div>
+        <div class="meta-row"><span>erro (6,16:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#0E1A16" data-hex="#0E1A16" title="tinta sobre o erro (6,35:1) -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #0E1A16">
+        <div class="chip" style="background:#0E1A16"></div>
+        <div class="name">on-error</div>
+        <div class="value">#0E1A16</div>
+        <div class="meta-row"><span>tinta sobre o erro (6,35:1)</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#4CC28F" data-hex="#4CC28F" title="sucesso: o próprio esmeralda -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #4CC28F">
+        <div class="chip" style="background:#4CC28F"></div>
+        <div class="name">success</div>
+        <div class="value">#4CC28F</div>
+        <div class="meta-row"><span>sucesso: o próprio esmeralda</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#EF8F80" data-hex="#EF8F80" title="atenção, em coral (7,34:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #EF8F80">
+        <div class="chip" style="background:#EF8F80"></div>
+        <div class="name">warning</div>
+        <div class="value">#EF8F80</div>
+        <div class="meta-row"><span>atenção, em coral (7,34:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#6CC6C3" data-hex="#6CC6C3" title="informativo, em turquesa (8,65:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #6CC6C3">
+        <div class="chip" style="background:#6CC6C3"></div>
+        <div class="name">info</div>
+        <div class="value">#6CC6C3</div>
+        <div class="meta-row"><span>informativo, em turquesa (8,65:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+    </div>
+    <p><code>var(--color-primary)</code> · <code>text-primary</code> no Tailwind · <code>color.primary.$value</code> no DTCG</p>
+    </div>
+    <span class="side-right">01</span>
+  </section>
+  <section class="section alt">
+    <span class="side-left">SECTION 02 -- CORES NOMEADAS, EDIÇÃO DARK -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">O sistema completo com os nomes de trabalho da marca. É por estes nomes que se conversa sobre a paleta, e é deles que saem as variáveis <code>--color-&lt;nome&gt;</code>.</p>
+    <div class="palette-grid">
+      <div class="swatch" data-copy="#4CC28F" data-hex="#4CC28F" title="o acento único da marca. Ação, foco, marcador de estado. 7,76:1 sobre a superfície base -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #4CC28F">
+        <div class="chip" style="background:#4CC28F"></div>
+        <div class="name">esmeralda</div>
+        <div class="value">#4CC28F</div>
+        <div class="meta-row"><span>o acento único da marca. Ação, foco, marcador de estado. 7,76:1 sobre a superfície base</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#67CBA0" data-hex="#67CBA0" title="o esmeralda quando vira TEXTO ou anel de foco. 8,75:1 sobre a superfície base -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #67CBA0">
+        <div class="chip" style="background:#67CBA0"></div>
+        <div class="name">esmeralda-texto</div>
+        <div class="value">#67CBA0</div>
+        <div class="meta-row"><span>o esmeralda quando vira TEXTO ou anel de foco. 8,75:1 sobre a superfície base</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#358D67" data-hex="#358D67" title="só preenchimento e camada decorativa. Nunca cor de texto (a tinta sobre ele dá 2,59:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #358D67">
+        <div class="chip" style="background:#358D67"></div>
+        <div class="name">esmeralda-fundo</div>
+        <div class="value">#358D67</div>
+        <div class="meta-row"><span>só preenchimento e camada decorativa. Nunca cor de texto (a tinta sobre ele dá 2,59:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#0E1A16" data-hex="#0E1A16" title="a tinta que senta em cima do esmeralda cheio. 8,00:1 -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #0E1A16">
+        <div class="chip" style="background:#0E1A16"></div>
+        <div class="name">on-esmeralda</div>
+        <div class="value">#0E1A16</div>
+        <div class="meta-row"><span>a tinta que senta em cima do esmeralda cheio. 8,00:1</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#151C1B" data-hex="#151C1B" title="o canvas. Grafite esverdeado, nunca preto puro -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #151C1B">
+        <div class="chip" style="background:#151C1B"></div>
+        <div class="name">superficie</div>
+        <div class="value">#151C1B</div>
+        <div class="meta-row"><span>o canvas. Grafite esverdeado, nunca preto puro</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1E2726" data-hex="#1E2726" title="o cartão em repouso, um degrau acima do canvas -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #1E2726">
+        <div class="chip" style="background:#1E2726"></div>
+        <div class="name">superficie-cartao</div>
+        <div class="value">#1E2726</div>
+        <div class="meta-row"><span>o cartão em repouso, um degrau acima do canvas</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#252F2E" data-hex="#252F2E" title="o cartão sob o dedo ou sob o cursor, e o cabeçalho de caixa -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #252F2E">
+        <div class="chip" style="background:#252F2E"></div>
+        <div class="name">superficie-alta</div>
+        <div class="value">#252F2E</div>
+        <div class="meta-row"><span>o cartão sob o dedo ou sob o cursor, e o cabeçalho de caixa</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#283332" data-hex="#283332" title="a pílula de CTA secundário, a que não é esmeralda -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #283332">
+        <div class="chip" style="background:#283332"></div>
+        <div class="name">pilula</div>
+        <div class="value">#283332</div>
+        <div class="meta-row"><span>a pílula de CTA secundário, a que não é esmeralda</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1C2926" data-hex="#1C2926" title="a superfície tingida de turquesa: aviso, callout, faixa de destaque calmo -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #1C2926">
+        <div class="chip" style="background:#1C2926"></div>
+        <div class="name">superficie-tinta</div>
+        <div class="value">#1C2926</div>
+        <div class="meta-row"><span>a superfície tingida de turquesa: aviso, callout, faixa de destaque calmo</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#2F3A38" data-hex="#2F3A38" title="a linha que fecha o cartão. Decorativa, não é a fronteira que carrega significado -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #2F3A38">
+        <div class="chip" style="background:#2F3A38"></div>
+        <div class="name">fio</div>
+        <div class="value">#2F3A38</div>
+        <div class="meta-row"><span>a linha que fecha o cartão. Decorativa, não é a fronteira que carrega significado</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#3D4A49" data-hex="#3D4A49" title="divisor interno de lista, um degrau acima do fio -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #3D4A49">
+        <div class="chip" style="background:#3D4A49"></div>
+        <div class="name">fio-alto</div>
+        <div class="value">#3D4A49</div>
+        <div class="meta-row"><span>divisor interno de lista, um degrau acima do fio</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#6A7E7C" data-hex="#6A7E7C" title="a borda que carrega significado (campo, controle, foco). Piso duro de 3:1, entrega 3,75:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #6A7E7C">
+        <div class="chip" style="background:#6A7E7C"></div>
+        <div class="name">contorno</div>
+        <div class="value">#6A7E7C</div>
+        <div class="meta-row"><span>a borda que carrega significado (campo, controle, foco). Piso duro de 3:1, entrega 3,75:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#C7D0CF" data-hex="#C7D0CF" title="título e texto de alta ênfase. 11,00:1 sobre o canvas, o teto do sistema -- origem: declaração medida na v3, ou ajuste de luminosidade sobre um valor de origem conhecida" tabindex="0" role="button" aria-label="copiar #C7D0CF">
+        <div class="chip" style="background:#C7D0CF"></div>
+        <div class="name">tinta</div>
+        <div class="value">#C7D0CF</div>
+        <div class="meta-row"><span>título e texto de alta ênfase. 11,00:1 sobre o canvas, o teto do sistema</span><span class="confidence medium">&#9679;&#9679;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#A9B4B3" data-hex="#A9B4B3" title="corpo de texto longo. 8,13:1 sobre o canvas -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #A9B4B3">
+        <div class="chip" style="background:#A9B4B3"></div>
+        <div class="name">tinta-corpo</div>
+        <div class="value">#A9B4B3</div>
+        <div class="meta-row"><span>corpo de texto longo. 8,13:1 sobre o canvas</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#929E9D" data-hex="#929E9D" title="metadado, rótulo, legenda. 6,26:1 sobre o canvas -- origem: CSS var declarada na v3 do link na bio, ou rotação de matiz determinística dela" tabindex="0" role="button" aria-label="copiar #929E9D">
+        <div class="chip" style="background:#929E9D"></div>
+        <div class="name">tinta-meta</div>
+        <div class="value">#929E9D</div>
+        <div class="meta-row"><span>metadado, rótulo, legenda. 6,26:1 sobre o canvas</span><span class="confidence high">&#9679;&#9679;&#9679;</span></div>
+      </div>
+      <div class="swatch" data-copy="#6CC6C3" data-hex="#6CC6C3" title="a família tonal levada até a legibilidade, para status informativo. Nunca vira botão -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #6CC6C3">
+        <div class="chip" style="background:#6CC6C3"></div>
+        <div class="name">turquesa-sinal</div>
+        <div class="value">#6CC6C3</div>
+        <div class="meta-row"><span>a família tonal levada até a legibilidade, para status informativo. Nunca vira botão</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#E77987" data-hex="#E77987" title="erro. 6,16:1 sobre o canvas -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #E77987">
+        <div class="chip" style="background:#E77987"></div>
+        <div class="name">erro</div>
+        <div class="value">#E77987</div>
+        <div class="meta-row"><span>erro. 6,16:1 sobre o canvas</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#EF8F80" data-hex="#EF8F80" title="atenção, em coral. 7,34:1 sobre o canvas. Coral porque âmbar e dourado são vetados -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #EF8F80">
+        <div class="chip" style="background:#EF8F80"></div>
+        <div class="name">atencao</div>
+        <div class="value">#EF8F80</div>
+        <div class="meta-row"><span>atenção, em coral. 7,34:1 sobre o canvas. Coral porque âmbar e dourado são vetados</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+    </div>
+    </div>
+    <span class="side-right">02</span>
+  </section>
+  <section class="section">
+    <span class="side-left">SECTION 03 -- CORES NOMEADAS, EDIÇÃO LIGHT -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">A edição light vive no mesmo <code>tokens.css</code>, com o prefixo <code>--color-light-*</code>, gerada pelo mesmo <code>export.mjs</code>. Nenhum token de light foi escrito à mão. O botão do topo troca a edição.</p>
+    <div class="tinta-bloco"><p class="prosa-larga">O único par que muda de comportamento entre as edições: no dark o esmeralda funciona como texto (8,75:1); no light ele não funciona (2,15:1 sobre o canvas claro). Na edição light, esmeralda é preenchimento e o texto verde é <code>#1C7853</code>.</p></div>
+    <div class="palette-grid">
+      <div class="swatch" data-copy="#F9FBFB" data-hex="#F9FBFB" title="edição light: o canvas -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #F9FBFB">
+        <div class="chip" style="background:#F9FBFB"></div>
+        <div class="name">light-surface</div>
+        <div class="value">#F9FBFB</div>
+        <div class="meta-row"><span>edição light: o canvas</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#F1F6F5" data-hex="#F1F6F5" title="edição light: o cartão em repouso -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #F1F6F5">
+        <div class="chip" style="background:#F1F6F5"></div>
+        <div class="name">light-surface-variant</div>
+        <div class="value">#F1F6F5</div>
+        <div class="meta-row"><span>edição light: o cartão em repouso</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#E8EFEF" data-hex="#E8EFEF" title="edição light: o cartão sob o dedo -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #E8EFEF">
+        <div class="chip" style="background:#E8EFEF"></div>
+        <div class="name">light-superficie-alta</div>
+        <div class="value">#E8EFEF</div>
+        <div class="meta-row"><span>edição light: o cartão sob o dedo</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#E7F3EF" data-hex="#E7F3EF" title="edição light: a superfície tingida de turquesa -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #E7F3EF">
+        <div class="chip" style="background:#E7F3EF"></div>
+        <div class="name">light-superficie-tinta</div>
+        <div class="value">#E7F3EF</div>
+        <div class="meta-row"><span>edição light: a superfície tingida de turquesa</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#D9E2E2" data-hex="#D9E2E2" title="edição light: a linha decorativa do cartão -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #D9E2E2">
+        <div class="chip" style="background:#D9E2E2"></div>
+        <div class="name">light-fio</div>
+        <div class="value">#D9E2E2</div>
+        <div class="meta-row"><span>edição light: a linha decorativa do cartão</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#C5D3D1" data-hex="#C5D3D1" title="edição light: o divisor interno de lista -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #C5D3D1">
+        <div class="chip" style="background:#C5D3D1"></div>
+        <div class="name">light-fio-alto</div>
+        <div class="value">#C5D3D1</div>
+        <div class="meta-row"><span>edição light: o divisor interno de lista</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#6F8B88" data-hex="#6F8B88" title="edição light: a borda que carrega significado. 3,53:1 sobre o canvas claro -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #6F8B88">
+        <div class="chip" style="background:#6F8B88"></div>
+        <div class="name">light-outline</div>
+        <div class="value">#6F8B88</div>
+        <div class="meta-row"><span>edição light: a borda que carrega significado. 3,53:1 sobre o canvas claro</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1B2826" data-hex="#1B2826" title="edição light: título e alta ênfase. 14,67:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #1B2826">
+        <div class="chip" style="background:#1B2826"></div>
+        <div class="name">light-tinta</div>
+        <div class="value">#1B2826</div>
+        <div class="meta-row"><span>edição light: título e alta ênfase. 14,67:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#435654" data-hex="#435654" title="edição light: corpo de texto. 7,49:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #435654">
+        <div class="chip" style="background:#435654"></div>
+        <div class="name">light-tinta-corpo</div>
+        <div class="value">#435654</div>
+        <div class="meta-row"><span>edição light: corpo de texto. 7,49:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#576B69" data-hex="#576B69" title="edição light: metadado e legenda. 5,45:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #576B69">
+        <div class="chip" style="background:#576B69"></div>
+        <div class="name">light-tinta-meta</div>
+        <div class="value">#576B69</div>
+        <div class="meta-row"><span>edição light: metadado e legenda. 5,45:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#4CC28F" data-hex="#4CC28F" title="edição light: o esmeralda como PREENCHIMENTO, com a tinta escura em cima. Nunca como texto sobre claro (2,15:1) -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #4CC28F">
+        <div class="chip" style="background:#4CC28F"></div>
+        <div class="name">light-esmeralda</div>
+        <div class="value">#4CC28F</div>
+        <div class="meta-row"><span>edição light: o esmeralda como PREENCHIMENTO, com a tinta escura em cima. Nunca como texto sobre claro (2,15:1)</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#1C7853" data-hex="#1C7853" title="edição light: o esmeralda quando vira texto ou anel de foco. 5,24:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #1C7853">
+        <div class="chip" style="background:#1C7853"></div>
+        <div class="name">light-esmeralda-texto</div>
+        <div class="value">#1C7853</div>
+        <div class="meta-row"><span>edição light: o esmeralda quando vira texto ou anel de foco. 5,24:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#0E1A16" data-hex="#0E1A16" title="edição light: a tinta sobre o esmeralda cheio. 8,00:1, o mesmo par do dark -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #0E1A16">
+        <div class="chip" style="background:#0E1A16"></div>
+        <div class="name">light-on-esmeralda</div>
+        <div class="value">#0E1A16</div>
+        <div class="meta-row"><span>edição light: a tinta sobre o esmeralda cheio. 8,00:1, o mesmo par do dark</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#226D6D" data-hex="#226D6D" title="edição light: status informativo. 5,82:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #226D6D">
+        <div class="chip" style="background:#226D6D"></div>
+        <div class="name">light-turquesa-sinal</div>
+        <div class="value">#226D6D</div>
+        <div class="meta-row"><span>edição light: status informativo. 5,82:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#B02145" data-hex="#B02145" title="edição light: erro. 6,42:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #B02145">
+        <div class="chip" style="background:#B02145"></div>
+        <div class="name">light-erro</div>
+        <div class="value">#B02145</div>
+        <div class="meta-row"><span>edição light: erro. 6,42:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+      <div class="swatch" data-copy="#BE3927" data-hex="#BE3927" title="edição light: atenção, em coral escuro. 5,32:1 -- origem: valor novo, calculado para esta marca" tabindex="0" role="button" aria-label="copiar #BE3927">
+        <div class="chip" style="background:#BE3927"></div>
+        <div class="name">light-atencao</div>
+        <div class="value">#BE3927</div>
+        <div class="meta-row"><span>edição light: atenção, em coral escuro. 5,32:1</span><span class="confidence low">&#9679;&#9675;&#9675;</span></div>
+      </div>
+    </div>
+    </div>
+    <span class="side-right">03</span>
+  </section>
+  <section class="section alt">
+    <span class="side-left">SECTION 04 -- ESCALA TIPOGRÁFICA -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">Hanken Grotesk 600 em display e títulos, Geist em corpo e rótulo. Tracking é específico por tamanho e leading afrouxa conforme o tamanho cai. Tudo em rem, para escalar junto com a preferência de tamanho de texto do usuário.</p>
+    <div class="type-spec">
+      <div class="role">
+        <span class="label">display-hero</span>
+        <span class="specs">Hanken Grotesk · 3.5rem · 600 · lh 1.02 · ls -0.035em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-display-hero);font-size:var(--text-display-hero);font-weight:var(--font-weight-display-hero);line-height:var(--leading-display-hero);letter-spacing:var(--tracking-display-hero);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">display-large</span>
+        <span class="specs">Hanken Grotesk · 2.5rem · 600 · lh 1.06 · ls -0.03em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-display-large);font-size:var(--text-display-large);font-weight:var(--font-weight-display-large);line-height:var(--leading-display-large);letter-spacing:var(--tracking-display-large);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">section-heading</span>
+        <span class="specs">Hanken Grotesk · 1.75rem · 600 · lh 1.14 · ls -0.025em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-section-heading);font-size:var(--text-section-heading);font-weight:var(--font-weight-section-heading);line-height:var(--leading-section-heading);letter-spacing:var(--tracking-section-heading);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">subheading-large</span>
+        <span class="specs">Hanken Grotesk · 1.3125rem · 600 · lh 1.22 · ls -0.02em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-subheading-large);font-size:var(--text-subheading-large);font-weight:var(--font-weight-subheading-large);line-height:var(--leading-subheading-large);letter-spacing:var(--tracking-subheading-large);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">subheading</span>
+        <span class="specs">Hanken Grotesk · 1.1875rem · 600 · lh 1.25 · ls -0.018em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-subheading);font-size:var(--text-subheading);font-weight:var(--font-weight-subheading);line-height:var(--leading-subheading);letter-spacing:var(--tracking-subheading);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">body-large</span>
+        <span class="specs">Geist · 1.0625rem · 400 · lh 1.55 · ls -0.002em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-body-large);font-size:var(--text-body-large);font-weight:var(--font-weight-body-large);line-height:var(--leading-body-large);letter-spacing:var(--tracking-body-large);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">body</span>
+        <span class="specs">Geist · 1rem · 400 · lh 1.5 · ls 0em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-body);font-size:var(--text-body);font-weight:var(--font-weight-body);line-height:var(--leading-body);letter-spacing:var(--tracking-body);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">body-small</span>
+        <span class="specs">Geist · 0.9375rem · 400 · lh 1.55 · ls 0.002em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-body-small);font-size:var(--text-body-small);font-weight:var(--font-weight-body-small);line-height:var(--leading-body-small);letter-spacing:var(--tracking-body-small);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">button</span>
+        <span class="specs">Geist · 0.9375rem · 600 · lh 1.2 · ls 0.005em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-button);font-size:var(--text-button);font-weight:var(--font-weight-button);line-height:var(--leading-button);letter-spacing:var(--tracking-button);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">button-small</span>
+        <span class="specs">Geist · 0.875rem · 600 · lh 1.3 · ls 0.01em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-button-small);font-size:var(--text-button-small);font-weight:var(--font-weight-button-small);line-height:var(--leading-button-small);letter-spacing:var(--tracking-button-small);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">link</span>
+        <span class="specs">Geist · 1rem · 500 · lh 1.5 · ls 0em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-link);font-size:var(--text-link);font-weight:var(--font-weight-link);line-height:var(--leading-link);letter-spacing:var(--tracking-link);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">caption</span>
+        <span class="specs">Geist · 0.875rem · 500 · lh 1.4 · ls 0.01em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-caption);font-size:var(--text-caption);font-weight:var(--font-weight-caption);line-height:var(--leading-caption);letter-spacing:var(--tracking-caption);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">caption-small</span>
+        <span class="specs">Geist · 0.8125rem · 500 · lh 1.4 · ls 0.02em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-caption-small);font-size:var(--text-caption-small);font-weight:var(--font-weight-caption-small);line-height:var(--leading-caption-small);letter-spacing:var(--tracking-caption-small);">Tiro do manual o que já devia estar automático</span>
+      <div class="role">
+        <span class="label">micro</span>
+        <span class="specs">Geist · 0.75rem · 600 · lh 1.25 · ls 0.1em</span>
+      </div>
+      <span class="sample" style="font-family:var(--font-micro);font-size:var(--text-micro);font-weight:var(--font-weight-micro);line-height:var(--leading-micro);letter-spacing:var(--tracking-micro);text-transform:uppercase;">Tiro do manual o que já devia estar automático</span>
+    </div>
+    <p><code>font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); letter-spacing: var(--tracking-body);</code></p>
+    </div>
+    <span class="side-right">04</span>
+  </section>
+  <section class="section">
+    <span class="side-left">SECTION 05 -- ESPAÇAMENTO -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">Escala em rem, ancorada nos valores que já estão no ar. O respiro entre seções é sempre maior que o respiro entre itens da mesma seção. Os três tokens de measure fecham a lista: eles se aplicam ao elemento de texto, nunca ao container.</p>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">xs / 0.25rem</code>
+        <div style="height:12px;width:0.25rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">sm / 0.5rem</code>
+        <div style="height:12px;width:0.5rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">md / 0.875rem</code>
+        <div style="height:12px;width:0.875rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">lg / 1.25rem</code>
+        <div style="height:12px;width:1.25rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">xl / 1.625rem</code>
+        <div style="height:12px;width:1.625rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">2xl / 2.5rem</code>
+        <div style="height:12px;width:2.5rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">3xl / 4rem</code>
+        <div style="height:12px;width:4rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">4xl / 6rem</code>
+        <div style="height:12px;width:6rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">5xl / 8rem</code>
+        <div style="height:12px;width:8rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">gutter / 0.625rem</code>
+        <div style="height:12px;width:0.625rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">container-padding / 0.875rem</code>
+        <div style="height:12px;width:0.875rem;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">measure / 66ch</code>
+        <div style="height:12px;width:66ch;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">measure-min / 45ch</code>
+        <div style="height:12px;width:45ch;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">measure-max / 75ch</code>
+        <div style="height:12px;width:75ch;max-width:100%;background:var(--accent);border-radius:2px"></div>
+      </div>
+    <p><code>var(--space-lg)</code> · <code>p-lg</code> no Tailwind · <code>spacing.lg.$value</code> no DTCG</p>
+    </div>
+    <span class="side-right">05</span>
+  </section>
+  <section class="section alt">
+    <span class="side-left">SECTION 06 -- RAIO -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">Quatro raios reais. O <code>lg</code> de 1.125rem é o raio da marca, herdado do cartão do link na bio; o raio total é a pílula de ação.</p>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">none / 0px</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:0px"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">sm / 0.5rem</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:0.5rem"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">md / 0.75rem</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:0.75rem"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">lg / 1.125rem</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:1.125rem"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">xl / 1.5rem</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:1.5rem"></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:var(--space-md);padding:var(--space-xs) 0">
+        <code style="min-width:11rem;font-size:13px;color:var(--text-muted)">full / 9999px</code>
+        <div style="width:56px;height:56px;background:var(--color-surface-variant);border:1px solid var(--color-fio);border-radius:9999px"></div>
+      </div>
+    <p><code>var(--radius-lg)</code> · <code>rounded-lg</code> no Tailwind</p>
+    </div>
+    <span class="side-right">06</span>
+  </section>
+  <section class="section">
+    <span class="side-left">SECTION 07 -- SOMBRA -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">O sistema é intencionalmente plano. Nenhum valor passa de 0,05 de opacidade, e o padrão de todo componente é <code>flat</code>. Sombra só entra em elemento que flutua de verdade sobre conteúdo. Elevação de cartão é degrau de superfície mais fio de 1px.</p>
+    <table class="medida">
+      <thead><tr><th>Token</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td><code>flat</code></td><td><code>none</code></td></tr>
+        <tr><td><code>ambient</code></td><td><code>0 1px 2px rgba(8,16,14,0.04)</code></td></tr>
+        <tr><td><code>standard</code></td><td><code>0 2px 8px rgba(8,16,14,0.045)</code></td></tr>
+        <tr><td><code>elevated</code></td><td><code>0 6px 20px rgba(8,16,14,0.05)</code></td></tr>
+        <tr><td><code>deep</code></td><td><code>0 12px 32px rgba(8,16,14,0.05)</code></td></tr>
+        <tr><td><code>focus-ring</code></td><td><code>0 0 0 2px #67CBA0</code></td></tr>
+      </tbody>
+    </table>
+    <p><code>var(--shadow-ambient)</code> · <code>shadow-ambient</code> no Tailwind</p>
+    </div>
+    <span class="side-right">07</span>
+  </section>
+  <section class="section alt">
+    <span class="side-left">SECTION 08 -- MOVIMENTO -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">O que entra por um caminho sai pelo mesmo caminho. A curva <code>release</code> é o espelho matemático da <code>press</code>: para uma curva <code>(x1, y1, x2, y2)</code>, a inversa é <code>(1-x2, 1-y2, 1-x1, 1-y1)</code>. O pressionar é <code>transform: scale(.985)</code> em alvo grande, entrando em 120ms e voltando em 260ms.</p>
+    <table class="medida">
+      <thead><tr><th>Token</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td><code>--duration-fast</code></td><td><code>120ms</code></td></tr>
+        <tr><td><code>--duration-base</code></td><td><code>260ms</code></td></tr>
+        <tr><td><code>--duration-slow</code></td><td><code>420ms</code></td></tr>
+        <tr><td><code>--ease-press</code></td><td><code>cubic-bezier(0.22, 0.61, 0.36, 1)</code></td></tr>
+        <tr><td><code>--ease-release</code></td><td><code>cubic-bezier(0.64, 0, 0.78, 0.39)</code></td></tr>
+        <tr><td><code>--ease-out</code></td><td><code>cubic-bezier(0.22, 0.61, 0.36, 1)</code></td></tr>
+        <tr><td><code>--ease-in-out</code></td><td><code>cubic-bezier(0.65, 0, 0.35, 1)</code></td></tr>
+      </tbody>
+    </table>
+    <p><code>prefers-reduced-motion</code> é respeitado em todo o sistema.</p>
+    </div>
+    <span class="side-right">08</span>
+  </section>
+  <section class="section">
+    <span class="side-left">SECTION 09 -- BREAKPOINTS -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">O sistema nasce em uma coluna, porque é assim que ele é lido. Colunas só aparecem acima de 1024px, e só em página de conteúdo longo.</p>
+    <table class="medida">
+      <thead><tr><th>Nome</th><th>Largura</th><th>O que muda</th></tr></thead>
+      <tbody>
+        <tr><td><code>mobile</code></td><td>0px</td><td>coluna única, cartão de largura cheia, container de 34rem</td></tr>
+        <tr><td><code>tablet</code></td><td>640px</td><td>container centraliza, respiro de seção sobe um degrau</td></tr>
+        <tr><td><code>desktop</code></td><td>1024px</td><td>conteúdo longo pode ir a duas colunas, container de 72rem</td></tr>
+        <tr><td><code>wide</code></td><td>1280px</td><td>teto de largura, só cresce a margem lateral</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <span class="side-right">09</span>
+  </section>
+  <section class="section alt">
+    <span class="side-left">SECTION 10 -- OPACIDADE E Z-INDEX -- Esmeralda 2026</span>
+    <div class="content">
+    <p class="prosa-larga">Dois blocos de valor de sistema. O <code>faint</code> de 0,045 é o teto de sombra da marca, e não um convite: ele existe para o caso raro de um elemento que flutua de verdade sobre conteúdo.</p>
+    <table class="medida">
+      <thead><tr><th>Opacidade</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td><code>invisible</code></td><td><code>0</code></td></tr>
+        <tr><td><code>faint</code></td><td><code>0.045</code></td></tr>
+        <tr><td><code>muted</code></td><td><code>0.4</code></td></tr>
+        <tr><td><code>prominent</code></td><td><code>0.7</code></td></tr>
+        <tr><td><code>full</code></td><td><code>1</code></td></tr>
+      </tbody>
+    </table>
+    <table class="medida">
+      <thead><tr><th>z-index</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td><code>base</code></td><td><code>0</code></td></tr>
+        <tr><td><code>raised</code></td><td><code>10</code></td></tr>
+        <tr><td><code>sticky</code></td><td><code>100</code></td></tr>
+        <tr><td><code>modal</code></td><td><code>1000</code></td></tr>
+        <tr><td><code>toast</code></td><td><code>10000</code></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <span class="side-right">10</span>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="row">
+    <span>Gabriel Silvestri, Brandbook 1.0.0 · 2026</span>
+    <span>
+      <a href="https://bio.gabrielsilvestri.com.br" target="_blank" rel="noopener">bio.gabrielsilvestri.com.br</a>
+      &nbsp;·&nbsp; <a href="../guia-marca.md">Guia de marca (PT)</a>
+      &nbsp;·&nbsp; <a href="../DESIGN.md">DESIGN.md raw</a>
+      &nbsp;·&nbsp; <a href="../tokens.css">tokens.css</a>
+      &nbsp;·&nbsp; <a href="../tokens.json">tokens.json</a>
+      &nbsp;·&nbsp; <a href="../tailwind.config.js">tailwind.config.js</a>
+    </span>
+  </div>
+</footer>
+
+<div class="toast"></div>
+
+<script src="_shared/theme-toggle.js"></script>
+<script src="_shared/copy.js"></script>
+
+</body>
+</html>

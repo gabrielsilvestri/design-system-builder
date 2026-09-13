@@ -1,0 +1,192 @@
+/* Gerado por _scripts/export.mjs a partir de DESIGN.md (schema v2) */
+/* Não editar manualmente; rodar export.mjs novamente após alterar DESIGN.md */
+
+:root {
+  /* ============ COLORS (canonical slots) ============ */
+  --color-primary: #4CC28F;
+  --color-on-primary: #0E1A16;
+  --color-secondary: #1C2926;
+  --color-on-secondary: #C7D0CF;
+  --color-tertiary: #67CBA0;
+  --color-on-tertiary: #0E1A16;
+  --color-neutral: #929E9D;
+  --color-surface: #151C1B;
+  --color-on-surface: #C7D0CF;
+  --color-surface-variant: #1E2726;
+  --color-on-surface-variant: #C7D0CF;
+  --color-outline: #6A7E7C;
+  --color-error: #E77987;
+  --color-on-error: #0E1A16;
+  --color-success: #4CC28F;
+  --color-warning: #EF8F80;
+  --color-info: #6CC6C3;
+
+  /* ============ NAMED COLORS (do manual) ============ */
+  --color-esmeralda: #4CC28F;
+  --color-esmeralda-texto: #67CBA0;
+  --color-esmeralda-fundo: #358D67;
+  --color-on-esmeralda: #0E1A16;
+  --color-superficie: #151C1B;
+  --color-superficie-cartao: #1E2726;
+  --color-superficie-alta: #252F2E;
+  --color-pilula: #283332;
+  --color-superficie-tinta: #1C2926;
+  --color-fio: #2F3A38;
+  --color-fio-alto: #3D4A49;
+  --color-contorno: #6A7E7C;
+  --color-tinta: #C7D0CF;
+  --color-tinta-corpo: #A9B4B3;
+  --color-tinta-meta: #929E9D;
+  --color-turquesa-sinal: #6CC6C3;
+  --color-erro: #E77987;
+  --color-atencao: #EF8F80;
+  --color-light-surface: #F9FBFB;
+  --color-light-surface-variant: #F1F6F5;
+  --color-light-superficie-alta: #E8EFEF;
+  --color-light-superficie-tinta: #E7F3EF;
+  --color-light-fio: #D9E2E2;
+  --color-light-fio-alto: #C5D3D1;
+  --color-light-outline: #6F8B88;
+  --color-light-tinta: #1B2826;
+  --color-light-tinta-corpo: #435654;
+  --color-light-tinta-meta: #576B69;
+  --color-light-esmeralda: #4CC28F;
+  --color-light-esmeralda-texto: #1C7853;
+  --color-light-on-esmeralda: #0E1A16;
+  --color-light-turquesa-sinal: #226D6D;
+  --color-light-erro: #B02145;
+  --color-light-atencao: #BE3927;
+
+  /* ============ TYPOGRAPHY (roles) ============ */
+  --font-display-hero: Hanken Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-display-hero: 3.5rem;
+  --font-weight-display-hero: 600;
+  --leading-display-hero: 1.02;
+  --tracking-display-hero: -0.035em;
+  --font-display-large: Hanken Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-display-large: 2.5rem;
+  --font-weight-display-large: 600;
+  --leading-display-large: 1.06;
+  --tracking-display-large: -0.03em;
+  --font-section-heading: Hanken Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-section-heading: 1.75rem;
+  --font-weight-section-heading: 600;
+  --leading-section-heading: 1.14;
+  --tracking-section-heading: -0.025em;
+  --font-subheading-large: Hanken Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-subheading-large: 1.3125rem;
+  --font-weight-subheading-large: 600;
+  --leading-subheading-large: 1.22;
+  --tracking-subheading-large: -0.02em;
+  --font-subheading: Hanken Grotesk, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-subheading: 1.1875rem;
+  --font-weight-subheading: 600;
+  --leading-subheading: 1.25;
+  --tracking-subheading: -0.018em;
+  --font-body-large: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-body-large: 1.0625rem;
+  --font-weight-body-large: 400;
+  --leading-body-large: 1.55;
+  --tracking-body-large: -0.002em;
+  --font-body: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-body: 1rem;
+  --font-weight-body: 400;
+  --leading-body: 1.5;
+  --tracking-body: 0em;
+  --font-body-small: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-body-small: 0.9375rem;
+  --font-weight-body-small: 400;
+  --leading-body-small: 1.55;
+  --tracking-body-small: 0.002em;
+  --font-button: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-button: 0.9375rem;
+  --font-weight-button: 600;
+  --leading-button: 1.2;
+  --tracking-button: 0.005em;
+  --font-button-small: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-button-small: 0.875rem;
+  --font-weight-button-small: 600;
+  --leading-button-small: 1.3;
+  --tracking-button-small: 0.01em;
+  --font-link: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-link: 1rem;
+  --font-weight-link: 500;
+  --leading-link: 1.5;
+  --tracking-link: 0em;
+  --font-caption: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-caption: 0.875rem;
+  --font-weight-caption: 500;
+  --leading-caption: 1.4;
+  --tracking-caption: 0.01em;
+  --font-caption-small: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-caption-small: 0.8125rem;
+  --font-weight-caption-small: 500;
+  --leading-caption-small: 1.4;
+  --tracking-caption-small: 0.02em;
+  --font-micro: Geist, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --text-micro: 0.75rem;
+  --font-weight-micro: 600;
+  --leading-micro: 1.25;
+  --tracking-micro: 0.1em;
+
+  /* ============ SPACING ============ */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 0.875rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.625rem;
+  --space-2xl: 2.5rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --space-5xl: 8rem;
+  --space-gutter: 0.625rem;
+  --space-container-padding: 0.875rem;
+  --space-measure: 66ch;
+  --space-measure-min: 45ch;
+  --space-measure-max: 75ch;
+
+  /* ============ ROUNDED ============ */
+  --radius-none: 0px;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1.125rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* ============ BREAKPOINTS ============ */
+  --breakpoint-mobile: 0px;
+  --breakpoint-tablet: 640px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1280px;
+
+  /* ============ SHADOWS ============ */
+  --shadow-flat: none;
+  --shadow-ambient: 0 1px 2px rgba(8,16,14,0.04);
+  --shadow-standard: 0 2px 8px rgba(8,16,14,0.045);
+  --shadow-elevated: 0 6px 20px rgba(8,16,14,0.05);
+  --shadow-deep: 0 12px 32px rgba(8,16,14,0.05);
+  --shadow-focus-ring: 0 0 0 2px #67CBA0;
+
+  /* ============ MOTION ============ */
+  --duration-fast: 120ms;
+  --duration-base: 260ms;
+  --duration-slow: 420ms;
+  --ease-press: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-release: cubic-bezier(0.64, 0, 0.78, 0.39);
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ============ Z-INDEX ============ */
+  --z-base: 0;
+  --z-raised: 10;
+  --z-sticky: 100;
+  --z-modal: 1000;
+  --z-toast: 10000;
+
+  /* ============ OPACITY ============ */
+  --opacity-invisible: 0;
+  --opacity-faint: 0.045;
+  --opacity-muted: 0.4;
+  --opacity-prominent: 0.7;
+  --opacity-full: 1;
+}
