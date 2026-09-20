@@ -1,0 +1,1212 @@
+/* components.css · as receitas do painel da Gu.ia, em UI clara.
+   Os nomes de classe são os do protótipo E de propósito: trocar a raiz de
+   tokens adota o sistema inteiro sem renomear marcação.
+   Toda cor aqui vem de tokens.css. Nenhum hex solto.
+   Todo controle tem hover, focus-visible, pressionado e desabilitado. */
+
+/* ============ base de controle ============ */
+
+.btn, .nav-item, .conta-item, .ferr, .lanc, .peca-card, .etapa, .capa-op,
+.opcao, .filtro, .cap-item, .sec-linha, .aba, .chat-prontas button {
+  font-family: var(--font-body);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-tinta);
+  transition:
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out),
+    transform 110ms var(--ease-out);
+}
+
+.btn:focus-visible, .nav-item:focus-visible, .conta-item:focus-visible,
+.ferr:focus-visible, .lanc:focus-visible, .peca-card:focus-visible,
+.etapa:focus-visible, .capa-op:focus-visible, .opcao:has(input:focus-visible),
+.filtro:focus-visible, .cap-item:focus-visible, .sec-linha:focus-visible,
+.aba:focus-visible {
+  outline: 3px solid var(--color-roxo);
+  outline-offset: 3px;
+}
+
+/* ============ botões ============ */
+
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm);
+  min-height: 46px; padding: 8px 20px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-linha-controle);
+  background: var(--color-superficie);
+  color: var(--color-tinta);
+  font-size: var(--text-button);
+  font-weight: var(--font-weight-button);
+  letter-spacing: var(--tracking-button);
+  line-height: var(--leading-button);
+  white-space: nowrap;
+}
+.btn:hover { background: var(--color-superficie-2); border-color: var(--color-roxo-tinta); }
+.btn:active { transform: scale(.975); }
+.btn .ico { width: 18px; height: 18px; }
+
+.btn-principal {
+  background: var(--color-roxo);
+  border-color: var(--color-roxo);
+  color: var(--color-claro);
+}
+/* o hover ESCURECE: clarear derruba o contraste do rótulo com o dedo em cima */
+.btn-principal:hover { background: var(--color-roxo-hover); border-color: var(--color-roxo-hover); }
+.btn-principal:active { background: var(--color-roxo-ativo); border-color: var(--color-roxo-ativo); }
+
+.btn-texto {
+  background: transparent; border-color: transparent;
+  color: var(--color-roxo-tinta); padding: 8px 12px;
+}
+.btn-texto:hover { background: var(--color-roxo-fundo); border-color: transparent; }
+.btn-texto:active { background: var(--color-roxo-fundo-2); }
+
+/* desabilitado não usa opacidade: usa superfície recuada com tinta que ainda
+   mede 4.76:1, porque rótulo apagado some no celular sob luz forte */
+.btn[aria-disabled="true"], .btn:disabled {
+  background: var(--color-superficie-2);
+  border-color: var(--color-linha-controle);
+  color: var(--color-tinta-sutil);
+  cursor: not-allowed;
+}
+.btn[aria-disabled="true"]:hover, .btn:disabled:hover {
+  background: var(--color-superficie-2); border-color: var(--color-linha-controle);
+}
+.btn[aria-disabled="true"]:active, .btn:disabled:active { transform: none; }
+
+.btn-grande { min-height: 56px; padding: 16px 28px; font-size: var(--text-body-large); border-radius: var(--radius-md); }
+.btn-p { min-height: 44px; padding: 8px 16px; font-size: var(--text-button-small); }
+.btn-largo { width: 100%; }
+.btn-icone { min-width: 44px; min-height: 44px; padding: 8px; }
+
+/* ============ cartão ============ */
+
+.cartao {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-base);
+}
+.cartao.destaque { border-color: var(--color-roxo-borda); }
+
+/* ============ selo e badge ============ */
+
+.selo {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  padding: 4px 12px; border-radius: var(--radius-full);
+  border: 1px solid var(--color-linha-controle);
+  background: var(--color-superficie);
+  color: var(--color-tinta-apoio);
+  font-size: var(--text-caption);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.selo .ico { width: 14px; height: 14px; }
+.selo.no-ar { color: var(--color-verde); border-color: var(--color-verde-borda); background: var(--color-verde-fundo); }
+.selo.andamento, .selo.exemplo { color: var(--color-roxo-tinta); border-color: var(--color-roxo-borda); background: var(--color-roxo-fundo); }
+.selo.parado { color: var(--color-ambar); border-color: var(--color-ambar-borda); background: var(--color-ambar-fundo); }
+
+.creditos {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  padding: 8px 16px; border-radius: var(--radius-full);
+  font-size: var(--text-button-small); font-weight: 600;
+  color: var(--color-roxo-tinta);
+  background: var(--color-roxo-fundo);
+  border: 1px solid var(--color-roxo-borda);
+}
+.creditos .ico { width: 16px; height: 16px; }
+.creditos b { font-family: var(--font-code-body); font-size: var(--text-code-body); font-weight: 500; }
+/* variante leve: o aviso de custo em texto, sem preenchimento, pra não parecer botão */
+.creditos.leve { background: transparent; border-color: transparent; padding: 4px 0; }
+.creditos.acabando { color: var(--color-vermelho); background: var(--color-vermelho-fundo); border-color: var(--color-vermelho-borda); }
+
+/* ============ casca: barra lateral ============ */
+
+.barra {
+  width: 268px; flex: 0 0 268px;
+  background: var(--color-superficie);
+  border-right: 1px solid var(--color-linha);
+  box-shadow: var(--shadow-base);
+  display: flex; flex-direction: column;
+  padding: 16px 12px 12px;
+  gap: var(--space-xs);
+}
+
+.marca { display: flex; align-items: center; gap: var(--space-sm); padding: 4px 8px 16px; min-height: 44px; text-decoration: none; color: var(--color-tinta); }
+.marca-selo {
+  width: 34px; height: 34px; border-radius: var(--radius-sm);
+  background: var(--color-roxo); color: var(--color-claro);
+  display: grid; place-items: center;
+  font-family: var(--font-display-large); font-weight: 800;
+  font-size: var(--text-button-small); letter-spacing: -0.04em;
+}
+.marca-nome { font-family: var(--font-subheading-large); font-weight: 700; font-size: var(--text-subheading-large); letter-spacing: var(--tracking-subheading-large); }
+
+.barra-rot {
+  display: block; padding: 16px 12px 6px;
+  font-size: var(--text-micro);
+  font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-tinta-sutil);
+}
+
+.nav-lista { display: flex; flex-direction: column; gap: var(--space-xs); list-style: none; margin: 0; padding: 0; }
+
+.nav-item {
+  display: flex; align-items: center; gap: var(--space-md);
+  width: 100%; min-height: 44px; padding: 8px 12px;
+  border-radius: var(--radius-sm); border: 1px solid transparent;
+  background: transparent;
+  font-size: var(--text-body); font-weight: 500;
+}
+.nav-item .ico { color: var(--color-tinta-sutil); }
+.nav-item:hover { background: var(--color-superficie-2); }
+.nav-item:active { background: var(--color-roxo-fundo-2); }
+.nav-item[aria-current="page"] {
+  background: var(--color-roxo-fundo);
+  border-color: var(--color-roxo-borda);
+  color: var(--color-roxo-tinta);
+  font-weight: 600;
+}
+.nav-item[aria-current="page"] .ico { color: var(--color-roxo-tinta); }
+.nav-item[aria-disabled="true"] { color: var(--color-tinta-sutil); cursor: not-allowed; }
+.nav-item[aria-disabled="true"]:hover { background: transparent; }
+.nav-item .conta-peca { margin-left: auto; font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-sutil); }
+
+.barra-pe { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--color-linha); }
+.conta-item {
+  display: flex; align-items: center; gap: var(--space-md);
+  width: 100%; min-height: 52px; padding: 8px 12px;
+  border-radius: var(--radius-sm); border: 1px solid transparent;
+  background: transparent;
+}
+.conta-item:hover { background: var(--color-superficie-2); }
+.conta-item[aria-current="page"] { background: var(--color-roxo-fundo); border-color: var(--color-roxo-borda); }
+.conta-item .av {
+  width: 32px; height: 32px; border-radius: var(--radius-full);
+  background: var(--color-superficie-2); border: 1px solid var(--color-linha-controle);
+  display: grid; place-items: center; font-weight: 700; font-size: var(--text-caption);
+}
+.conta-item .txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.3; }
+.conta-item .txt b { font-size: var(--text-body-small); font-weight: 600; }
+.conta-item .txt span { font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-apoio); }
+
+/* barra de topo do celular e gaveta */
+.topo-cel {
+  display: flex; align-items: center; gap: var(--space-sm);
+  min-height: 60px; padding: 8px 16px;
+  background: var(--color-superficie);
+  border-bottom: 1px solid var(--color-linha);
+  box-shadow: var(--shadow-base);
+}
+.veu-barra { background: color-mix(in srgb, var(--color-tinta) 62%, transparent); }
+.gaveta { box-shadow: var(--shadow-elevado); }
+
+.migalha { display: flex; align-items: center; gap: var(--space-xs); flex-wrap: wrap; font-size: var(--text-body-small); color: var(--color-tinta-apoio); }
+.migalha a { color: var(--color-tinta-apoio); display: inline-flex; align-items: center; min-height: 44px; padding: 0 4px; border-radius: var(--radius-sm); }
+.migalha a:hover { color: var(--color-roxo-tinta); background: var(--color-roxo-fundo); }
+
+/* ============ home ============ */
+
+.parou {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-roxo-borda);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex; gap: var(--space-xl); align-items: center; flex-wrap: wrap;
+  box-shadow: var(--shadow-base);
+}
+.parou .rot {
+  display: block; margin-bottom: var(--space-sm);
+  font-size: var(--text-micro); font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase;
+  color: var(--color-roxo-tinta);
+}
+
+.contadores { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--space-md); }
+.contador {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-base);
+}
+.contador b {
+  display: block;
+  font-family: var(--font-display-large);
+  font-size: var(--text-display-large);
+  font-weight: var(--font-weight-display-large);
+  letter-spacing: var(--tracking-display-large);
+  line-height: var(--leading-display-large);
+}
+.contador span { display: block; margin-top: var(--space-xs); font-size: var(--text-body-small); color: var(--color-tinta-apoio); }
+.contador.credito b { font-family: var(--font-code-large); font-size: var(--text-code-large); }
+
+.grade-ferr { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-md); }
+.ferr {
+  display: flex; flex-direction: column; gap: var(--space-sm);
+  text-align: left; min-height: 136px; padding: 16px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.ferr:hover { border-color: var(--color-roxo-borda); box-shadow: var(--shadow-elevado); }
+.ferr:active { transform: scale(.99); }
+.ferr .topo { display: flex; align-items: center; gap: var(--space-sm); }
+.ferr .topo .ico { color: var(--color-roxo-tinta); }
+.ferr b { font-size: var(--text-subheading); font-weight: 700; letter-spacing: var(--tracking-subheading); }
+.ferr .faz { font-size: var(--text-body-small); color: var(--color-tinta-apoio); max-width: 40ch; margin: 0; }
+.ferr .tem { margin-top: auto; font-size: var(--text-body-small); font-weight: 600; }
+.ferr .tem.zero { color: var(--color-tinta-sutil); font-weight: 400; }
+
+/* ============ lançamentos ============ */
+
+.lanc {
+  display: flex; flex-direction: column; gap: var(--space-sm);
+  text-align: left; padding: 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.lanc:hover { border-color: var(--color-roxo-borda); box-shadow: var(--shadow-elevado); }
+.lanc .manchete { display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
+.lanc h3 { font-family: var(--font-subheading); font-size: var(--text-subheading); font-weight: 700; letter-spacing: var(--tracking-subheading); margin: 0; }
+.lanc .meta { font-size: var(--text-body-small); color: var(--color-tinta-apoio); max-width: 44ch; margin: 0; }
+
+.trilho { display: flex; gap: 4px; margin-top: var(--space-xs); }
+.trilho i { height: 6px; flex: 1; border-radius: var(--radius-full); background: var(--color-linha); }
+.trilho i.feita { background: var(--color-verde); }
+.trilho i.atual { background: var(--color-roxo); }
+
+.etapas {
+  display: flex; gap: 4px; flex-wrap: wrap; padding: 8px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.etapa {
+  display: flex; align-items: center; justify-content: center; gap: var(--space-sm);
+  flex: 1 1 auto; min-height: 44px; padding: 8px 12px;
+  border-radius: var(--radius-sm); border: 1px solid transparent;
+  background: transparent;
+  font-size: var(--text-button-small); font-weight: 600;
+  color: var(--color-tinta-sutil);
+}
+.etapa:hover { background: var(--color-superficie-2); color: var(--color-tinta); }
+.etapa .bolha {
+  width: 22px; height: 22px; flex: 0 0 22px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-linha-controle);
+  display: grid; place-items: center;
+  font-size: var(--text-caption); font-weight: 700;
+}
+.etapa.feita { color: var(--color-verde); }
+.etapa.feita .bolha { background: var(--color-verde-fundo); border-color: var(--color-verde-borda); color: var(--color-verde); }
+.etapa[aria-current="step"] {
+  background: var(--color-roxo-fundo);
+  border-color: var(--color-roxo);
+  color: var(--color-roxo-tinta);
+}
+.etapa[aria-current="step"] .bolha { background: var(--color-roxo); border-color: var(--color-roxo); color: var(--color-claro); }
+.etapa[aria-disabled="true"] { color: var(--color-tinta-sutil); cursor: not-allowed; }
+.etapa[aria-disabled="true"]:hover { background: transparent; }
+
+.rodape-passo {
+  display: flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap;
+  padding: 16px 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-roxo-borda);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevado);
+}
+.rodape-passo .txt { flex: 1 1 260px; min-width: 0; }
+.rodape-passo .txt b { display: block; font-size: var(--text-body); }
+.rodape-passo .txt span { font-size: var(--text-body-small); color: var(--color-tinta-apoio); }
+
+/* ============ bibliotecas ============ */
+
+.filtros { display: flex; gap: var(--space-sm); flex-wrap: wrap; align-items: center; }
+.filtro {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-linha-controle);
+  background: var(--color-superficie);
+  font-size: var(--text-button-small); font-weight: 600;
+}
+.filtro:hover { border-color: var(--color-roxo-tinta); background: var(--color-superficie-2); }
+.filtro:active { background: var(--color-roxo-fundo-2); }
+.filtro[aria-pressed="true"] { background: var(--color-roxo-fundo); border-color: var(--color-roxo); color: var(--color-roxo-tinta); }
+
+.peca-card {
+  display: flex; flex-direction: column; gap: var(--space-sm);
+  text-align: left; min-height: 150px; padding: 16px 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.peca-card:hover { border-color: var(--color-roxo-borda); box-shadow: var(--shadow-elevado); }
+.peca-card .de { display: flex; align-items: center; gap: var(--space-sm); font-size: var(--text-caption); color: var(--color-tinta-sutil); }
+.peca-card h3 { font-family: var(--font-subheading); font-size: var(--text-subheading); font-weight: 700; margin: 0; }
+.peca-card .estado { font-size: var(--text-body-small); color: var(--color-tinta-apoio); margin: 0; }
+.peca-card .pe { margin-top: auto; display: flex; align-items: center; gap: var(--space-sm); flex-wrap: wrap; }
+.peca-card.e-exemplo { border-style: dashed; border-color: var(--color-roxo-borda); background: var(--color-superficie); }
+
+.vazio-nota {
+  display: flex; gap: var(--space-lg); align-items: flex-start; flex-wrap: wrap;
+  padding: 20px 24px;
+  background: var(--color-roxo-fundo);
+  border: 1px solid var(--color-roxo-borda);
+  border-radius: var(--radius-md);
+}
+.vazio-nota .ico { color: var(--color-roxo-tinta); margin-top: 3px; }
+.vazio-nota .txt { flex: 1 1 300px; }
+.vazio-nota h2 { font-family: var(--font-subheading); font-size: var(--text-subheading); font-weight: 700; margin: 0 0 4px; }
+.vazio-nota p { color: var(--color-tinta-apoio); margin: 0; }
+
+/* ============ formulários ============ */
+
+.forma { display: grid; gap: var(--space-xl); max-width: 760px; }
+.campo { display: grid; gap: var(--space-sm); }
+.campo > label, .campo .rot { font-weight: 600; font-size: var(--text-body); }
+.campo .ajuda { font-size: var(--text-body-small); color: var(--color-tinta-apoio); margin: 0; max-width: 64ch; }
+.campo input[type="text"], .campo input[type="url"], .campo input[type="email"],
+.campo textarea, .campo select {
+  width: 100%; min-height: 48px; padding: 12px 16px;
+  background: var(--color-superficie-2);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-sm);
+  color: var(--color-tinta);
+  font-family: var(--font-body); font-size: var(--text-body);
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+.campo textarea { min-height: 112px; line-height: 1.5; resize: vertical; max-width: 68ch; }
+.campo input::placeholder, .campo textarea::placeholder { color: var(--color-tinta-sutil); }
+.campo input:hover, .campo textarea:hover, .campo select:hover { border-color: var(--color-roxo-tinta); }
+.campo input:focus, .campo textarea:focus, .campo select:focus {
+  outline: none;
+  border-color: var(--color-roxo);
+  box-shadow: 0 0 0 3px var(--color-roxo);
+}
+.campo input:disabled, .campo textarea:disabled, .campo select:disabled {
+  background: var(--color-superficie-2); color: var(--color-tinta-sutil);
+  border-color: var(--color-linha); cursor: not-allowed;
+}
+.campo.erro input, .campo.erro textarea { border-color: var(--color-vermelho-borda); }
+.campo .erro-linha {
+  display: flex; align-items: center; gap: var(--space-sm);
+  font-size: var(--text-body-small); font-weight: 600; color: var(--color-vermelho); margin: 0;
+}
+.campo .contagem { font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-sutil); justify-self: end; }
+.campo .contagem.passou { color: var(--color-ambar); font-weight: 600; }
+
+.opcoes { display: flex; gap: var(--space-sm); flex-wrap: wrap; }
+.opcao {
+  position: relative;
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  min-height: 44px; padding: 8px 16px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-linha-controle);
+  background: var(--color-superficie);
+  font-size: var(--text-button-small); font-weight: 600;
+}
+.opcao:hover { border-color: var(--color-roxo-tinta); background: var(--color-superficie-2); }
+.opcao input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.opcao:has(input:checked) { background: var(--color-roxo-fundo); border-color: var(--color-roxo); color: var(--color-roxo-tinta); }
+.opcao:has(input:disabled) { color: var(--color-tinta-sutil); cursor: not-allowed; background: var(--color-superficie-2); }
+.opcao .marca-op {
+  width: 18px; height: 18px; border-radius: var(--radius-full);
+  border: 1.5px solid var(--color-linha-controle);
+  display: grid; place-items: center;
+}
+/* no repouso a marca é o círculo vazio: o visto entra junto com a escolha */
+.opcao .marca-op .ico { display: none; }
+.opcao:has(input:checked) .marca-op { border-color: var(--color-roxo); background: var(--color-roxo); color: var(--color-claro); }
+.opcao:has(input:checked) .marca-op .ico { display: block; width: 12px; height: 12px; stroke-width: 3; }
+
+.pergunta { max-width: 760px; }
+.pergunta .exemplo { font-size: var(--text-body-small); color: var(--color-tinta-apoio); max-width: 64ch; margin: 0 0 var(--space-lg); }
+
+/* ============ geração ============ */
+
+.escrevendo {
+  max-width: 820px; padding: 24px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.escrevendo .cabeca-escreve { display: flex; align-items: baseline; gap: var(--space-lg); flex-wrap: wrap; margin-bottom: var(--space-md); }
+.escrevendo .pct {
+  margin-left: auto;
+  font-family: var(--font-code-large); font-size: var(--text-code-large);
+  font-weight: 500; letter-spacing: var(--tracking-code-large);
+  color: var(--color-roxo-tinta);
+}
+.barra-prog { height: 10px; border-radius: var(--radius-full); background: var(--color-roxo-fundo-2); overflow: hidden; }
+.barra-prog i { display: block; height: 100%; background: var(--color-roxo); border-radius: var(--radius-full); transition: width var(--duration-slow) var(--ease-out); }
+
+.caps-estado { display: grid; gap: var(--space-xs); margin: var(--space-lg) 0 0; padding: 0; list-style: none; }
+.caps-estado li { display: flex; align-items: center; gap: var(--space-sm); padding: 8px 0; font-size: var(--text-body-small); color: var(--color-tinta-apoio); }
+.caps-estado li .bolinha { width: 20px; height: 20px; flex: 0 0 20px; border-radius: var(--radius-full); border: 1.5px solid var(--color-linha-controle); display: grid; place-items: center; }
+.caps-estado li.pronto { color: var(--color-tinta); }
+.caps-estado li.pronto .bolinha { background: var(--color-verde-fundo); border-color: var(--color-verde-borda); color: var(--color-verde); }
+.caps-estado li.agora { color: var(--color-tinta); font-weight: 600; }
+.caps-estado li.agora .bolinha { border-color: var(--color-roxo); color: var(--color-roxo-tinta); }
+
+.cursor-digita::after {
+  content: ""; display: inline-block; width: 2px; height: 1em;
+  background: var(--color-roxo); margin-left: 4px; vertical-align: -2px;
+  animation: guia-pisca 1s steps(2, start) infinite;
+}
+@keyframes guia-pisca { 0%, 49% { opacity: 1 } 50%, 100% { opacity: 0 } }
+
+/* ============ mesa do ebook e a folha ============ */
+
+.mesa { display: grid; grid-template-columns: 232px minmax(0, 1fr) 240px; gap: var(--space-xl); align-items: start; }
+.mesa-caps, .secoes {
+  padding: 12px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.cap-item, .sec-linha {
+  display: flex; gap: var(--space-sm); align-items: flex-start;
+  width: 100%; min-height: 44px; padding: 8px;
+  border-radius: var(--radius-sm); border: 1px solid transparent;
+  background: transparent;
+  font-size: var(--text-body-small); line-height: 1.4;
+}
+.cap-item .n, .sec-linha .n { font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-sutil); flex: 0 0 26px; }
+.cap-item:hover, .sec-linha:hover { background: var(--color-superficie-2); }
+.cap-item[aria-current="true"], .sec-linha[aria-current="true"] {
+  background: var(--color-roxo-fundo); border-color: var(--color-roxo-borda);
+  color: var(--color-roxo-tinta); font-weight: 600;
+}
+.cap-item[aria-current="true"] .n, .sec-linha[aria-current="true"] .n { color: var(--color-roxo-tinta); }
+.sec-linha .falta { margin-left: auto; font-size: var(--text-caption); font-weight: 700; color: var(--color-ambar); }
+
+/* a folha: papel dentro de um painel que também é claro. Três sinais ao mesmo
+   tempo, porque contra a página ela mede só 1.03:1 */
+.folha, .previa {
+  background: var(--color-folha);
+  color: var(--color-tinta);
+  border: 1px solid var(--color-folha-linha);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-folha);
+}
+.folha { padding: 40px 40px 40px 56px; min-height: 420px; position: relative; font-size: var(--text-body); line-height: 1.62; }
+.folha .marca-cap {
+  display: block; margin-bottom: var(--space-md);
+  font-size: var(--text-micro); font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase;
+  color: var(--color-roxo-tinta);
+}
+.folha h2 { font-family: var(--font-section-heading); font-size: var(--text-section-heading); font-weight: 700; letter-spacing: var(--tracking-section-heading); margin: 0 0 var(--space-md); max-width: 24ch; }
+.folha p { max-width: 62ch; margin: 0 0 var(--space-lg); }
+.folha .num-pag { position: absolute; bottom: 18px; right: 24px; font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-apoio); }
+.folha .editavel { display: block; border-radius: var(--radius-sm); padding: 8px 4px; margin: 0 -4px; min-height: 44px; }
+.folha .editavel:hover { box-shadow: 0 0 0 2px var(--color-folha-linha); }
+.folha .editavel:focus { outline: none; box-shadow: 0 0 0 2px var(--color-roxo); }
+.previa .sec { padding: 24px 32px; border-bottom: 1px solid var(--color-folha-linha); }
+.previa .sec:last-child { border-bottom: 0; }
+.previa .topo-pagina { background: var(--color-roxo); color: var(--color-claro); }
+.previa .topo-pagina h2, .previa .topo-pagina h3, .previa .topo-pagina p,
+.previa .topo-pagina .rot-sec, .previa .topo-pagina .sub { color: var(--color-claro); }
+/* o botão de compra é o único botão dentro da folha. Roxo cheio na folha e
+   invertido dentro do topo roxo, pra ter contraste próprio nas duas seções */
+.previa .botao-compra {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 52px; padding: 12px 28px;
+  border-radius: var(--radius-sm);
+  background: var(--color-roxo); color: var(--color-claro);
+  border: 1px solid var(--color-roxo);
+  font-size: var(--text-body-large); font-weight: 700;
+}
+.previa .topo-pagina .botao-compra { background: var(--color-claro); color: var(--color-roxo-tinta); border-color: var(--color-claro); }
+
+.capinha {
+  width: 100%; aspect-ratio: 3 / 4; padding: 16px;
+  display: flex; flex-direction: column; gap: var(--space-sm);
+  background: var(--color-folha); color: var(--color-tinta);
+  border: 1px solid var(--color-folha-linha); border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.capinha .faixa { height: 8px; width: 52px; border-radius: var(--radius-full); background: var(--color-roxo); }
+.capinha .tit { font-family: var(--font-subheading); font-size: var(--text-subheading); font-weight: 700; line-height: 1.2; }
+.capinha .aut { margin-top: auto; font-size: var(--text-caption); color: var(--color-tinta-apoio); }
+
+.capas { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-sm); }
+.capa-op { padding: 0; min-height: 44px; border-radius: var(--radius-sm); border: 2px solid transparent; background: none; overflow: hidden; }
+.capa-op:hover { border-color: var(--color-roxo-borda); }
+.capa-op[aria-pressed="true"] { border-color: var(--color-roxo); }
+
+.bloco-acoes { display: flex; flex-direction: column; gap: 4px; }
+.bloco-acoes button {
+  width: 44px; height: 44px; border-radius: var(--radius-sm);
+  display: grid; place-items: center;
+  background: var(--color-folha); color: var(--color-tinta);
+  border: 1px solid var(--color-folha-linha);
+  box-shadow: var(--shadow-base); cursor: pointer;
+}
+.bloco-acoes button:hover { border-color: var(--color-roxo-borda); color: var(--color-roxo-tinta); }
+
+/* ============ abas do editor ============ */
+/* a aba ativa se preenche no próprio botão: pílula em pseudo-elemento fica
+   atrás do rótulo e some quando o usuário aumenta o texto */
+.abas {
+  display: flex; gap: 0; width: fit-content; max-width: 100%;
+  margin-bottom: var(--space-lg);
+  padding: 4px; border-radius: var(--radius-full);
+  background: var(--color-superficie-2); border: 1px solid var(--color-linha-controle);
+}
+.aba {
+  flex: 1 1 0; min-width: 0; min-height: 44px; padding: 8px 20px;
+  border-radius: var(--radius-full); border: 1px solid transparent;
+  background: transparent; text-align: center;
+  font-size: var(--text-button-small); font-weight: 600; color: var(--color-tinta-apoio);
+  transition: background-color var(--tabs-dur) var(--tabs-ease), color var(--tabs-dur) var(--tabs-ease);
+}
+.aba:hover { color: var(--color-tinta); background: var(--color-roxo-fundo); }
+.aba[aria-selected="true"] { background: var(--color-roxo); border-color: var(--color-roxo); color: var(--color-claro); }
+
+/* ============ oferta e página no ar ============ */
+
+.preco-caixa {
+  padding: 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.preco-caixa .valor {
+  display: block; line-height: 1.1;
+  font-family: var(--font-display-large); font-size: var(--text-display-large);
+  font-weight: 700; letter-spacing: var(--tracking-display-large);
+}
+.preco-caixa .porque { font-size: var(--text-body-small); color: var(--color-tinta-apoio); margin: var(--space-sm) 0 0; }
+
+.endereco {
+  display: flex; align-items: center; gap: var(--space-sm);
+  padding: 12px 16px;
+  background: var(--color-superficie-2);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-code-large); font-size: var(--text-code-large);
+  letter-spacing: var(--tracking-code-large);
+  word-break: break-all;
+}
+.endereco .ico { color: var(--color-verde); }
+
+.festa {
+  padding: 32px; max-width: 820px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-verde-borda);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.festa-marca {
+  width: 58px; height: 58px; border-radius: var(--radius-full);
+  background: var(--color-verde-fundo); border: 1px solid var(--color-verde-borda);
+  color: var(--color-verde); display: grid; place-items: center; margin-bottom: var(--space-lg);
+}
+
+/* ============ stories e postagens ============ */
+
+.stories { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-md); }
+.story {
+  display: flex; flex-direction: column; gap: var(--space-sm);
+  padding: 16px; background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.story .quadro {
+  /* a prévia é 9:16 de verdade, mas com teto de largura: um cartão de 400px
+     viraria um retângulo de 700 de altura e a lista deixaria de caber na tela */
+  width: 100%; max-width: 200px;
+  aspect-ratio: 9 / 16; border-radius: var(--radius-sm);
+  background: var(--color-superficie-2); border: 1px solid var(--color-linha);
+  padding: 12px; font-size: var(--text-body-small); color: var(--color-tinta-apoio);
+  display: flex; align-items: flex-end;
+}
+.story .n { font-size: var(--text-micro); font-weight: var(--font-weight-micro); letter-spacing: var(--tracking-micro); text-transform: uppercase; color: var(--color-roxo-tinta); }
+
+.postagem {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--space-sm) var(--space-lg);
+  padding: 16px 20px; background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+.postagem .ordem { font-size: var(--text-micro); font-weight: var(--font-weight-micro); letter-spacing: var(--tracking-micro); text-transform: uppercase; color: var(--color-roxo-tinta); }
+.postagem .tipo { font-family: var(--font-subheading); font-size: var(--text-subheading); font-weight: 700; }
+.postagem .roteiro { grid-column: 1 / -1; font-size: var(--text-body-small); color: var(--color-tinta-apoio); max-width: 72ch; margin: 0; white-space: pre-line; }
+
+/* ============ chat ============ */
+
+.chat-corpo { display: flex; flex-direction: column; gap: var(--space-sm); }
+.balao-chat {
+  max-width: 92%; padding: 12px 16px; border-radius: var(--radius-md);
+  font-size: var(--text-body); line-height: 1.5;
+}
+.balao-chat.guia { background: var(--color-superficie-2); border: 1px solid var(--color-linha); align-self: flex-start; }
+.balao-chat.eu { background: var(--color-roxo-fundo); border: 1px solid var(--color-roxo-borda); align-self: flex-end; }
+.chat-prontas { display: grid; gap: var(--space-sm); }
+.chat-prontas button {
+  min-height: 44px; padding: 8px 12px; text-align: left;
+  border: 1px solid var(--color-linha-controle); border-radius: var(--radius-sm);
+  background: var(--color-superficie); color: var(--color-tinta);
+  font-size: var(--text-button-small); font-weight: 600;
+}
+.chat-prontas button:hover { border-color: var(--color-roxo-tinta); background: var(--color-superficie-2); }
+.chat-pe { display: flex; gap: var(--space-sm); padding-top: var(--space-md); border-top: 1px solid var(--color-linha); }
+.chat-pe input {
+  flex: 1; min-width: 0; min-height: 46px; padding: 8px 12px;
+  background: var(--color-superficie-2); border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-sm); color: var(--color-tinta);
+  font-family: var(--font-body); font-size: var(--text-body);
+}
+.chat-pe input:focus { outline: none; border-color: var(--color-roxo); box-shadow: var(--shadow-foco); }
+
+/* ============ tour, véu e boas-vindas ============ */
+
+.tour-balao {
+  position: relative;
+  width: min(460px, calc(100vw - 24px)); max-width: 100%; padding: 20px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-roxo);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-flutuante);
+}
+.tour-balao .conta { font-size: var(--text-caption); font-weight: 700; color: var(--color-roxo-tinta); margin-bottom: var(--space-sm); }
+.tour-balao .pe { display: flex; align-items: center; gap: var(--space-sm); margin-top: var(--space-lg); }
+.tour-balao .pe .btn-texto { margin-left: auto; }
+.tour-veu { background: color-mix(in srgb, var(--color-tinta) 42%, transparent); }
+/* o anel do alvo abre um buraco no véu e desenha a borda roxa em volta do que o
+   balão está narrando. O véu segue embaixo, como bloqueio de clique. */
+.tour-anel {
+  position: fixed; z-index: 141; pointer-events: none;
+  border-radius: var(--radius-sm);
+  border: 3px solid var(--color-roxo);
+  box-shadow: 0 0 0 100vmax color-mix(in srgb, var(--color-tinta) 42%, transparent);
+}
+.tour-anel[hidden] { display: none; }
+/* a seta do balão, no lado em que ele encostou no alvo */
+.tour-balao::after {
+  content: ""; position: absolute; width: 12px; height: 12px; transform: rotate(45deg);
+  background: var(--color-superficie); border: 1px solid var(--color-roxo);
+}
+.tour-balao[data-lado="direita"]::after { left: -7px; top: var(--seta-desloc, 24px); border-width: 0 0 1px 1px; }
+.tour-balao[data-lado="esquerda"]::after { right: -7px; top: var(--seta-desloc, 24px); border-width: 1px 1px 0 0; }
+.tour-balao[data-lado="baixo"]::after { top: -7px; left: var(--seta-desloc, 24px); border-width: 1px 0 0 1px; }
+.tour-balao[data-lado="cima"]::after { bottom: -7px; left: var(--seta-desloc, 24px); border-width: 0 1px 1px 0; }
+.tour-balao[data-lado="solto"]::after { display: none; }
+
+.boas-caixa {
+  width: 100%; max-width: 640px; padding: 40px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-roxo-borda);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-flutuante);
+}
+.boas-caixa .selo-marca {
+  width: 52px; height: 52px; border-radius: var(--radius-md);
+  background: var(--color-roxo); color: var(--color-claro);
+  display: grid; place-items: center; margin-bottom: var(--space-xl);
+  font-family: var(--font-display-large); font-weight: 800; font-size: var(--text-subheading-large);
+}
+
+/* ============ feedback ============ */
+
+.aviso {
+  display: inline-flex; align-items: center; gap: var(--space-lg); flex-wrap: wrap;
+  padding: 12px 16px;
+  background: var(--color-superficie);
+  border: 1px solid var(--color-roxo-borda);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-flutuante);
+  font-size: var(--text-body);
+}
+.aviso .ico { color: var(--color-verde); }
+.aviso .desfazer {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  min-height: 44px; padding: 8px 16px; border-radius: var(--radius-full);
+  border: 1px solid var(--color-roxo-borda); background: transparent;
+  color: var(--color-roxo-tinta); font-weight: 600; font-size: var(--text-button-small);
+  cursor: pointer;
+}
+.aviso .desfazer:hover { background: var(--color-roxo-fundo); }
+
+.aviso-inline {
+  display: flex; align-items: flex-start; gap: var(--space-md);
+  padding: 12px 16px; border-radius: var(--radius-sm);
+  background: var(--color-ambar-fundo);
+  border: 1px solid var(--color-ambar-borda);
+  color: var(--color-ambar);
+  font-size: var(--text-body-small); font-weight: 500;
+}
+.aviso-inline .ico { color: var(--color-ambar); margin-top: 2px; }
+.aviso-inline.erro { background: var(--color-vermelho-fundo); border-color: var(--color-vermelho-borda); color: var(--color-vermelho); }
+.aviso-inline.erro .ico { color: var(--color-vermelho); }
+.aviso-inline.ok { background: var(--color-verde-fundo); border-color: var(--color-verde-borda); color: var(--color-verde); }
+.aviso-inline.ok .ico { color: var(--color-verde); }
+
+/* ============ conta ============ */
+
+.conta-bloco {
+  padding: 20px 24px; background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle); border-radius: var(--radius-md);
+  box-shadow: var(--shadow-base);
+}
+/* columns, não grid: cada par rótulo/valor é um bloco de altura própria e a
+   grade deixava buraco quando um valor quebrava em duas linhas */
+.conta-bloco dl { columns: 240px; column-gap: var(--space-xl); margin: 0; }
+.conta-bloco dl > div { break-inside: avoid; margin-bottom: var(--space-md); }
+.conta-bloco dt { font-size: var(--text-body-small); font-weight: 600; color: var(--color-tinta-apoio); }
+.conta-bloco dd { margin: 4px 0 0; font-size: var(--text-body); }
+.gasta-lista { display: grid; gap: 0; margin: var(--space-sm) 0 0; padding: 0; list-style: none; }
+.gasta-lista li { display: flex; gap: var(--space-sm); align-items: baseline; padding: 8px 0; border-top: 1px solid var(--color-linha); font-size: var(--text-body); }
+.gasta-lista li:first-child { border-top: 0; }
+.gasta-lista li b { flex: 0 0 96px; font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-roxo-tinta); }
+
+/* ============ tipografia utilitária ============ */
+
+.mono { font-family: var(--font-code-body); font-size: var(--text-code-body); letter-spacing: var(--tracking-code-body); }
+.mono-g { font-family: var(--font-code-large); font-size: var(--text-code-large); letter-spacing: var(--tracking-code-large); }
+
+/* ============ responsivo ============ */
+
+@media (max-width: 960px) {
+  .mesa { grid-template-columns: 1fr; }
+  .barra { width: 100%; flex: 1 1 auto; }
+}
+@media (max-width: 640px) {
+  .grade-ferr, .stories, .capas { grid-template-columns: 1fr; }
+  .postagem { grid-template-columns: 1fr; }
+  .folha { padding: 24px 20px; }
+}
+
+/* LAIN: ajuste feito pelo Codex em 2026-09-20, a pedido do Biel.
+   Escopo aprovado: SOMENTE visual. Textos, acoes dos botoes, links, ordem dos
+   elementos, navegacao e JavaScript foram preservados.
+   Este bloco e identico no fim do <style> do prototipo E e no fim de
+   Gu.ia/brandbook/_shared/components.css (usado por components.html).
+   Ao revisar, manter as duas copias sincronizadas. Tokens canonicos de marca
+   preservados. Segunda rodada autorizada: formularios, botoes e filtros.
+   Ajustes: fundo liso, bordas decorativas suaves, sombras leves, tipografia
+   de interface, espacos internos e menor destaque visual dos creditos.
+   O card da proxima ferramenta ocupa duas colunas no desktop. No celular,
+   usa uma coluna para evitar a criacao implicita de uma segunda coluna. */
+:root {
+  --ui-borda-suave: color-mix(in srgb, var(--color-linha) 68%, var(--color-superficie));
+  --ui-sombra-suave: 0 2px 8px color-mix(in srgb, var(--color-tinta) 3%, transparent);
+  --ui-sombra-retomada: 0 4px 20px color-mix(in srgb, var(--color-tinta) 4%, transparent);
+  --ui-raio-painel: 16px;
+}
+body { background-image: none; }
+body::before { background-image: none; }
+.cartao, .lanc, .peca-card, .etapas, .mesa-caps, .secoes,
+.escrevendo, .preco-caixa, .story, .postagem, .conta-bloco {
+  border-color: var(--ui-borda-suave);
+  box-shadow: var(--ui-sombra-suave);
+}
+.barra { padding: 20px 12px 12px; box-shadow: none; }
+.barra-rot { font-weight: 500; letter-spacing: .025em; }
+.nav-item[aria-current="page"], .conta-item[aria-current="page"] { border-color: transparent; }
+.nav-item .conta-peca, .conta-item .txt span {
+  font-family: var(--font-body); font-variant-numeric: tabular-nums;
+}
+.conta-item .av { border-color: var(--color-linha); }
+.cabeca h1 { font-family: var(--font-body); font-size: 30px; font-weight: 600; letter-spacing: -.025em; line-height: 1.2; }
+.titulo-bloco h2 { font-family: var(--font-body); font-size: 20px; font-weight: 600; letter-spacing: -.015em; }
+.parou {
+  padding: 28px; border-color: var(--ui-borda-suave);
+  border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-retomada);
+}
+.parou .rot { font-weight: 600; letter-spacing: .04em; }
+.parou h2 { font-family: var(--font-body); font-size: 24px; font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
+.contadores { gap: 16px; }
+.contador, .contador.credito {
+  padding: 16px 20px; border-color: var(--ui-borda-suave);
+  background: var(--color-superficie); border-radius: var(--ui-raio-painel); box-shadow: none;
+}
+.contador b, .contador.credito b {
+  font-family: var(--font-body); font-size: 28px; font-weight: 600;
+  line-height: 1.2; letter-spacing: -.025em; color: var(--color-tinta);
+}
+.grade-ferr { gap: 16px; }
+.ferr, .ferr.destaque {
+  padding: 20px; border-color: var(--ui-borda-suave);
+  border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-suave);
+}
+.ferr b, .ferr.destaque .topo b {
+  font-family: var(--font-body); font-size: 17px; font-weight: 600; letter-spacing: -.01em;
+}
+.ferr .topo .ico { color: var(--color-tinta-sutil); }
+.ferr.destaque .topo .ico { color: var(--color-roxo-tinta); }
+.ferr .faz { line-height: 1.55; }
+.ferr .tem { padding-top: 4px; font-weight: 500; }
+.ferr:hover, .lanc:hover, .peca-card:hover,
+.demo-hover.ferr, .demo-hover.lanc, .demo-hover.peca-card {
+  border-color: var(--color-linha); box-shadow: var(--ui-sombra-retomada);
+}
+@media (max-width: 640px) {
+  .cabeca h1 { font-size: 26px; }
+  .parou { padding: 20px; }
+  .parou h2 { font-size: 22px; }
+  .contador, .contador.credito { padding: 14px 16px; }
+  .contador b, .contador.credito b { font-size: 24px; }
+  .grade-ferr { gap: 12px; grid-template-columns: minmax(0, 1fr); }
+  .ferr.destaque { grid-column: auto; }
+  .ferr, .ferr.destaque { padding: 18px; }
+}
+
+/* LAIN: segunda rodada visual pelo Codex. Campos claros com larguras alinhadas;
+   botoes secundarios discretos, primarios roxos e filtros menos marcados.
+   Foco usa anel solido de 2px com afastamento. Erro e desabilitado permanecem
+   distintos. Textareas ganham altura, sem auto-resize ou alteracao de dados.
+   As classes demo-* reproduzem os estados reais no brandbook. */
+:root {
+  --ui-raio-controle: 12px;
+  --ui-foco-halo: 0 0 0 5px color-mix(in srgb, var(--color-roxo) 10%, transparent);
+}
+.forma { gap: 28px; }
+.campo { gap: 8px; min-width: 0; }
+.campo > label, .campo .rot, .rot-linha > label, .rot-linha > .rot {
+  font-size: 15px; font-weight: 600; line-height: 1.45;
+}
+.campo .ajuda { font-size: 14px; line-height: 1.55; }
+.campo input[type=text], .campo input[type=url], .campo input[type=email],
+.campo input[type=password], .campo textarea, .campo select {
+  background: var(--color-superficie); border-radius: var(--ui-raio-controle);
+  padding: 14px 16px; min-height: 52px;
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-tinta) 3%, transparent);
+}
+.campo textarea { max-width: 100%; min-height: 160px; line-height: 1.65; }
+.campo input:focus, .campo textarea:focus, .campo select:focus,
+.campo .demo-foco-campo {
+  border-color: var(--color-roxo); outline: 2px solid var(--color-roxo);
+  outline-offset: 2px; box-shadow: var(--ui-foco-halo);
+}
+.campo.erro input, .campo.erro textarea, .campo.erro select,
+.campo [aria-invalid="true"] { border-color: var(--color-vermelho); }
+.campo input:disabled, .campo textarea:disabled, .campo select:disabled {
+  background: var(--color-superficie-2); border-color: var(--color-linha);
+  color: var(--color-tinta-sutil); box-shadow: none;
+}
+.btn { border-radius: var(--ui-raio-controle); letter-spacing: -.01em; }
+.btn:where(:not(.btn-principal):not(.btn-texto):not(.btn-agora):not(:disabled):not([aria-disabled="true"])) {
+  border-color: var(--color-linha); background: var(--color-superficie);
+  box-shadow: 0 1px 2px color-mix(in srgb, var(--color-tinta) 4%, transparent);
+}
+.btn:where(:not(.btn-principal):not(.btn-texto):not(.btn-agora):not(:disabled):not([aria-disabled="true"])):hover,
+.btn.demo-hover:not(.btn-principal):not(.btn-texto) {
+  background: var(--color-superficie-2); border-color: var(--color-linha-controle);
+}
+.btn-principal:where(:not(:disabled):not([aria-disabled="true"])) {
+  box-shadow: 0 2px 4px color-mix(in srgb, var(--color-roxo) 16%, transparent);
+}
+.btn-principal:active, .btn-principal.demo-ativo { box-shadow: none; }
+.btn-texto { box-shadow: none; }
+.btn:focus-visible, .filtro:focus-visible, .opcao:has(input:focus-visible),
+.btn.demo-foco, .filtro.demo-foco {
+  outline: 2px solid var(--color-roxo); outline-offset: 3px;
+}
+.filtros { gap: 8px; }
+.filtro { border-color: var(--color-linha); font-weight: 500; line-height: 1.4; }
+.filtro:hover, .filtro.demo-hover { border-color: var(--color-linha-controle); background: var(--color-superficie-2); }
+.filtro[aria-pressed="true"] {
+  border-color: var(--color-roxo-borda); background: var(--color-roxo-fundo);
+  color: var(--color-roxo-tinta); font-weight: 600;
+}
+.opcao { border-radius: var(--ui-raio-controle); font-weight: 500; }
+.opcao:has(input:checked) { font-weight: 600; }
+.peca-card { padding: 22px; border-radius: var(--ui-raio-painel); gap: 10px; }
+.peca-card h3 { font-size: 18px; font-weight: 600; line-height: 1.4; letter-spacing: -.015em; }
+.peca-card .de { line-height: 1.45; }
+.peca-card .de .ico { flex-shrink: 0; }
+.peca-card .pe { padding-top: 6px; }
+.palco-demo, .casca-mini { border-color: var(--ui-borda-suave); }
+@media (max-width: 640px) {
+  .forma { gap: 24px; }
+  .peca-card { padding: 18px; }
+  .filtro { max-width: 100%; white-space: normal; text-align: left; }
+}
+
+/* LAIN: terceira rodada pelo Codex, apos inspecao das telas em desktop e celular.
+   Biel autorizou alinhamento, hierarquia e ajustes de usabilidade. As regras
+   abaixo abrangem o fluxo inteiro, mantendo os textos e a logica existentes.
+   Decisoes: seis pecas em 3x2; abas sem compressao do texto; leitura priorizada
+   no editor; grupos de formulario alinhados; avisos sem competir com a acao;
+   foco consistente nos controles auxiliares; alvos de pelo menos 44px.
+   Nao remover estados selecionado, erro ou desabilitado ao consolidar o CSS. */
+:root {
+  --ui-espaco-card: 24px;
+  --ui-espaco-grade: 16px;
+  --ui-titulo-secao: 20px;
+  --ui-titulo-pagina: 30px;
+  --ui-titulo-tarefa: 24px;
+}
+.barra { gap: 0; padding-top: 16px; }
+.barra-rot { padding-top: 12px; padding-bottom: 8px; }
+.barra-pe { position: sticky; bottom: 0; z-index: 2; background: var(--color-superficie); padding-bottom: 8px; }
+.barra > * { flex-shrink: 0; }
+.marca { padding-bottom: 12px; }
+.ico { flex-shrink: 0; }
+.cabeca { row-gap: 16px; }
+.cabeca h1 { font-size: var(--ui-titulo-pagina); text-wrap: pretty; }
+.cabeca .linha-do-que-faz { margin-top: 8px; }
+.cabeca .acoes { align-self: center; }
+.migalha { column-gap: 4px; row-gap: 0; }
+.migalha a { text-underline-offset: 4px; text-decoration-color: var(--color-linha-controle); }
+.grade, .stories { gap: var(--ui-espaco-grade); }
+.grade-3:has(> .peca) { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.lanc, .peca, .cartao, .ficha-campo:not(.editavel-campo), .conta-bloco,
+.gerando-caixa, .escrevendo, .preco-caixa, .festa, .story, .postagem {
+  border-radius: var(--ui-raio-painel);
+  border-color: var(--ui-borda-suave); box-shadow: var(--ui-sombra-suave);
+  padding: var(--ui-espaco-card);
+}
+.lanc { gap: 12px; }
+.lanc h3, .peca h3 { font-size: 18px; font-weight: 600; line-height: 1.4; }
+.lanc .trilho { margin-top: auto; }
+.peca { gap: 12px; min-height: 180px; }
+.peca .topo .ico { color: var(--color-tinta-sutil); }
+.peca.agora { border-color: var(--color-roxo-borda); }
+.peca.agora .topo .ico { color: var(--color-roxo-tinta); }
+.peca.travada { box-shadow: none; }
+.peca .estado.pronto { font-weight: 500; }
+.selo { width: fit-content; max-width: 100%; align-self: flex-start; font-weight: 600; }
+.etapas { border-radius: var(--ui-raio-painel); }
+.etapa { border-radius: var(--ui-raio-controle); }
+.etapa[aria-current="step"] { border-color: var(--color-roxo-borda); }
+.rodape-passo { border-color: var(--color-linha); border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-retomada); gap: 16px; }
+.rodape-passo .txt b { font-weight: 600; }
+.rodape-passo .txt span { display: block; margin-top: 4px; }
+.rodape-passo .acoes { align-items: center; }
+.cartao h2, .bloco > h2, .gerando-caixa h2, .escrevendo h2,
+.conta-bloco h2, .painel-sec h2 { font-family: var(--font-body); font-size: var(--ui-titulo-secao); font-weight: 600; line-height: 1.35; letter-spacing: -.015em; }
+.ficha-campo .rot { color: var(--color-tinta); font-weight: 600; letter-spacing: 0; text-transform: none; }
+.ficha-campo p { max-width: 68ch; line-height: 1.65; }
+.ficha-persona { gap: 16px; }
+.forma > .acoes-pe { margin-top: 4px; }
+.forma > .linha-gratis { margin-top: -12px; }
+.prog { max-width: 760px; }
+.pergunta h1 { font-family: var(--font-body); font-size: var(--ui-titulo-tarefa); font-weight: 600; line-height: 1.3; letter-spacing: -.02em; }
+.pergunta:has(#resposta) .acoes-pe { justify-content: space-between; }
+.opcao, .titulo-op { text-align: left; line-height: 1.5; }
+.opcao .marca-op { flex-shrink: 0; }
+.titulo-op { border-radius: var(--ui-raio-controle); padding: 12px 16px; }
+.passos-lista li { border-color: var(--ui-borda-suave); border-radius: var(--ui-raio-controle); padding: 16px; }
+.preco-caixa .valor { font-family: var(--font-body); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.025em; }
+.cap-linha, .lista-itens li { border-color: var(--ui-borda-suave); border-radius: var(--ui-raio-controle); padding: 12px; }
+.cap-linha input, .lista-itens input, .chat-pe input {
+  background: var(--color-superficie); border-radius: var(--ui-raio-controle);
+  font-family: var(--font-body); font-size: 16px; min-height: 48px;
+}
+.cap-linha input:focus, .lista-itens input:focus, .chat-pe input:focus {
+  outline: 2px solid var(--color-roxo); outline-offset: 2px;
+  border-color: var(--color-roxo); box-shadow: var(--ui-foco-halo);
+}
+.cap-acoes button, .chat-fechar, .dica-btn, .fechar-barra { border-radius: var(--ui-raio-controle); }
+.cap-acoes button:focus-visible, .chat-fechar:focus-visible, .dica-btn:focus-visible,
+.fechar-barra:focus-visible, .chat-prontas button:focus-visible, .bloco-acoes button:focus-visible,
+.aba:focus-visible, .titulo-op:focus-visible, .cap-item:focus-visible, .sec-linha:focus-visible {
+  outline: 2px solid var(--color-roxo); outline-offset: 3px;
+}
+.abas { width: max-content; max-width: 100%; border-color: var(--ui-borda-suave); border-radius: var(--ui-raio-painel); gap: 4px; }
+.aba { flex: 1 0 auto; min-width: 80px; padding: 8px 16px; border-radius: var(--ui-raio-controle); white-space: nowrap; }
+.aba[aria-selected="true"] { background: var(--color-superficie); border-color: var(--color-linha); color: var(--color-roxo-tinta); box-shadow: var(--ui-sombra-suave); }
+.mesa-caps, .secoes { border-radius: var(--ui-raio-painel); }
+.cap-item, .sec-linha { text-align: left; border-radius: var(--ui-raio-controle); }
+.cap-item[aria-current="true"], .sec-linha[aria-current="true"] { border-color: transparent; }
+.mesa-painel { gap: 12px; }
+.mesa-painel .btn { line-height: 1.4; padding: 12px; }
+.folha h2 { line-height: 1.3; }
+.painel-sec { padding: 24px; border-color: var(--color-linha); border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-retomada); }
+.secoes { scroll-padding-block: 12px; }
+.vazio-nota { background: var(--color-superficie); border-color: var(--ui-borda-suave); border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-suave); }
+.vazio-nota .txt { flex-basis: 240px; }
+.peca-card.e-exemplo { border-color: var(--color-linha-controle); }
+.aviso-inline { border-radius: var(--ui-raio-controle); }
+.creditos:not(.acabando) { border-color: transparent; border-radius: var(--ui-raio-controle); }
+.festa h1, .boas-caixa h1 { font-family: var(--font-body); font-size: 32px; font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.endereco { border-color: var(--color-linha); border-radius: var(--ui-raio-controle); background: var(--color-superficie-2); font-size: 16px; overflow-wrap: anywhere; }
+.story { gap: 12px; }
+.story .btn { margin-top: auto; }
+.postagem { gap: 12px 24px; }
+.postagem .tipo { font-weight: 600; line-height: 1.4; }
+.postagem .roteiro { line-height: 1.75; }
+.chat-prontas button { border-color: var(--color-linha); border-radius: var(--ui-raio-controle); padding: 12px 16px; font-weight: 500; }
+.balao-chat { border-radius: var(--ui-raio-painel); line-height: 1.6; }
+.balao-chat.eu { border-color: transparent; }
+.boas-caixa { border-color: var(--ui-borda-suave); }
+.tour-balao { border-radius: var(--ui-raio-painel); }
+.aviso { border-color: var(--color-linha); border-radius: var(--ui-raio-painel); }
+.gasta-lista li { padding-block: 12px; }
+.gasta-lista li b { font-family: var(--font-body); font-weight: 600; }
+/* Exemplos do brandbook: hierarquia do produto tambem dentro das demos. */
+.palco-demo.palco-demo, .casca-mini.casca-mini { border-color: var(--ui-borda-suave); }
+.palco-demo .bb-h1, .casca-mini .palco > .bb-h2 { font-family: var(--font-body); font-weight: 600; letter-spacing: -.025em; }
+.parou .bb-h3 { font-family: var(--font-body); font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+.demo-hover.ferr, .demo-hover.lanc, .demo-hover.peca-card { border-color: var(--color-linha); box-shadow: var(--ui-sombra-retomada); }
+@media (min-width: 1181px) {
+  .mesa { grid-template-columns: 208px minmax(0,1fr) 220px; gap: 20px; }
+  .pagina-grade { grid-template-columns: 300px minmax(0,1fr); }
+}
+@media (min-width: 641px) and (max-width: 1180px) {
+  .grade-3:has(> .peca) { grid-template-columns: repeat(2,minmax(0,1fr)); }
+}
+@media (max-width: 960px) {
+  .topo-cel { box-shadow: none; }
+  .cabeca h1 { font-size: 26px; }
+  .cabeca .acoes { align-self: stretch; }
+  .campo input, .campo textarea, .campo select, .cap-linha input, .lista-itens input { scroll-margin-block: 88px; }
+}
+@media (max-width: 640px) {
+  :root { --ui-espaco-card: 20px; --ui-titulo-tarefa: 22px; }
+  .grade-3:has(> .peca) { grid-template-columns: minmax(0,1fr); }
+  .peca { min-height: 160px; }
+  .abas { width: 100%; }
+  .aba { flex: 1 1 0; min-width: 0; padding-inline: 12px; }
+  .vazio-nota { gap: 12px; padding: 20px; }
+  .vazio-nota .txt { flex-basis: calc(100% - 40px); }
+  .vazio-nota > .btn { margin-left: 0; }
+  .lista-itens li { grid-template-columns: minmax(0,1fr) 44px; align-items: start; }
+  .lista-itens li > input { grid-column: 1; }
+  .lista-itens li > button { grid-column: 2; grid-row: 1 / 3; width: 44px; }
+  .postagem { grid-template-columns: minmax(0,1fr) auto; }
+  .postagem .roteiro { grid-column: 1 / -1; }
+  .postagem > .btn { align-self: start; }
+  .festa h1, .boas-caixa h1 { font-size: 28px; }
+  .boas-caixa { max-height: calc(100dvh - 32px); overflow-y: auto; }
+  .tour-balao { max-height: calc(100dvh - 24px); overflow-y: auto; }
+}
+
+/* LAIN: rodada final, Codex, 2026-09-20. Biel pediu imagegen sobre prints
+   de Inicio, ficha e editor, seguido de implementacao. Referencia gerada:
+   exec-25b7be31-1f65-4e29-923c-826bcc7d83e5.png (cache do Codex).
+   Traducao para CSS: canvas neutro, indicadores unidos por divisorias,
+   icones apoiados em superficies suaves, etapa atual com fundo discreto,
+   folha editorial branca. Conteudo e comportamento continuam preservados.
+   Nao copiar os textos sintetizados da imagem. Manter estas regras tambem
+   no components.css do brandbook; tokens abaixo sao de superficie da UI. */
+:root {
+  --color-fundo: #f7f8fa;
+  --color-superficie: #ffffff;
+  --color-superficie-2: #f2f2f7;
+  --ui-fundo-barra: #fafafd;
+  --ui-borda-suave: #e6e7ee;
+  --ui-sombra-suave: 0 2px 6px rgb(35 30 55 / 2%);
+  --ui-sombra-retomada: 0 5px 20px rgb(35 30 55 / 4%);
+}
+.barra, .barra-pe { background: var(--ui-fundo-barra); }
+.barra { border-color: var(--ui-borda-suave); }
+.contadores {
+  gap: 0; padding: 20px 0; background: var(--color-superficie);
+  border: 1px solid var(--ui-borda-suave); border-radius: var(--ui-raio-painel);
+}
+.contador, .contador.credito {
+  border: 0; border-radius: 0; padding: 0 24px; background: transparent;
+  box-shadow: none; min-width: 0;
+}
+.contador + .contador { border-left: 1px solid var(--ui-borda-suave); }
+.contador b, .contador.credito b { font-size: 30px; }
+.ferr .topo { gap: 12px; }
+.ferr .topo .ico {
+  box-sizing: content-box; width: 19px; height: 19px; padding: 9px;
+  border-radius: 10px; color: var(--color-roxo-tinta);
+  background: color-mix(in srgb, var(--color-roxo-fundo) 60%, white);
+  flex-shrink: 0;
+}
+.ferr.destaque .topo .ico { background: var(--color-roxo-fundo); }
+.peca.agora { background: color-mix(in srgb, var(--color-roxo-fundo) 28%, white); }
+.etapas { box-shadow: none; }
+.etapa.feita .bolha { background: var(--color-superficie); }
+.folha {
+  background: var(--color-superficie); border-color: var(--ui-borda-suave);
+  border-radius: var(--ui-raio-painel); box-shadow: var(--ui-sombra-retomada);
+}
+.mesa-caps { box-shadow: none; }
+.mesa-painel .btn { box-shadow: none; }
+.mesa-painel .btn:hover { background: var(--color-superficie-2); }
+@media (max-width: 1180px) {
+  .contadores { padding: 0; }
+  .contador, .contador.credito { padding: 20px 24px; }
+  .contador:nth-child(3) { border-left: 0; }
+  .contador:nth-child(n+3) { border-top: 1px solid var(--ui-borda-suave); }
+}
+@media (max-width: 640px) {
+  .contador, .contador.credito { padding: 16px 20px; }
+  .ferr .topo .ico { width: 18px; height: 18px; padding: 7px; }
+}
+
+/* LAIN: revisao do Codex em 2026-09-20, apos feedback do Biel.
+   Campos seguem os botoes secundarios: branco, borda neutra discreta e
+   sombra minima. Lilas em repouso foi rejeitado. Roxo so em foco/selecao.
+   Token restrito a formularios; estados de erro/desabilitado preservados. */
+.campo, .opcao, .titulo-op, .cap-linha, .lista-itens, .chat-pe,
+.ficha-campo.editavel-campo, details.recolhido {
+  --color-linha-controle: var(--color-linha);
+}
+:where(.campo input, .campo textarea, .campo select, .cap-linha input,
+.lista-itens input, .chat-pe input, .opcao, .titulo-op):where(:not(:focus):not(:disabled):not(.demo-foco-campo)) {
+  box-shadow: 0 1px 2px rgb(48 45 62 / 4%);
+}
+.campo:not(.erro) :is(input, textarea, select):hover:where(:not(:focus):not(:disabled):not([aria-invalid="true"]):not(.demo-foco-campo)),
+.opcao:hover:where(:not(:has(input:checked)):not(:has(input:focus-visible))),
+.titulo-op:hover:where(:not([aria-pressed="true"]):not(:focus-visible)) {
+  border-color: #c7c3d3;
+}
+/* O circulo identifica a escolha sem acentuar todo o contorno do campo. */
+.opcao:not(:has(input:checked)) .marca-op,
+.titulo-op:not([aria-pressed="true"]) .marca-op { border-color: #aaa3b8; }
+
+
+/* LAIN: refinamento por inspecao visual, Codex, 2026-09-20.
+   Biel aprovou campos neutros: nao reintroduzir contorno lilas em repouso.
+   Grade de ferramentas uniforme (substitui a antiga expansao de destaque),
+   perfil com dois campos curtos lado a lado apenas quando ha largura,
+   filtros discretos e documento com titulo/ marcadores melhor alinhados.
+   Ordem DOM, textos, funcionalidades e estados de foco preservados. */
+.cabeca .acoes { margin-top: 0; }
+.ferr.destaque { grid-column: auto; }
+.ferr.destaque .faz { max-width: 40ch; }
+.filtros { gap: 8px; margin-bottom: 20px; }
+.filtro { border-radius: var(--ui-raio-controle); }
+.filtro[aria-pressed="true"] { border-color: transparent; }
+.filtro[aria-pressed="true"]:hover { border-color: var(--color-roxo-borda); }
+.peca-card .de { align-items: flex-start; }
+.peca-card .de .ico { margin-top: 3px; }
+.aviso-venda {
+  background: color-mix(in srgb, var(--color-ambar-fundo) 48%, white);
+  border-color: color-mix(in srgb, var(--color-ambar) 25%, white);
+  border-radius: var(--ui-raio-controle);
+}
+.folha h2 { max-width: 32ch; font-family: var(--font-body); font-weight: 600; letter-spacing: -.025em; }
+/* .editavel aplicava display:block aos li e isolava o marcador acima do texto. */
+.folha ul.marcadores li.editavel { display: flex; gap: 12px; align-items: flex-start; }
+.folha ul.marcadores li::before { margin-top: .65em; width: 5px; height: 5px; flex-basis: 5px; }
+.folha .num-pag { font-family: var(--font-body); font-variant-numeric: tabular-nums; }
+@media (min-width: 1100px) {
+  /* Padrao reutilizavel: dois campos de texto curtos no inicio do formulario. */
+  .forma:has(> .campo:first-child > input[type="text"]):has(> .campo:nth-child(2) > input[type="text"]) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px;
+  }
+  .forma:has(> .campo:first-child > input[type="text"]):has(> .campo:nth-child(2) > input[type="text"]) > * { grid-column: 1 / -1; }
+  .forma:has(> .campo:first-child > input[type="text"]):has(> .campo:nth-child(2) > input[type="text"]) > .campo:nth-child(-n+2) {
+    grid-column: auto; grid-template-rows: auto 1fr auto;
+  }
+}
+@media (min-width: 1181px) {
+  .contadores { padding-block: 16px; margin-bottom: 28px; }
+  .contador b, .contador.credito b { font-size: 26px; }
+}

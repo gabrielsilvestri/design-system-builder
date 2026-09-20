@@ -1,0 +1,402 @@
+/* base.css · a casca do brandbook da Gu.ia.
+   Tudo aqui usa o prefixo bb- pra não colidir com as receitas de produto do
+   components.css, que carregam os nomes de classe reais do painel.
+   Piso de 14px vale aqui também: o brandbook é lido, não só olhado. */
+
+@import url("../../tokens.css");
+@import url("../../fonts.css");
+
+/* --cena e --grao vêm do tokens.css: são token do sistema, não CSS local. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { overflow-x: hidden; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  color: var(--color-tinta);
+  background-color: var(--color-fundo);
+  background-image: var(--grao), var(--cena);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-variant-numeric: tabular-nums;
+}
+
+::selection { background: var(--color-roxo-fundo-2); color: var(--color-tinta); }
+
+a { color: var(--color-roxo-tinta); text-underline-offset: 3px; }
+
+:focus-visible {
+  outline: 3px solid var(--color-roxo);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
+.bb-vh {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+.bb-pular {
+  position: absolute; left: -9999px; top: 0; z-index: var(--z-toast);
+  background: var(--color-roxo); color: var(--color-claro);
+  padding: 12px 16px; border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600; text-decoration: none;
+}
+.bb-pular:focus { left: 0; }
+
+/* ---------- cabeçalho ---------- */
+
+.bb-topo {
+  position: sticky; top: 0; z-index: var(--z-sticky);
+  background: color-mix(in srgb, var(--color-superficie) 92%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-linha);
+}
+
+.bb-topo .bb-fila {
+  display: flex; align-items: center; gap: var(--space-xl);
+  min-height: 60px; padding: 8px var(--space-2xl);
+  max-width: 1320px; margin: 0 auto; flex-wrap: wrap;
+}
+
+.bb-marca {
+  display: inline-flex; align-items: center; gap: var(--space-sm);
+  font-family: var(--font-subheading-large);
+  font-size: var(--text-subheading-large);
+  font-weight: 700;
+  letter-spacing: var(--tracking-subheading-large);
+  color: var(--color-tinta);
+  text-decoration: none;
+  min-height: 44px;
+}
+
+.bb-topo nav { display: flex; gap: var(--space-xs); flex: 1; flex-wrap: wrap; }
+
+.bb-topo nav a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  padding: 6px 12px; border-radius: var(--radius-sm);
+  font-size: var(--text-button-small);
+  font-weight: 600;
+  color: var(--color-tinta-apoio);
+  text-decoration: none;
+  transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
+}
+
+.bb-topo nav a:hover { background: var(--color-superficie-2); color: var(--color-tinta); }
+
+.bb-topo nav a[aria-current="page"] {
+  background: var(--color-roxo-fundo);
+  color: var(--color-roxo-tinta);
+  box-shadow: inset 0 0 0 1px var(--color-roxo-borda);
+}
+
+.bb-edicao {
+  font-family: var(--font-code-body);
+  font-size: var(--text-code-body);
+  color: var(--color-roxo-tinta);
+  white-space: nowrap;
+}
+
+/* ---------- faixa de marca ---------- */
+
+.bb-faixa {
+  display: flex; justify-content: space-between; gap: var(--space-md);
+  flex-wrap: wrap;
+  padding: 10px var(--space-2xl);
+  border-bottom: 1px solid var(--color-linha);
+  background: var(--color-superficie);
+  font-size: var(--text-micro);
+  font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-tinta-sutil);
+}
+
+/* ---------- seções ---------- */
+
+.bb-secao {
+  border-top: 1px solid var(--color-linha);
+  padding: var(--space-3xl) var(--space-2xl);
+}
+.bb-secao:first-child { border-top: 0; }
+
+/* minmax(0,1fr): sem isso a trilha da grade cresce até o max-content do item
+   mais largo (o balão do tour tem largura própria) e a página rola de lado */
+.bb-secao > .bb-miolo { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-xl); }
+
+.bb-secao.bb-alt { background: var(--color-superficie); }
+
+.bb-rot {
+  display: block;
+  font-size: var(--text-micro);
+  font-weight: var(--font-weight-micro);
+  line-height: var(--leading-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-roxo-tinta);
+  margin: 0;
+}
+
+.bb-hero {
+  font-family: var(--font-display-hero);
+  font-size: var(--text-display-hero);
+  font-weight: var(--font-weight-display-hero);
+  line-height: var(--leading-display-hero);
+  letter-spacing: var(--tracking-display-hero);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h1.bb-titulo, .bb-titulo {
+  font-family: var(--font-display-large);
+  font-size: var(--text-display-large);
+  font-weight: var(--font-weight-display-large);
+  line-height: var(--leading-display-large);
+  letter-spacing: var(--tracking-display-large);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h2.bb-h2, .bb-h2 {
+  font-family: var(--font-section-heading);
+  font-size: var(--text-section-heading);
+  font-weight: var(--font-weight-section-heading);
+  line-height: var(--leading-section-heading);
+  letter-spacing: var(--tracking-section-heading);
+  margin: 0;
+  text-wrap: balance;
+}
+
+h3.bb-h3, .bb-h3 {
+  font-family: var(--font-subheading-large);
+  font-size: var(--text-subheading-large);
+  font-weight: var(--font-weight-subheading-large);
+  line-height: var(--leading-subheading-large);
+  letter-spacing: var(--tracking-subheading-large);
+  margin: 0;
+}
+
+h4.bb-h4, .bb-h4 {
+  font-family: var(--font-subheading);
+  font-size: var(--text-subheading);
+  font-weight: var(--font-weight-subheading);
+  line-height: var(--leading-subheading);
+  letter-spacing: var(--tracking-subheading);
+  margin: 0;
+}
+
+.bb-secao p { margin: 0 0 var(--space-md); max-width: 66ch; text-wrap: pretty; }
+.bb-secao p:last-child { margin-bottom: 0; }
+.bb-apoio { color: var(--color-tinta-apoio); }
+.bb-sutil { color: var(--color-tinta-sutil); font-size: var(--text-caption); line-height: var(--leading-caption); }
+
+.bb-mono { font-family: var(--font-code-body); font-size: var(--text-code-body); letter-spacing: var(--tracking-code-body); }
+
+/* ---------- grades utilitárias ---------- */
+
+.bb-grade { display: grid; gap: var(--space-md); }
+/* item de grade não encolhe abaixo do min-content sem isto, e basta uma peça
+   de largura própria (o balão do tour) pra página rolar de lado no celular */
+.bb-grade > * { min-width: 0; }
+.bb-grade-2 { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+.bb-grade-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.bb-grade-4 { grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); }
+
+.bb-caixa {
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-base);
+}
+
+/* ---------- a ficha de contraste (a peça-assinatura) ---------- */
+
+.bb-ficha {
+  display: grid; gap: var(--space-md);
+  background: var(--color-superficie);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-base);
+  text-align: left; width: 100%;
+  font: inherit; color: inherit; cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-out), box-shadow var(--duration-fast) var(--ease-out);
+}
+.bb-ficha:hover { border-color: var(--color-roxo-borda); box-shadow: var(--shadow-elevado); }
+
+.bb-ficha .bb-amostra {
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-linha);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+}
+.bb-ficha .bb-amostra > span {
+  padding: 12px 8px; text-align: center;
+  font-size: var(--text-caption-small);
+  font-weight: var(--font-weight-caption-small);
+}
+.bb-ficha .bb-amostra .s1 { background: var(--color-fundo); }
+.bb-ficha .bb-amostra .s2 { background: var(--color-superficie); }
+.bb-ficha .bb-amostra .s3 { background: var(--color-superficie-2); }
+
+.bb-ficha .bb-chapa { height: 72px; border-radius: var(--radius-sm); border: 1px solid var(--color-linha); }
+
+.bb-ficha .bb-nome { font-weight: 700; font-size: var(--text-body); }
+.bb-ficha .bb-hex { font-family: var(--font-code-body); font-size: var(--text-code-body); color: var(--color-tinta-apoio); }
+.bb-ficha .bb-papel { display: block; font-size: var(--text-caption); line-height: var(--leading-caption); color: var(--color-tinta-apoio); margin: 0; }
+
+/* a régua: onde a razão medida cai entre 1 e 13, com as marcas de 3, 4.5 e 11 */
+.bb-regua { display: grid; gap: 6px; }
+.bb-regua .bb-trilha {
+  position: relative; height: 10px; border-radius: var(--radius-full);
+  background: var(--color-superficie-2);
+  border: 1px solid var(--color-linha);
+}
+.bb-regua .bb-marca {
+  position: absolute; top: -3px; bottom: -3px; width: 1px;
+  background: var(--color-linha-controle);
+}
+.bb-regua .bb-pino {
+  position: absolute; top: 50%; width: 14px; height: 14px; margin: -7px 0 0 -7px;
+  border-radius: var(--radius-full);
+  background: var(--color-roxo);
+  box-shadow: 0 0 0 3px var(--color-superficie);
+}
+/* a escala é linear de 1 a 13, e o rótulo fica na posição real que ele marca:
+   pos = (razão - 1) / 12. Distribuir os rótulos por igual mentiria sobre onde
+   o piso e o teto caem. */
+.bb-regua .bb-legenda {
+  position: relative; height: 1.3em;
+  font-size: var(--text-caption);
+  color: var(--color-tinta-sutil);
+}
+.bb-regua .bb-legenda > span { position: absolute; transform: translateX(-50%); white-space: nowrap; }
+.bb-regua .bb-legenda > span.ini { transform: none; }
+.bb-regua .bb-legenda > span.fim { transform: translateX(-100%); }
+
+/* ---------- tabelas ---------- */
+
+.bb-tabela { width: 100%; border-collapse: collapse; font-size: var(--text-body-small); }
+.bb-tabela th, .bb-tabela td {
+  text-align: left; padding: 10px 12px;
+  border-bottom: 1px solid var(--color-linha);
+  vertical-align: top;
+}
+.bb-tabela th {
+  font-size: var(--text-micro);
+  font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro);
+  text-transform: uppercase;
+  color: var(--color-tinta-sutil);
+  border-bottom-color: var(--color-linha-controle);
+}
+.bb-tabela tr:last-child td { border-bottom: 0; }
+.bb-tabela code { font-family: var(--font-code-body); font-size: var(--text-code-body); }
+.bb-rolagem { overflow-x: auto; border: 1px solid var(--color-linha-controle); border-radius: var(--radius-md); background: var(--color-superficie); }
+.bb-rolagem .bb-tabela { min-width: 620px; }
+
+/* ---------- listas de regra ---------- */
+
+.bb-regras { display: grid; gap: var(--space-sm); margin: 0; padding: 0; list-style: none; }
+.bb-regras li {
+  display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: var(--space-md);
+  align-items: start; max-width: 76ch;
+}
+.bb-regras li .bb-num {
+  width: 28px; height: 28px; border-radius: var(--radius-full);
+  display: grid; place-items: center;
+  background: var(--color-roxo-fundo); color: var(--color-roxo-tinta);
+  border: 1px solid var(--color-roxo-borda);
+  font-size: var(--text-caption); font-weight: 700;
+}
+
+.bb-fazer, .bb-nao-fazer { display: grid; gap: var(--space-sm); margin: 0; padding: 0; list-style: none; }
+.bb-fazer li, .bb-nao-fazer li {
+  display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: var(--space-md);
+  align-items: start; max-width: 72ch;
+  font-size: var(--text-body-small); line-height: 1.55;
+}
+.bb-fazer li .ico { color: var(--color-verde); margin-top: 3px; }
+.bb-nao-fazer li .ico { color: var(--color-vermelho); margin-top: 3px; }
+
+/* ---------- rodapé ---------- */
+
+.bb-rodape {
+  border-top: 1px solid var(--color-linha);
+  background: var(--color-superficie);
+  padding: var(--space-2xl);
+}
+.bb-rodape .bb-fila {
+  max-width: 1320px; margin: 0 auto;
+  display: flex; justify-content: space-between; gap: var(--space-md);
+  flex-wrap: wrap;
+  font-size: var(--text-caption);
+  color: var(--color-tinta-apoio);
+}
+.bb-rodape a { color: var(--color-roxo-tinta); }
+
+/* ---------- aviso de cópia ---------- */
+
+.bb-toast {
+  position: fixed; left: 50%; bottom: 24px;
+  transform: translateX(-50%) translateY(140%);
+  background: var(--color-roxo); color: var(--color-claro);
+  padding: 10px 18px; border-radius: var(--radius-full);
+  font-size: var(--text-button-small); font-weight: 600;
+  box-shadow: var(--shadow-flutuante);
+  transition: transform var(--duration-base) var(--ease-out), opacity var(--duration-base) var(--ease-out);
+  z-index: var(--z-toast); pointer-events: none;
+  opacity: 0; visibility: hidden;
+}
+.bb-toast.bb-mostra { transform: translateX(-50%) translateY(0); opacity: 1; visibility: visible; }
+
+/* ---------- ícones ---------- */
+
+.ico {
+  width: 20px; height: 20px; flex: 0 0 auto;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round;
+}
+.ico-p { width: 16px; height: 16px; }
+.ico-g { width: 28px; height: 28px; }
+
+/* ---------- responsivo ---------- */
+
+@media (max-width: 860px) {
+  /* o cabeçalho vira duas linhas: marca e edição em cima, navegação rolando
+     na horizontal embaixo. Quebrar a navegação item por item deixava o
+     "Índice" sozinho acima da marca */
+  .bb-topo .bb-fila { padding: 8px var(--space-lg); gap: var(--space-sm); }
+  .bb-marca { flex: 1; }
+  .bb-topo nav { order: 3; flex: 0 0 100%; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: thin; }
+  .bb-topo nav a { white-space: nowrap; }
+}
+
+@media (max-width: 960px) {
+  .bb-faixa, .bb-secao, .bb-rodape { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+  .bb-secao { padding-top: var(--space-2xl); padding-bottom: var(--space-2xl); }
+}
+
+@media (max-width: 640px) {
+  .bb-hero { font-size: var(--text-display-large); }
+  .bb-titulo { font-size: var(--text-section-heading); }
+  .bb-h2 { font-size: var(--text-subheading-large); }
+  .bb-topo .bb-fila { padding: 8px var(--space-lg); }
+  .bb-faixa, .bb-secao, .bb-rodape { padding-left: var(--space-lg); padding-right: var(--space-lg); }
+  .bb-grade-2, .bb-grade-3, .bb-grade-4 { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

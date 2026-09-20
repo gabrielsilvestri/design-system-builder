@@ -1,0 +1,853 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Componentes · Gu.ia</title>
+<meta name="description" content="Todas as receitas do painel da Gu.ia renderizadas ao vivo em interface clara, com hover, foco, pressionado, desabilitado, selecionado e atual, mais a casca inteira em miniatura.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237149ca'/%3E%3Cpath d='M9 23C9 14.5 14.5 9 22 9' fill='none' stroke='%23f9f8fd' stroke-width='3' stroke-linecap='round'/%3E%3Ccircle cx='24' cy='8.6' r='2.8' fill='%23f9f8fd'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="_shared/base.css">
+<link rel="stylesheet" href="_shared/components.css">
+<style>
+/* CSS só desta página: força o desenho de cada estado lado a lado, usando os
+   mesmos tokens das regras reais. Nada de hex novo aqui. */
+.est-grade { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--space-md); }
+.est-cel { display: grid; gap: 8px; justify-items: start; }
+.est-nome {
+  font-size: var(--text-micro); font-weight: var(--font-weight-micro);
+  letter-spacing: var(--tracking-micro); text-transform: uppercase;
+  color: var(--color-tinta-sutil);
+}
+.demo-hover.btn { background: var(--color-superficie-2); border-color: var(--color-roxo-tinta); }
+.demo-hover.btn-principal { background: var(--color-roxo-hover); border-color: var(--color-roxo-hover); }
+.demo-hover.btn-texto { background: var(--color-roxo-fundo); border-color: transparent; }
+.demo-foco { outline: 3px solid var(--color-roxo); outline-offset: 3px; }
+.demo-ativo.btn { transform: scale(.975); }
+.demo-ativo.btn-principal { background: var(--color-roxo-ativo); border-color: var(--color-roxo-ativo); }
+.demo-ativo.btn-texto { background: var(--color-roxo-fundo-2); }
+.demo-hover.nav-item { background: var(--color-superficie-2); }
+.demo-hover.ferr, .demo-hover.lanc, .demo-hover.peca-card { border-color: var(--color-roxo-borda); box-shadow: var(--shadow-elevado); }
+.demo-hover.filtro { border-color: var(--color-roxo-tinta); background: var(--color-superficie-2); }
+.demo-hover.opcao { border-color: var(--color-roxo-tinta); background: var(--color-superficie-2); }
+.demo-foco-campo { border-color: var(--color-roxo) !important; box-shadow: var(--shadow-foco); }
+.pilha { display: flex; gap: var(--space-md); flex-wrap: wrap; align-items: center; }
+.palco-demo {
+  background: var(--color-fundo);
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  padding: var(--space-xl);
+}
+.palco-demo.claro { background: var(--color-superficie); }
+.casca-mini {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--color-linha-controle);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-fundo);
+  box-shadow: var(--shadow-elevado);
+  min-height: 520px;
+}
+.casca-mini .barra { border-right: 1px solid var(--color-linha); box-shadow: none; }
+.casca-mini .palco { flex: 1; min-width: 0; padding: var(--space-xl); overflow: hidden; }
+@media (max-width: 760px) { .casca-mini { flex-direction: column; min-height: 0; } .casca-mini .barra { width: 100%; flex: 1 1 auto; } }
+</style>
+</head>
+<body>
+<a class="bb-pular" href="#conteudo">Pular para o conteúdo</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-seta" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+    <symbol id="i-casa" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="i-gente" viewBox="0 0 24 24"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.87"/></symbol>
+    <symbol id="i-livro" viewBox="0 0 24 24"><path d="M4 19.5V5a2 2 0 0 1 2-2h13v18H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M8 7h7M8 11h7"/></symbol>
+    <symbol id="i-texto" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></symbol>
+    <symbol id="i-etiqueta" viewBox="0 0 24 24"><path d="M3 11V4a1 1 0 0 1 1-1h7l10 10-8 8z"/><circle cx="7.5" cy="7.5" r="1.4"/></symbol>
+    <symbol id="i-imagem" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="m4 17 5-4 4 3 3-2 4 3"/></symbol>
+    <symbol id="i-chat" viewBox="0 0 24 24"><path d="M21 11.5a8 8 0 0 1-11.6 7.1L4 20l1.4-4.4A8 8 0 1 1 21 11.5z"/></symbol>
+    <symbol id="i-raio" viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-brilho" viewBox="0 0 24 24"><path d="m12 3 2 5.5L19.5 10 14 12l-2 5.5L10 12 4.5 10 10 8.5z"/></symbol>
+    <symbol id="i-alerta" viewBox="0 0 24 24"><path d="M10.3 3.9 2.6 17a2 2 0 0 0 1.7 3h15.4a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-erro" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5M12 16h.01"/></symbol>
+    <symbol id="i-ok" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12.2 2.4 2.4 4.6-4.9"/></symbol>
+    <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l2-2A5 5 0 0 0 12.5 4.5l-1.2 1.2"/><path d="M14 11a5 5 0 0 0-7.5-.5l-2 2A5 5 0 0 0 11.5 19.5l1.2-1.2"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-mais" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="i-lixo" viewBox="0 0 24 24"><path d="M4 7h16M9 7V5h6v2M7 7l1 13h8l1-13"/></symbol>
+    <symbol id="i-grade" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="i-cartao" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19"/></symbol>
+  </defs>
+</svg>
+
+<header class="bb-topo">
+  <div class="bb-fila">
+    <a class="bb-marca" href="index.html">
+      <svg class="ico-g" viewBox="0 0 32 32" aria-hidden="true" style="stroke:none;fill:none">
+        <rect width="32" height="32" rx="8" fill="var(--color-roxo)"></rect>
+        <path d="M9 23C9 14.5 14.5 9 22 9" fill="none" stroke="var(--color-claro)" stroke-width="3" stroke-linecap="round"></path>
+        <circle cx="24" cy="8.6" r="2.8" fill="var(--color-claro)"></circle>
+      </svg>
+      Gu.ia
+    </a>
+    <nav aria-label="Páginas do brandbook">
+      <a href="index.html">Índice</a>
+      <a href="guidelines.html">Guidelines</a>
+      <a href="foundations.html">Fundamentos</a>
+      <a href="logo.html">Marca</a>
+      <a href="components.html" aria-current="page">Componentes</a>
+    </nav>
+    <span class="bb-edicao">LILÁS 2026-09</span>
+  </div>
+</header>
+
+<div class="bb-faixa">
+  <span>Gu.ia</span>
+  <span>Componentes</span>
+  <span>Renderizados ao vivo</span>
+</div>
+
+<main id="conteudo">
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">Como ler esta página</p>
+      <h1 class="bb-titulo">Todas as receitas do painel, com os estados</h1>
+      <p class="bb-apoio">
+        Tudo aqui é HTML real usando <span class="bb-mono">_shared/components.css</span>, com os
+        nomes de classe do protótipo. Passe o mouse, navegue de Tab: hover, foco e pressionado são
+        os de verdade. As grades marcadas como matriz mostram os mesmos estados lado a lado, pra
+        conferir sem interação.
+      </p>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">01 · Botões</p>
+      <h2 class="bb-h2">Três níveis, um primário por tela</h2>
+      <div class="palco-demo">
+        <div class="pilha">
+          <button class="btn btn-principal" type="button">Continuar de onde parei <svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></button>
+          <button class="btn" type="button">Ver exemplo</button>
+          <button class="btn btn-texto" type="button">Pular esta etapa</button>
+          <button class="btn btn-grande btn-principal" type="button">Criar meu lançamento</button>
+          <button class="btn btn-p" type="button">Editar</button>
+          <button class="btn btn-icone" type="button" aria-label="Apagar capítulo"><svg class="ico" aria-hidden="true"><use href="#i-lixo"/></svg></button>
+        </div>
+      </div>
+
+      <h3 class="bb-h3">Matriz de estados</h3>
+      <div class="palco-demo claro">
+        <div class="est-grade">
+          <div class="est-cel"><span class="est-nome">Normal</span><button class="btn btn-principal" type="button">Publicar</button></div>
+          <div class="est-cel"><span class="est-nome">Hover</span><button class="btn btn-principal demo-hover" type="button">Publicar</button></div>
+          <div class="est-cel"><span class="est-nome">Focus-visible</span><button class="btn btn-principal demo-foco" type="button">Publicar</button></div>
+          <div class="est-cel"><span class="est-nome">Pressionado</span><button class="btn btn-principal demo-ativo" type="button">Publicar</button></div>
+          <div class="est-cel"><span class="est-nome">Desabilitado</span><button class="btn btn-principal" type="button" aria-disabled="true">Publicar</button></div>
+        </div>
+      </div>
+      <div class="palco-demo claro">
+        <div class="est-grade">
+          <div class="est-cel"><span class="est-nome">Normal</span><button class="btn" type="button">Ver exemplo</button></div>
+          <div class="est-cel"><span class="est-nome">Hover</span><button class="btn demo-hover" type="button">Ver exemplo</button></div>
+          <div class="est-cel"><span class="est-nome">Focus-visible</span><button class="btn demo-foco" type="button">Ver exemplo</button></div>
+          <div class="est-cel"><span class="est-nome">Pressionado</span><button class="btn demo-ativo" type="button">Ver exemplo</button></div>
+          <div class="est-cel"><span class="est-nome">Desabilitado</span><button class="btn" type="button" aria-disabled="true">Ver exemplo</button></div>
+        </div>
+      </div>
+      <div class="palco-demo claro">
+        <div class="est-grade">
+          <div class="est-cel"><span class="est-nome">Normal</span><button class="btn btn-texto" type="button">Pular</button></div>
+          <div class="est-cel"><span class="est-nome">Hover</span><button class="btn btn-texto demo-hover" type="button">Pular</button></div>
+          <div class="est-cel"><span class="est-nome">Focus-visible</span><button class="btn btn-texto demo-foco" type="button">Pular</button></div>
+          <div class="est-cel"><span class="est-nome">Pressionado</span><button class="btn btn-texto demo-ativo" type="button">Pular</button></div>
+          <div class="est-cel"><span class="est-nome">Desabilitado</span><button class="btn btn-texto" type="button" aria-disabled="true">Pular</button></div>
+        </div>
+      </div>
+      <p class="bb-sutil">O hover do primário escurece para <span class="bb-mono">#5f35b1</span> e o pressionado para <span class="bb-mono">#4f2998</span>. Desabilitado usa superfície recuada com tinta de 4.76:1, nunca opacidade.</p>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">02 · Casca</p>
+      <h2 class="bb-h2">Barra lateral, barra de topo e migalha</h2>
+      <div class="bb-grade bb-grade-2">
+        <div>
+          <div class="barra" style="border-radius:12px;border:1px solid var(--color-linha-controle)">
+            <a class="marca" href="#conteudo">
+              <span class="marca-selo" aria-hidden="true">G</span>
+              <span class="marca-nome">Gu.ia</span>
+            </a>
+            <span class="barra-rot">Meu lançamento</span>
+            <ul class="nav-lista">
+              <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-casa"/></svg> Início</a></li>
+              <li><a class="nav-item" href="#conteudo" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-grade"/></svg> Meus lançamentos <span class="conta-peca">3</span></a></li>
+              <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-gente"/></svg> Público</a></li>
+            </ul>
+            <span class="barra-rot">Peças</span>
+            <ul class="nav-lista">
+              <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Ebook <span class="conta-peca">2</span></a></li>
+              <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-etiqueta"/></svg> Oferta</a></li>
+              <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-texto"/></svg> Página de vendas</a></li>
+              <li><span class="nav-item" aria-disabled="true"><svg class="ico" aria-hidden="true"><use href="#i-imagem"/></svg> Stories <span class="conta-peca">0</span></span></li>
+            </ul>
+            <div class="barra-pe">
+              <a class="conta-item" href="#conteudo">
+                <span class="av" aria-hidden="true">AP</span>
+                <span class="txt"><b>Ana Paula</b><span>240 créditos</span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="bb-grade" style="gap:var(--space-lg);align-content:start">
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Barra de topo do celular</p>
+            <div class="topo-cel" style="border-radius:12px;border:1px solid var(--color-linha-controle)">
+              <button class="btn btn-icone" type="button" aria-label="Abrir menu"><svg class="ico" aria-hidden="true"><use href="#i-menu"/></svg></button>
+              <span class="marca" style="padding:0;flex:1"><span class="marca-selo" aria-hidden="true">G</span><span class="marca-nome">Gu.ia</span></span>
+              <button class="btn btn-icone" type="button" aria-label="Falar com a Gu.ia"><svg class="ico" aria-hidden="true"><use href="#i-chat"/></svg></button>
+            </div>
+          </div>
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Migalha</p>
+            <nav class="migalha" aria-label="Onde você está">
+              <a href="#conteudo">Meus lançamentos</a>
+              <svg class="ico ico-p" aria-hidden="true"><use href="#i-chevron"/></svg>
+              <a href="#conteudo">Ana Nutri</a>
+              <svg class="ico ico-p" aria-hidden="true"><use href="#i-chevron"/></svg>
+              <span aria-current="page">Ebook</span>
+            </nav>
+          </div>
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Item de navegação, matriz</p>
+            <div class="bb-grade" style="gap:4px;background:var(--color-superficie);border:1px solid var(--color-linha-controle);border-radius:12px;padding:12px">
+              <span class="nav-item"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Normal</span>
+              <span class="nav-item demo-hover"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Hover</span>
+              <span class="nav-item demo-foco"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Focus-visible</span>
+              <span class="nav-item" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Atual</span>
+              <span class="nav-item" aria-disabled="true"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Desabilitado</span>
+            </div>
+          </div>
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Gaveta do celular, véu</p>
+            <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--color-linha-controle);min-height:110px;background:var(--color-superficie)">
+              <div style="padding:16px"><p style="margin:0" class="bb-sutil">Conteúdo da tela atrás do véu</p></div>
+              <div class="veu-barra" style="position:absolute;inset:0"></div>
+              <div class="gaveta" style="position:absolute;inset:0 40% 0 0;background:var(--color-superficie);padding:16px">
+                <p style="margin:0;font-weight:600">Menu</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">03 · Home</p>
+      <h2 class="bb-h2">Saudação, onde você parou, contadores e as nove ferramentas</h2>
+      <div class="palco-demo">
+        <p class="bb-rot" style="margin-bottom:6px">Terça, 19 de setembro</p>
+        <h3 class="bb-titulo" style="margin-bottom:20px">Bom dia, Ana Paula</h3>
+
+        <div class="parou" style="margin-bottom:24px">
+          <div style="flex:1 1 320px;min-width:0">
+            <span class="rot">Onde você parou</span>
+            <p class="bb-h3" style="margin:0 0 6px">Ebook do lançamento Ana Nutri</p>
+            <p class="bb-apoio" style="margin:0">Faltam 3 capítulos pra ele ficar pronto.</p>
+          </div>
+          <button class="btn btn-principal" type="button">Continuar o ebook <svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></button>
+        </div>
+
+        <div class="contadores" style="margin-bottom:24px">
+          <div class="contador"><b>3</b><span>lançamentos</span></div>
+          <div class="contador"><b>12</b><span>peças prontas</span></div>
+          <div class="contador"><b>1</b><span>página no ar</span></div>
+          <div class="contador credito"><b>240</b><span>créditos</span></div>
+        </div>
+
+        <div class="grade-ferr">
+          <a class="ferr" href="#conteudo">
+            <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-gente"/></svg><b>Público</b></span>
+            <p class="faz">Descobre pra quem você vende, a partir de uma entrevista curta.</p>
+            <span class="tem">1 ficha pronta</span>
+          </a>
+          <a class="ferr demo-hover" href="#conteudo">
+            <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg><b>Ebook</b></span>
+            <p class="faz">Escreve o material que você entrega, capítulo por capítulo.</p>
+            <span class="tem">2 ebooks</span>
+          </a>
+          <a class="ferr" href="#conteudo">
+            <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-etiqueta"/></svg><b>Oferta</b></span>
+            <p class="faz">Monta o preço e o que entra no pacote.</p>
+            <span class="tem zero">nenhuma ainda</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">04 · Lançamentos</p>
+      <h2 class="bb-h2">Cartão, trilho de etapas e o rodapé do próximo passo</h2>
+      <div class="bb-grade bb-grade-2">
+        <a class="lanc" href="#conteudo">
+          <span class="manchete"><h3>Ana Nutri</h3><span class="selo no-ar"><svg class="ico" aria-hidden="true"><use href="#i-ok"/></svg> No ar</span></span>
+          <p class="meta">Emagrecimento sem dieta restritiva, pra mulher de 30 a 45 anos.</p>
+          <span class="trilho" aria-hidden="true"><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="feita"></i></span>
+          <span class="bb-sutil">8 de 8 etapas</span>
+        </a>
+        <a class="lanc" href="#conteudo">
+          <span class="manchete"><h3>Sono da criança</h3><span class="selo parado"><svg class="ico" aria-hidden="true"><use href="#i-alerta"/></svg> Parado no ebook</span></span>
+          <p class="meta">Rotina de sono pra mães de bebês de 6 meses a 2 anos.</p>
+          <span class="trilho" aria-hidden="true"><i class="feita"></i><i class="feita"></i><i class="feita"></i><i class="atual"></i><i></i><i></i><i></i><i></i></span>
+          <span class="bb-sutil">3 de 8 etapas, parado há 6 dias</span>
+        </a>
+        <a class="lanc" href="#conteudo">
+          <span class="manchete"><h3>Consultório cheio</h3><span class="selo andamento"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> Em andamento</span></span>
+          <p class="meta">Captação de paciente particular pra veterinária recém-formada.</p>
+          <span class="trilho" aria-hidden="true"><i class="feita"></i><i class="atual"></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+          <span class="bb-sutil">1 de 8 etapas</span>
+        </a>
+      </div>
+
+      <h3 class="bb-h3">Abas do editor</h3>
+      <div class="palco-demo claro">
+        <div class="abas" role="tablist" aria-label="O que você está editando">
+          <button class="aba" type="button" role="tab" aria-selected="true">Sumário</button>
+          <button class="aba" type="button" role="tab" aria-selected="false">Texto</button>
+          <button class="aba" type="button" role="tab" aria-selected="false">Capa</button>
+        </div>
+        <p class="bb-sutil" style="margin:0">A aba ativa se preenche no próprio botão. Pílula em pseudo-elemento fica atrás do rótulo e some quando a aluna aumenta o texto do sistema.</p>
+      </div>
+
+      <h3 class="bb-h3">Trilho de etapas da ficha</h3>
+      <nav class="etapas" aria-label="Etapas do lançamento">
+        <span class="etapa feita"><span class="bolha" aria-hidden="true"><svg class="ico ico-p" style="stroke-width:2.6"><use href="#i-check"/></svg></span> Entrevista</span>
+        <span class="etapa feita"><span class="bolha" aria-hidden="true"><svg class="ico ico-p" style="stroke-width:2.6"><use href="#i-check"/></svg></span> Público</span>
+        <span class="etapa feita"><span class="bolha" aria-hidden="true"><svg class="ico ico-p" style="stroke-width:2.6"><use href="#i-check"/></svg></span> Tema</span>
+        <span class="etapa" aria-current="step"><span class="bolha" aria-hidden="true">4</span> Ebook</span>
+        <span class="etapa" aria-disabled="true"><span class="bolha" aria-hidden="true">5</span> Oferta</span>
+        <span class="etapa" aria-disabled="true"><span class="bolha" aria-hidden="true">6</span> Página</span>
+        <span class="etapa" aria-disabled="true"><span class="bolha" aria-hidden="true">7</span> Stories</span>
+        <span class="etapa" aria-disabled="true"><span class="bolha" aria-hidden="true">8</span> Postagens</span>
+      </nav>
+
+      <div class="rodape-passo">
+        <div class="txt">
+          <b>Próximo passo: escrever o capítulo 4</b>
+          <span>Depois dele faltam mais 3 pro ebook ficar pronto.</span>
+        </div>
+        <button class="btn btn-principal" type="button">Escrever o capítulo 4</button>
+      </div>
+      <p class="bb-sutil">Um botão só no rodapé. A etapa inteira termina em uma ação, e é isso que impede a aluna de precisar escolher.</p>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">05 · Bibliotecas</p>
+      <h2 class="bb-h2">Filtro, cartão de peça e o vazio que ensina</h2>
+
+      <div class="filtros">
+        <button class="filtro" type="button" aria-pressed="true">Tudo</button>
+        <button class="filtro" type="button" aria-pressed="false">Ebook</button>
+        <button class="filtro demo-hover" type="button" aria-pressed="false">Página</button>
+        <button class="filtro demo-foco" type="button" aria-pressed="false">Stories</button>
+        <button class="filtro" type="button" aria-pressed="false" aria-disabled="true">Anúncios</button>
+      </div>
+
+      <div class="vazio-nota">
+        <svg class="ico" aria-hidden="true"><use href="#i-brilho"/></svg>
+        <div class="txt">
+          <h2>Você ainda não tem peça aqui</h2>
+          <p>Veja um exemplo de como uma peça fica quando estiver pronta.</p>
+        </div>
+        <button class="btn btn-principal" type="button">Criar a primeira</button>
+      </div>
+
+      <div class="bb-grade bb-grade-3">
+        <div class="peca-card e-exemplo">
+          <span class="de"><svg class="ico ico-p" aria-hidden="true"><use href="#i-livro"/></svg> Ebook</span>
+          <h3>7 erros que atrapalham o seu sono</h3>
+          <p class="estado">Exemplo pra você ver o formato.</p>
+          <span class="pe"><span class="selo exemplo"><svg class="ico" aria-hidden="true"><use href="#i-brilho"/></svg> Exemplo</span></span>
+        </div>
+        <div class="peca-card">
+          <span class="de"><svg class="ico ico-p" aria-hidden="true"><use href="#i-texto"/></svg> Página de vendas</span>
+          <h3>Ana Nutri, método sem dieta</h3>
+          <p class="estado">Publicada em 12 de setembro.</p>
+          <span class="pe"><span class="selo no-ar"><svg class="ico" aria-hidden="true"><use href="#i-ok"/></svg> No ar</span><button class="btn btn-p" type="button">Abrir</button></span>
+        </div>
+        <div class="peca-card demo-hover">
+          <span class="de"><svg class="ico ico-p" aria-hidden="true"><use href="#i-imagem"/></svg> Stories</span>
+          <h3>Sequência de 5 stories</h3>
+          <p class="estado">Rascunho, falta revisar 2.</p>
+          <span class="pe"><span class="selo andamento"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> Em andamento</span></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">06 · Formulários</p>
+      <h2 class="bb-h2">Campo, opção em cartão e a pergunta da entrevista</h2>
+      <div class="bb-grade bb-grade-2">
+        <form class="forma" onsubmit="return false">
+          <div class="campo">
+            <label for="nome-lanc">Nome do lançamento</label>
+            <p class="ajuda">Só você vê. Serve pra achar depois na lista.</p>
+            <input id="nome-lanc" type="text" value="Ana Nutri">
+          </div>
+          <div class="campo">
+            <label for="promessa">O que a pessoa consegue depois de comprar</label>
+            <textarea id="promessa" placeholder="Escreva com suas palavras, como você falaria numa consulta."></textarea>
+            <span class="contagem">128 / 400</span>
+          </div>
+          <div class="campo">
+            <label for="area">Sua área</label>
+            <select id="area">
+              <option>Nutrição</option>
+              <option>Psicologia</option>
+              <option>Veterinária</option>
+            </select>
+          </div>
+          <div class="campo erro">
+            <label for="preco">Preço</label>
+            <input id="preco" type="text" value="R$" aria-describedby="erro-preco">
+            <p class="erro-linha" id="erro-preco"><svg class="ico ico-p" aria-hidden="true"><use href="#i-erro"/></svg> Coloque um valor. Por exemplo: R$ 97,00.</p>
+          </div>
+          <div class="campo">
+            <label for="travado">Endereço da página</label>
+            <input id="travado" type="text" value="gu.ia/ana-nutri" disabled>
+            <p class="ajuda">O endereço trava quando a página vai ao ar.</p>
+          </div>
+        </form>
+
+        <div class="bb-grade" style="gap:var(--space-xl);align-content:start">
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Campo, matriz de estados</p>
+            <div class="bb-grade" style="gap:10px">
+              <div class="campo"><input type="text" value="Normal"></div>
+              <div class="campo"><input type="text" value="Hover" style="border-color:var(--color-roxo-tinta)"></div>
+              <div class="campo"><input type="text" value="Foco" class="demo-foco-campo"></div>
+              <div class="campo erro"><input type="text" value="Erro"></div>
+              <div class="campo"><input type="text" value="Desabilitado" disabled></div>
+            </div>
+          </div>
+          <div>
+            <p class="est-nome" style="margin-bottom:8px">Opção selecionável</p>
+            <div class="opcoes">
+              <label class="opcao"><input type="radio" name="tom" checked><span class="marca-op" aria-hidden="true"><svg class="ico"><use href="#i-check"/></svg></span> Acolhedor</label>
+              <label class="opcao"><input type="radio" name="tom"><span class="marca-op" aria-hidden="true"></span> Direto</label>
+              <label class="opcao demo-hover"><input type="radio" name="tom"><span class="marca-op" aria-hidden="true"></span> Técnico</label>
+              <label class="opcao"><input type="radio" name="tom" disabled><span class="marca-op" aria-hidden="true"></span> Divertido</label>
+            </div>
+            <p class="bb-sutil" style="margin-top:8px">A marca de seleção é um círculo com o traço dentro: cor sozinha não conta estado.</p>
+          </div>
+          <div class="pergunta">
+            <p class="est-nome" style="margin-bottom:8px">Pergunta da entrevista</p>
+            <div class="cartao">
+              <div class="prog" style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+                <span class="barra-prog" style="flex:1"><i style="width:37%"></i></span>
+                <span class="bb-mono">3 / 8</span>
+              </div>
+              <h3 class="bb-h3" style="margin-bottom:6px">Quem é a pessoa que mais se beneficia do seu trabalho?</h3>
+              <p class="exemplo">Por exemplo: mulher de 35 anos que já tentou três dietas e desistiu de todas.</p>
+              <div class="campo"><textarea aria-label="Sua resposta" placeholder="Responda com suas palavras."></textarea></div>
+              <div class="pilha" style="margin-top:16px">
+                <button class="btn btn-principal" type="button">Próxima pergunta</button>
+                <button class="btn btn-texto" type="button">Voltar</button>
+                <span class="creditos"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> <b>2</b> créditos</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">07 · Geração</p>
+      <h2 class="bb-h2">A caixa que mostra o trabalho acontecendo</h2>
+      <div class="escrevendo">
+        <div class="cabeca-escreve">
+          <h3 class="bb-h3">Escrevendo o seu ebook</h3>
+          <span class="pct">62%</span>
+        </div>
+        <div class="barra-prog" style="margin-bottom:16px"><i style="width:62%"></i></div>
+        <p class="bb-apoio cursor-digita">Capítulo 5: por que a dieta restritiva falha na terceira semana</p>
+        <ul class="caps-estado">
+          <li class="pronto"><span class="bolinha" aria-hidden="true"><svg class="ico ico-p" style="stroke-width:2.8"><use href="#i-check"/></svg></span> Capítulo 1, o problema que ninguém nomeia</li>
+          <li class="pronto"><span class="bolinha" aria-hidden="true"><svg class="ico ico-p" style="stroke-width:2.8"><use href="#i-check"/></svg></span> Capítulo 2, o que o corpo faz com a fome</li>
+          <li class="agora"><span class="bolinha" aria-hidden="true">3</span> Capítulo 3, o prato que se monta sozinho</li>
+          <li><span class="bolinha" aria-hidden="true">4</span> Capítulo 4, a semana em que dá vontade de desistir</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">08 · Editor do ebook</p>
+      <h2 class="bb-h2">A mesa, e a folha que lê como papel</h2>
+      <p class="bb-apoio">
+        Numa interface clara, papel claro sobre painel claro precisaria de outro sinal. A folha tem
+        três ao mesmo tempo: tom quente <span class="bb-mono">#fbf7ed</span>, borda própria
+        <span class="bb-mono">#e5dfd3</span> e a sombra mais funda do sistema.
+      </p>
+      <div class="mesa">
+        <nav class="mesa-caps" aria-label="Capítulos">
+          <p class="est-nome" style="padding:4px 8px 8px;margin:0">Capítulos</p>
+          <button class="cap-item" type="button"><span class="n">01</span> O problema que ninguém nomeia</button>
+          <button class="cap-item" type="button" aria-current="true"><span class="n">02</span> O que o corpo faz com a fome</button>
+          <button class="cap-item" type="button"><span class="n">03</span> O prato que se monta sozinho</button>
+          <button class="cap-item" type="button"><span class="n">04</span> A semana em que dá vontade de desistir</button>
+        </nav>
+
+        <article class="folha">
+          <span class="marca-cap">Capítulo 2</span>
+          <h2>O que o corpo faz com a fome</h2>
+          <p class="editavel" tabindex="0">A fome não é falta de disciplina. Ela é um recado, e o corpo manda esse recado do mesmo jeito há milhares de anos: quando falta comida, ele economiza.</p>
+          <p class="editavel" tabindex="0">É por isso que a terceira semana de qualquer dieta restritiva é a mais difícil. Não é você que fraqueja. É o seu corpo fazendo exatamente o que ele sabe fazer.</p>
+          <span class="num-pag">12</span>
+        </article>
+
+        <div class="bb-grade" style="gap:8px;align-content:start">
+          <button class="btn btn-largo" type="button"><svg class="ico" aria-hidden="true"><use href="#i-brilho"/></svg> Reescrever</button>
+          <button class="btn btn-largo" type="button"><svg class="ico" aria-hidden="true"><use href="#i-mais"/></svg> Novo bloco</button>
+          <span class="bloco-acoes" style="flex-direction:row">
+            <button type="button" aria-label="Mover bloco pra cima"><svg class="ico" aria-hidden="true" style="transform:rotate(-90deg)"><use href="#i-seta"/></svg></button>
+            <button type="button" aria-label="Apagar bloco"><svg class="ico" aria-hidden="true"><use href="#i-lixo"/></svg></button>
+          </span>
+          <p class="est-nome" style="margin:12px 0 0">Capa</p>
+          <div class="capas">
+            <button class="capa-op" type="button" aria-pressed="true" aria-label="Capa 1">
+              <span class="capinha"><span class="faixa"></span><span class="tit">Fome não é falta de disciplina</span><span class="aut">Ana Paula</span></span>
+            </button>
+            <button class="capa-op" type="button" aria-pressed="false" aria-label="Capa 2">
+              <span class="capinha" style="background:var(--color-superficie-2);border-color:var(--color-linha-controle)"><span class="faixa" style="background:var(--color-roxo-tinta)"></span><span class="tit">Fome não é falta de disciplina</span><span class="aut">Ana Paula</span></span>
+            </button>
+            <button class="capa-op" type="button" aria-pressed="false" aria-label="Capa 3">
+              <span class="capinha" style="background:var(--color-roxo);border-color:var(--color-roxo-ativo);color:var(--color-claro)"><span class="faixa" style="background:var(--color-claro)"></span><span class="tit">Fome não é falta de disciplina</span><span class="aut" style="color:var(--color-claro)">Ana Paula</span></span>
+            </button>
+          </div>
+          <span class="creditos"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> <b>6</b> créditos por capítulo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">09 · Oferta e página</p>
+      <h2 class="bb-h2">Preço, seções da página e o endereço no ar</h2>
+      <div class="bb-grade bb-grade-2">
+        <div class="bb-grade" style="gap:var(--space-lg);align-content:start">
+          <div class="preco-caixa">
+            <span class="est-nome">Preço da oferta</span>
+            <span class="valor">R$ 97,00</span>
+            <p class="porque">Parcelado em até 3 vezes sem juros no cartão.</p>
+          </div>
+          <nav class="secoes" aria-label="Seções da página de vendas">
+            <p class="est-nome" style="padding:4px 8px 8px;margin:0">Seções da página</p>
+            <button class="sec-linha" type="button"><span class="n">01</span> Abertura</button>
+            <button class="sec-linha" type="button" aria-current="true"><span class="n">02</span> O problema</button>
+            <button class="sec-linha" type="button"><span class="n">03</span> O que você recebe</button>
+            <button class="sec-linha" type="button"><span class="n">04</span> Sobre você <span class="falta">falta foto</span></button>
+            <button class="sec-linha" type="button"><span class="n">05</span> Perguntas</button>
+          </nav>
+        </div>
+        <div class="festa">
+          <span class="festa-marca" aria-hidden="true"><svg class="ico ico-g" style="stroke-width:2.4"><use href="#i-ok"/></svg></span>
+          <h3 class="bb-titulo" style="margin-bottom:6px">Sua página está no ar</h3>
+          <p class="bb-apoio">Qualquer pessoa com este endereço já consegue comprar.</p>
+          <p class="endereco"><svg class="ico" aria-hidden="true"><use href="#i-link"/></svg> gu.ia/ana-nutri</p>
+          <div class="pilha">
+            <button class="btn btn-principal" type="button">Copiar o endereço</button>
+            <button class="btn" type="button">Ver como ficou</button>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="bb-h3">Prévia da página, na folha</h3>
+      <p class="bb-sutil" style="margin:0">O botão de compra é o único botão dentro da folha: roxo cheio sobre o papel, e invertido (fundo claro, rótulo em roxo-tinta) dentro do topo roxo, pra ter contraste próprio nas duas seções.</p>
+      <div class="previa" style="max-width:720px">
+        <div class="sec">
+          <span class="est-nome" style="color:var(--color-roxo-tinta)">Abertura</span>
+          <h2 class="bb-h2" style="margin:6px 0 8px;max-width:26ch">Emagreça sem passar fome e sem cortar o que você gosta</h2>
+          <p class="bb-apoio" style="margin:0">Um método de 6 semanas pra quem já tentou dieta restritiva e desistiu.</p>
+        </div>
+        <div class="sec topo-pagina">
+          <span class="rot-sec est-nome">Chamada</span>
+          <h2 class="bb-h2" style="margin:6px 0 8px;max-width:26ch">Comece hoje, no seu ritmo</h2>
+          <p style="margin:0 0 16px">Acesso imediato depois da compra.</p>
+          <p style="margin:0"><span class="botao-compra">Quero começar</span></p>
+        </div>
+        <div class="sec">
+          <span class="est-nome" style="color:var(--color-roxo-tinta)">O que você recebe</span>
+          <ul class="bb-regras" style="margin-top:8px">
+            <li><span class="bb-num">1</span><span>Ebook de 7 capítulos com o método completo.</span></li>
+            <li><span class="bb-num">2</span><span>Lista de compras pronta pras 6 semanas.</span></li>
+          </ul>
+          <p style="margin:16px 0 0"><span class="botao-compra">Quero começar</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">10 · Stories e postagens</p>
+      <h2 class="bb-h2">O que ela publica pra chamar gente</h2>
+      <div class="stories">
+        <div class="story">
+          <span class="n">Story 1</span>
+          <div class="quadro">Foto sua olhando pra câmera, com a frase por cima.</div>
+          <p class="bb-sutil" style="margin:0">"Você já tentou três dietas este ano?"</p>
+          <button class="btn btn-p" type="button">Copiar o texto</button>
+        </div>
+        <div class="story">
+          <span class="n">Story 2</span>
+          <div class="quadro">Print do capítulo 1 do ebook.</div>
+          <p class="bb-sutil" style="margin:0">"Escrevi isso pra quem desistiu na terceira semana."</p>
+          <button class="btn btn-p" type="button">Copiar o texto</button>
+        </div>
+        <div class="story">
+          <span class="n">Story 3</span>
+          <div class="quadro">Caixinha de pergunta.</div>
+          <p class="bb-sutil" style="margin:0">"Qual foi a dieta mais difícil que você já fez?"</p>
+          <button class="btn btn-p" type="button">Copiar o texto</button>
+        </div>
+      </div>
+      <div class="bb-grade" style="gap:var(--space-sm);margin-top:var(--space-lg)">
+        <article class="postagem">
+          <div><span class="ordem">Segunda</span><p class="tipo" style="margin:4px 0 0">Carrossel de 5 telas</p></div>
+          <span class="selo andamento"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> Rascunho</span>
+          <p class="roteiro">Tela 1: a frase que para o dedo.
+Tela 2: o erro que quase todo mundo comete.
+Tela 3: o que fazer no lugar.</p>
+        </article>
+        <article class="postagem">
+          <div><span class="ordem">Quinta</span><p class="tipo" style="margin:4px 0 0">Reels de 30 segundos</p></div>
+          <span class="selo"><svg class="ico" aria-hidden="true"><use href="#i-texto"/></svg> Roteiro pronto</span>
+          <p class="roteiro">Fala direto pra câmera, sem edição. Comece pela pergunta e termine no convite.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">11 · Chat</p>
+      <h2 class="bb-h2">Falar com a Gu.ia</h2>
+      <div class="cartao" style="max-width:480px">
+        <div class="pilha" style="margin-bottom:16px">
+          <svg class="ico" aria-hidden="true" style="color:var(--color-roxo-tinta)"><use href="#i-chat"/></svg>
+          <h3 class="bb-h4" style="flex:1">Falar com a Gu.ia</h3>
+          <button class="btn btn-icone" type="button" aria-label="Fechar o chat"><svg class="ico" aria-hidden="true"><use href="#i-x"/></svg></button>
+        </div>
+        <div class="chat-corpo" style="margin-bottom:16px">
+          <p class="balao-chat guia">Oi, Ana. Você parou no capítulo 4 do ebook. Quer continuar de onde parou?</p>
+          <p class="balao-chat eu">Quero, mas antes queria mudar o título.</p>
+          <p class="balao-chat guia">Pode mudar. Abro o editor no título e você escreve por cima.</p>
+        </div>
+        <div class="chat-prontas">
+          <button type="button">Como escolho o preço?</button>
+          <button type="button">Meu ebook está muito curto?</button>
+        </div>
+        <div class="chat-pe">
+          <input type="text" aria-label="Escreva sua pergunta" placeholder="Escreva sua pergunta">
+          <button class="btn btn-principal btn-icone" type="button" aria-label="Enviar"><svg class="ico" aria-hidden="true"><use href="#i-seta"/></svg></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">12 · Tour e boas-vindas</p>
+      <h2 class="bb-h2">A primeira vez que ela abre o painel</h2>
+      <div class="bb-grade bb-grade-2">
+        <div>
+          <p class="est-nome" style="margin-bottom:8px">Balão do tour, sobre o véu</p>
+          <div style="position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--color-linha-controle);padding:32px;background:var(--color-superficie)">
+            <p class="bb-sutil" style="margin:0 0 60px">Conteúdo da tela atrás do véu</p>
+            <span class="tour-veu" style="position:absolute;inset:0"></span>
+            <span class="tour-anel" style="position:absolute;left:24px;top:16px;width:180px;height:40px;box-shadow:none"></span>
+            <div class="tour-balao" data-lado="baixo" style="position:relative;--seta-desloc:28px">
+              <p class="conta">Passo 2 de 5</p>
+              <h3 class="bb-h4" style="margin-bottom:8px">Aqui ficam seus lançamentos</h3>
+              <p class="bb-apoio" style="margin:0">Cada lançamento é um produto seu, com as oito etapas dentro dele.</p>
+              <div class="pe">
+                <button class="btn btn-principal btn-p" type="button">Próximo</button>
+                <button class="btn btn-texto btn-p" type="button">Pular o tour</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="est-nome" style="margin-bottom:8px">Overlay de boas-vindas, um botão só</p>
+          <div class="boas-caixa">
+            <span class="selo-marca" aria-hidden="true">G</span>
+            <h3 class="bb-titulo" style="margin-bottom:10px">Bem-vinda, Ana Paula</h3>
+            <p class="bb-apoio" style="font-size:var(--text-body-large);margin-bottom:24px;max-width:46ch">Em oito etapas você sai daqui com um produto no ar. Começamos por uma conversa de 5 minutos.</p>
+            <button class="btn btn-principal btn-grande btn-largo" type="button">Começar a conversa</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">13 · Feedback</p>
+      <h2 class="bb-h2">Aviso salvo, alerta inline, crédito e erro</h2>
+      <p class="bb-apoio">Cada estado traz cor, ícone e palavra. Nenhum deles se apoia só na cor.</p>
+      <div class="bb-grade" style="gap:var(--space-lg)">
+        <div class="aviso">
+          <svg class="ico" aria-hidden="true"><use href="#i-ok"/></svg>
+          <p style="margin:0">Capítulo salvo.</p>
+          <button class="desfazer" type="button">Desfazer <span class="bb-sutil" style="color:var(--color-tinta-sutil)">5s</span></button>
+        </div>
+        <p class="aviso-inline ok"><svg class="ico" aria-hidden="true"><use href="#i-ok"/></svg> Sua página passou na revisão. Pode publicar.</p>
+        <p class="aviso-inline"><svg class="ico" aria-hidden="true"><use href="#i-alerta"/></svg> Falta a sua foto na seção "Sobre você". A página publica sem ela, mas vende menos.</p>
+        <p class="aviso-inline erro"><svg class="ico" aria-hidden="true"><use href="#i-erro"/></svg> Não deu pra salvar agora. Verifique a conexão e toque em salvar de novo.</p>
+        <div class="pilha">
+          <span class="creditos"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> <b>240</b> créditos</span>
+          <span class="creditos acabando"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> <b>8</b> créditos, acabando</span>
+          <span class="creditos leve"><svg class="ico" aria-hidden="true"><use href="#i-raio"/></svg> custa <b>2</b> créditos</span>
+          <span class="selo"><svg class="ico" aria-hidden="true"><use href="#i-texto"/></svg> Rascunho</span>
+          <span class="selo no-ar"><svg class="ico" aria-hidden="true"><use href="#i-ok"/></svg> No ar</span>
+          <span class="selo parado"><svg class="ico" aria-hidden="true"><use href="#i-alerta"/></svg> Parado</span>
+          <span class="selo exemplo"><svg class="ico" aria-hidden="true"><use href="#i-brilho"/></svg> Exemplo</span>
+        </div>
+      </div>
+      <p class="bb-sutil">A badge de crédito em vermelho aparece no máximo uma vez por tela: é o único token que interrompe a leitura de propósito.</p>
+    </div>
+  </section>
+
+  <section class="bb-secao">
+    <div class="bb-miolo">
+      <p class="bb-rot">14 · Conta</p>
+      <h2 class="bb-h2">Dados, plano e onde os créditos foram</h2>
+      <div class="bb-grade bb-grade-2">
+        <div class="conta-bloco">
+          <h3 class="bb-h4" style="margin-bottom:12px">Sua conta</h3>
+          <dl>
+            <div><dt>Nome</dt><dd>Ana Paula Ferreira</dd></div>
+            <div><dt>E-mail</dt><dd class="mono">ana@exemplo.com.br</dd></div>
+            <div><dt>Plano</dt><dd>Mensal, renova em 12/10</dd></div>
+            <div><dt>Créditos</dt><dd class="mono">240</dd></div>
+          </dl>
+        </div>
+        <div class="conta-bloco">
+          <h3 class="bb-h4" style="margin-bottom:8px">Onde os créditos foram</h3>
+          <ul class="gasta-lista">
+            <li><b>-6</b> Capítulo 4 do ebook</li>
+            <li><b>-6</b> Capítulo 3 do ebook</li>
+            <li><b>-12</b> Página de vendas Ana Nutri</li>
+            <li><b>+300</b> Renovação do plano</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bb-caixa">
+        <p class="bb-h4" style="margin-bottom:8px">Tipografia utilitária</p>
+        <p class="bb-apoio" style="margin-bottom:8px">Mono entra em número, valor e endereço, e em nada mais. Piso próprio de 16px.</p>
+        <p class="mono-g" style="margin:0">gu.ia/ana-nutri</p>
+        <p class="mono" style="margin:4px 0 0">240 créditos · R$ 97,00 · 128 / 400 caracteres</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bb-secao bb-alt">
+    <div class="bb-miolo">
+      <p class="bb-rot">15 · A casca inteira</p>
+      <h2 class="bb-h2">Barra lateral mais a home, em miniatura</h2>
+      <p class="bb-apoio">Como as peças se comportam juntas: a barra à esquerda com o item atual marcado, e a tela de início com o cartão de retomada, os contadores e a grade de ferramentas.</p>
+      <div class="casca-mini">
+        <div class="barra">
+          <a class="marca" href="#conteudo">
+            <span class="marca-selo" aria-hidden="true">G</span>
+            <span class="marca-nome">Gu.ia</span>
+          </a>
+          <ul class="nav-lista">
+            <li><a class="nav-item" href="#conteudo" aria-current="page"><svg class="ico" aria-hidden="true"><use href="#i-casa"/></svg> Início</a></li>
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-grade"/></svg> Meus lançamentos <span class="conta-peca">3</span></a></li>
+          </ul>
+          <span class="barra-rot">Peças</span>
+          <ul class="nav-lista">
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-gente"/></svg> Público</a></li>
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg> Ebook <span class="conta-peca">2</span></a></li>
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-etiqueta"/></svg> Oferta</a></li>
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-texto"/></svg> Página de vendas</a></li>
+            <li><a class="nav-item" href="#conteudo"><svg class="ico" aria-hidden="true"><use href="#i-imagem"/></svg> Stories</a></li>
+          </ul>
+          <div class="barra-pe">
+            <a class="conta-item" href="#conteudo">
+              <span class="av" aria-hidden="true">AP</span>
+              <span class="txt"><b>Ana Paula</b><span>240 créditos</span></span>
+            </a>
+          </div>
+        </div>
+        <div class="palco">
+          <p class="bb-rot" style="margin-bottom:4px">Terça, 19 de setembro</p>
+          <h3 class="bb-h2" style="margin-bottom:16px">Bom dia, Ana Paula</h3>
+          <div class="parou" style="margin-bottom:16px">
+            <div style="flex:1 1 240px;min-width:0">
+              <span class="rot">Onde você parou</span>
+              <p class="bb-h4" style="margin:0 0 4px">Ebook do lançamento Ana Nutri</p>
+              <p class="bb-sutil" style="margin:0">Faltam 3 capítulos.</p>
+            </div>
+            <button class="btn btn-principal btn-p" type="button">Continuar</button>
+          </div>
+          <div class="contadores" style="margin-bottom:16px">
+            <div class="contador"><b>3</b><span>lançamentos</span></div>
+            <div class="contador"><b>12</b><span>peças</span></div>
+            <div class="contador credito"><b>240</b><span>créditos</span></div>
+          </div>
+          <div class="grade-ferr">
+            <span class="ferr">
+              <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-gente"/></svg><b>Público</b></span>
+              <span class="tem">1 ficha</span>
+            </span>
+            <span class="ferr">
+              <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-livro"/></svg><b>Ebook</b></span>
+              <span class="tem">2 ebooks</span>
+            </span>
+            <span class="ferr">
+              <span class="topo"><svg class="ico" aria-hidden="true"><use href="#i-etiqueta"/></svg><b>Oferta</b></span>
+              <span class="tem zero">nenhuma</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="bb-rodape">
+  <div class="bb-fila">
+    <span>Gu.ia, Brandbook 1.0.0 · 2026 · edição LILÁS 2026-09</span>
+    <span>
+      <a href="../guia-marca.md">Guia de marca</a> ·
+      <a href="../DESIGN.md">DESIGN.md</a> ·
+      <a href="../tokens.css">tokens.css</a> ·
+      <a href="../tokens.json">tokens.json</a>
+    </span>
+  </div>
+</footer>
+
+<div class="bb-toast" role="status" aria-live="polite"></div>
+<script src="_shared/copy.js"></script>
+</body>
+</html>

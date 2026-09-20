@@ -1,0 +1,43 @@
+{
+  "client": "Gu.ia",
+  "grade": "A",
+  "overall": 95,
+  "categories": {
+    "colors_coverage": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "typography_coverage": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "component_completeness": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "confidence_high_ratio": {
+      "score": 73,
+      "weight": 0.2,
+      "grade": "C"
+    },
+    "lint_clean": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "brand_specificity_donts": {
+      "score": 100,
+      "weight": 0.1,
+      "grade": "A"
+    },
+    "coverage_notes_present": {
+      "score": 100,
+      "weight": 0.1,
+      "grade": "A"
+    }
+  },
+  "generated_at": "2026-09-20T02:45:53.973Z"
+}

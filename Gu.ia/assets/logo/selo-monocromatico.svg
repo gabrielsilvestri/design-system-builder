@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" role="img" aria-label="Selo da Gu.ia em uma cor">
+  <rect width="32" height="32" rx="8" fill="none" stroke="currentColor" stroke-width="1.5"/>
+  <path d="M9 23C9 14.5 14.5 9 22 9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="24" cy="8.6" r="2.8" fill="currentColor"/>
+</svg>

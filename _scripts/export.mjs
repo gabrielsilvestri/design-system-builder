@@ -188,7 +188,7 @@ function buildCss(t) {
     }
   }
 
-  // Motion (durations + easings)
+  // Motion (durations + easings + receitas nomeadas)
   if (isObj(t.motion)) {
     const durations = isObj(t.motion.durations) ? Object.entries(t.motion.durations) : [];
     const easings = isObj(t.motion.easings) ? Object.entries(t.motion.easings) : [];
@@ -199,6 +199,29 @@ function buildCss(t) {
       }
       for (const [name, value] of easings) {
         lines.push(`  --ease-${slugify(name).replace(/^ease-/, "")}: ${value};`);
+      }
+      lines.push("");
+    }
+    // receitas: nome próprio, sem prefixo, porque quem consome já chama assim
+    if (isObj(t.motion.receitas)) {
+      const receitas = Object.entries(t.motion.receitas);
+      if (receitas.length > 0) {
+        lines.push("  /* ============ MOTION, RECEITAS NOMEADAS ============ */");
+        for (const [name, value] of receitas) {
+          lines.push(`  --${name}: ${value};`);
+        }
+        lines.push("");
+      }
+    }
+  }
+
+  // Custom: tokens de nome próprio (medida de layout, camada de fundo)
+  if (isObj(t.custom)) {
+    const entries = Object.entries(t.custom);
+    if (entries.length > 0) {
+      lines.push("  /* ============ CUSTOM (medida de layout e camada de fundo) ============ */");
+      for (const [name, value] of entries) {
+        lines.push(`  --${name}: ${value};`);
       }
       lines.push("");
     }
@@ -327,7 +350,22 @@ function buildDtcg(t) {
         motion.easing[name] = { $value: String(value), $type: "cubicBezier" };
       }
     }
+    if (isObj(t.motion.receitas)) {
+      motion.receita = {};
+      for (const [name, value] of Object.entries(t.motion.receitas)) {
+        motion.receita[name] = { $value: String(value), $type: "other" };
+      }
+    }
     if (Object.keys(motion).length > 0) out.motion = motion;
+  }
+
+  // Custom
+  if (isObj(t.custom)) {
+    const c = {};
+    for (const [name, value] of Object.entries(t.custom)) {
+      c[name] = { $value: String(value), $type: "other" };
+    }
+    if (Object.keys(c).length > 0) out.custom = c;
   }
 
   // Z-index
