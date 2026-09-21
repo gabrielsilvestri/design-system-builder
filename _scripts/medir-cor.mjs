@@ -20,7 +20,7 @@
 
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { resolve, join, dirname } from "node:path";
-import { fileURLToPath } from "node:url";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import YAML from "js-yaml";
 
 // ============ conversões ============
@@ -154,12 +154,35 @@ function anotar(cliente) {
   const dados = YAML.load(fm[1]) || {};
   const notas = dados.contrast_notes || {};
 
+  const notasEscuras = dados.contrast_notes_dark || {};
+
   const linhas = readFileSync(caminhoTokens, "utf8").split(/\r?\n/);
   let aplicadas = 0;
+  // o mesmo token aparece nos dois temas: no bloco claro a nota traz as duas
+  // razões, no bloco escuro só a do escuro. Sem isso, a nota do claro apareceria
+  // colada num valor escuro e diria o contrário do que a cor faz ali.
+  let temaAtual = "claro";
   const saida = linhas.map((linha) => {
+    if (/\[data-theme="dark"\]|:root:not\(\[data-theme\]\)/.test(linha)) temaAtual = "escuro";
+    else if (/\[data-theme="light"\]/.test(linha)) temaAtual = "ilha-clara";
+    else if (/^:root\s*\{/.test(linha)) temaAtual = "claro";
+
     const m = linha.match(/^(\s*--([a-z0-9-]+):\s*[^;]+;)(?:\s*\/\*.*\*\/)?\s*$/);
     if (!m) return linha;
-    const nota = notas[m[2]];
+    const chave = m[2];
+    const clara = notas[chave];
+    const escura = notasEscuras[chave];
+
+    let nota = null;
+    if (temaAtual === "escuro") {
+      nota = escura ? `escuro: ${escura}` : null;
+    } else if (temaAtual === "ilha-clara") {
+      nota = clara ? `claro: ${clara}` : null;
+    } else if (clara && escura) {
+      nota = `claro: ${clara} | escuro: ${escura}`;
+    } else if (clara) {
+      nota = clara;
+    }
     if (!nota) return linha;
     aplicadas += 1;
     return `${m[1]}  /* ${nota} */`;
@@ -192,7 +215,11 @@ function anotar(cliente) {
   }
 }
 
-const [, , cmd, ...args] = process.argv;
+// só roda o CLI quando o arquivo é chamado direto: outros scripts importam as
+// funções daqui e não podem disparar o parser de argumentos
+const chamadoDireto =
+  process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href;
+const [, , cmd, ...args] = chamadoDireto ? process.argv : [];
 
 if (cmd === "oklch") {
   const [L, C, H] = args.map(Number);

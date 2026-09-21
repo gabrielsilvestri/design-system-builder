@@ -193,21 +193,21 @@ if (import.meta.url === pathToFileURL(process.argv[1]).href) {
     console.error("Usage: node _scripts/lint.mjs <cliente>");
     process.exit(1);
   }
-  const designMdPath = join(workspaceRoot, clientArg, "DESIGN.md");
+  const designMdPath = join(resolve(workspaceRoot, clientArg), "DESIGN.md");
   if (!existsSync(designMdPath)) {
     console.error(`DESIGN.md not found: ${designMdPath}`);
     process.exit(1);
   }
   const md = readFileSync(designMdPath, "utf8");
   const result = lintDesignMd(md);
-  const reportDir = join(workspaceRoot, clientArg, "_inputs");
+  const reportDir = join(resolve(workspaceRoot, clientArg), "_inputs");
   const reportPath = join(reportDir, "lint-report.json");
   try {
     writeFileSync(reportPath, JSON.stringify(result, null, 2) + "\n");
   } catch (e) {
     // _inputs/ pode não existir ainda; cair pra cliente root
     writeFileSync(
-      join(workspaceRoot, clientArg, "lint-report.json"),
+      join(resolve(workspaceRoot, clientArg), "lint-report.json"),
       JSON.stringify(result, null, 2) + "\n"
     );
   }

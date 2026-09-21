@@ -29,7 +29,7 @@ if (!cliente || !caminhoHtml) {
   process.exit(1);
 }
 
-const caminhoTokens = join(raizWorkspace, cliente, "tokens.css");
+const caminhoTokens = join(resolve(raizWorkspace, cliente), "tokens.css");
 for (const p of [caminhoTokens, caminhoHtml]) {
   if (!existsSync(p)) {
     console.error(`[diff] não achei ${p}`);
@@ -37,21 +37,48 @@ for (const p of [caminhoTokens, caminhoHtml]) {
   }
 }
 
-/** Extrai o primeiro bloco `:root { ... }` de um texto CSS ou HTML. */
-function blocoRoot(texto) {
-  // o seletor de verdade, não a palavra ":root" solta num comentário
-  const m = texto.match(/:root\s*\{/);
-  if (!m) return "";
-  const abre = m.index + m[0].length - 1;
-  let nivel = 0;
-  for (let j = abre; j < texto.length; j++) {
-    if (texto[j] === "{") nivel += 1;
-    else if (texto[j] === "}") {
-      nivel -= 1;
-      if (nivel === 0) return texto.slice(abre + 1, j);
+/**
+ * Junta TODOS os blocos `:root` do arquivo, na ordem da fonte.
+ *
+ * Um bloco só não serve: um `:root` mais abaixo no arquivo redefine token do
+ * primeiro pela cascata, e comparar só o primeiro dá falso negativo (foi o que
+ * escondeu três superfícies redefinidas no fim do components.css).
+ * Blocos com atributo (`:root[data-theme="dark"]`) ficam de fora: são outro
+ * tema, e o diff aqui é do tema base.
+ */
+/** Quantos blocos `{}` estão abertos antes de um índice: 0 = topo do arquivo. */
+function profundidade(texto, ate) {
+  let n = 0;
+  for (let i = 0; i < ate; i++) {
+    if (texto[i] === "{") n += 1;
+    else if (texto[i] === "}") n -= 1;
+  }
+  return n;
+}
+
+function blocosRoot(texto) {
+  const re = /:root\s*\{/g;
+  const partes = [];
+  let m;
+  while ((m = re.exec(texto)) !== null) {
+    // `:root` dentro de @media é comportamento responsivo, não valor em repouso:
+    // comparar aquilo acusaria drift onde só existe breakpoint
+    if (profundidade(texto, m.index) > 0) continue;
+    const abre = m.index + m[0].length - 1;
+    let nivel = 0;
+    for (let j = abre; j < texto.length; j++) {
+      if (texto[j] === "{") nivel += 1;
+      else if (texto[j] === "}") {
+        nivel -= 1;
+        if (nivel === 0) {
+          partes.push(texto.slice(abre + 1, j));
+          re.lastIndex = j;
+          break;
+        }
+      }
     }
   }
-  return "";
+  return partes.join(";\n");
 }
 
 /** Tira comentários /* ... *\/ sem tocar no conteúdo de string. */
@@ -60,7 +87,7 @@ function semComentarios(css) {
 }
 
 function lerTokens(texto) {
-  const corpo = semComentarios(blocoRoot(texto));
+  const corpo = semComentarios(blocosRoot(texto));
   const mapa = new Map();
   // separa por ";" fora de parênteses e fora de aspas
   let atual = "";

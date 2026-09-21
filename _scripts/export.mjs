@@ -97,6 +97,10 @@ function buildCss(t) {
   lines.push("/* Não editar manualmente; rodar export.mjs novamente após alterar DESIGN.md */");
   lines.push("");
   lines.push(":root {");
+  // diz ao navegador que os dois temas existem: barra de rolagem, campo nativo
+  // e seletor de data acompanham em vez de ficarem claros no escuro
+  lines.push("  color-scheme: light dark;");
+  lines.push("");
 
   // Colors canonical
   if (isObj(t.colors)) {
@@ -255,7 +259,104 @@ function buildCss(t) {
   // Remove trailing blank line antes do fechamento
   while (lines.length > 1 && lines[lines.length - 1] === "") lines.pop();
   lines.push("}");
+
+  const escuro = buildDarkBody(t);
+  if (escuro.length > 0) {
+    const corpo = escuro.join("\n");
+    lines.push("");
+    lines.push("/* ============ TEMA ESCURO ============ */");
+    lines.push("/* Ligado por data-theme=\"dark\" no <html>. O claro é o default e não");
+    lines.push("   precisa de atributo. O bloco de media query cobre o modo Sistema:");
+    lines.push("   ele só vale quando NÃO há data-theme, senão a escolha da aluna");
+    lines.push("   perderia pro sistema operacional. */");
+    lines.push("");
+    // o seletor cobre a raiz E qualquer elemento marcado: é o que deixa o
+    // brandbook mostrar os dois temas lado a lado na mesma página
+    lines.push(':root[data-theme="dark"], [data-theme="dark"] {');
+    lines.push(corpo);
+    lines.push("}");
+    lines.push("");
+    // ilha clara: deixa um trecho ficar no claro mesmo com a página no escuro,
+    // que é como o brandbook mostra as duas versões de uma receita lado a lado
+    const claroIlha = buildLightOverrides(t);
+    if (claroIlha.length > 0) {
+      lines.push("");
+      lines.push('[data-theme="light"] {');
+      lines.push(claroIlha.join(String.fromCharCode(10)));
+      lines.push("}");
+    }
+    lines.push("");
+    lines.push("@media (prefers-color-scheme: dark) {");
+    lines.push("  :root:not([data-theme]) {");
+    lines.push(corpo.split("\n").map((l) => (l ? "  " + l : l)).join("\n"));
+    lines.push("  }");
+    lines.push("}");
+  }
+
   return lines.join("\n") + "\n";
+}
+
+/** As mesmas categorias do bloco escuro, mas com os valores do tema claro. */
+function buildLightOverrides(t) {
+  const linhas = [];
+  if (isObj(t.colors)) {
+    for (const slot of CANONICAL_COLOR_SLOTS) {
+      const hex = pickHex(t.colors[slot]);
+      if (hex) linhas.push(`  --color-${slot}: ${hex};`);
+    }
+    if (isObj(t.colors.named)) {
+      for (const [name, value] of Object.entries(t.colors.named)) {
+        const hex = pickHex(value);
+        if (hex) linhas.push(`  --color-${slugify(name)}: ${hex};`);
+      }
+    }
+  }
+  if (isObj(t.shadows)) {
+    for (const [name, value] of Object.entries(t.shadows)) linhas.push(`  --shadow-${name}: ${value};`);
+  }
+  if (isObj(t.custom)) {
+    for (const [name, value] of Object.entries(t.custom)) linhas.push(`  --${name}: ${value};`);
+  }
+  return linhas;
+}
+
+/**
+ * Corpo do tema escuro: só o que muda. Tipografia, espaçamento, raio e
+ * breakpoint são os mesmos nos dois temas e não se repetem aqui.
+ */
+function buildDarkBody(t) {
+  const linhas = [];
+  const d = t.colors_dark;
+  if (isObj(d)) {
+    linhas.push("  /* ---- cores, papéis canônicos ---- */");
+    for (const slot of CANONICAL_COLOR_SLOTS) {
+      const hex = pickHex(d[slot]);
+      if (hex) linhas.push(`  --color-${slot}: ${hex};`);
+    }
+    if (isObj(d.named)) {
+      linhas.push("");
+      linhas.push("  /* ---- cores nomeadas ---- */");
+      for (const [name, value] of Object.entries(d.named)) {
+        const hex = pickHex(value);
+        if (hex) linhas.push(`  --color-${slugify(name)}: ${hex};`);
+      }
+    }
+  }
+  if (isObj(t.shadows_dark)) {
+    linhas.push("");
+    linhas.push("  /* ---- sombra: mais escura e menos tingida que no claro ---- */");
+    for (const [name, value] of Object.entries(t.shadows_dark)) {
+      linhas.push(`  --shadow-${name}: ${value};`);
+    }
+  }
+  if (isObj(t.custom_dark)) {
+    linhas.push("");
+    linhas.push("  /* ---- camada de acabamento ---- */");
+    for (const [name, value] of Object.entries(t.custom_dark)) {
+      linhas.push(`  --${name}: ${value};`);
+    }
+  }
+  return linhas;
 }
 
 // ============ tokens.json (DTCG W3C) ============
