@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Silvestri Dashboard</title>
+<meta name="description" content="Referência viva do design system padrão dos painéis do Biel: estrutura da Gu.ia, paleta teal da casa.">
+<link rel="stylesheet" href="../fonts.css">
+<link rel="stylesheet" href="../tokens.css">
+<link rel="stylesheet" href="../components.css">
+<style>
+  .amostras { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .amostra { border: 1px solid var(--color-borda-suave); border-radius: var(--radius-md); overflow: hidden; background: var(--color-superficie); }
+  .amostra i { display: block; height: 56px; }
+  .amostra div { padding: 8px 12px; font-size: var(--text-caption); line-height: 1.4; }
+  .amostra b { display: block; color: var(--color-tinta); font-weight: 600; }
+  .escala > div { display: flex; align-items: baseline; gap: 16px; padding: 12px 0; border-top: 1px solid var(--color-linha); }
+  .escala > div:first-child { border-top: 0; }
+  .escala .papel { flex: 0 0 180px; font-size: var(--text-caption); color: var(--color-tinta-sutil); }
+  .linha-btn { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .dois { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .demo-dica { position: relative; height: 56px; }
+  .demo-dica .dica { left: 0; top: 0; }
+</style>
+</head>
+<body>
+<div class="topo-cel"><button class="btn" id="abrir" aria-expanded="false" aria-controls="barra">Menu</button></div>
+<div class="app">
+  <nav class="barra" id="barra" aria-label="navegação">
+    <a class="marca" href="#"><span class="marca-selo" aria-hidden="true"></span><span class="marca-nome">Silvestri</span></a>
+    <a class="nav-item" aria-current="page" href="#"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg>Instagram</a>
+    <a class="nav-item" href="#cores"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/></svg>Cores</a>
+    <span class="barra-rot">Operação</span>
+    <a class="nav-item" href="#tipo"><svg class="ico" viewBox="0 0 24 24"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg>Tipografia <span class="conta">14</span></a>
+    <a class="nav-item" href="#componentes"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>Componentes <span class="conta">9</span></a>
+    <div class="barra-pe"><button class="btn">Atualizar</button></div>
+  </nav>
+
+  <main class="conteudo"><div class="coluna">
+    <header class="cabeca">
+      <div>
+        <h1>Silvestri Dashboard</h1>
+        <p class="linha-do-que-faz">O padrão dos painéis do Biel: a estrutura e o acabamento da Gu.ia com a paleta escura e o teal da casa.</p>
+      </div>
+      <div class="acoes">
+        <div class="seg" role="group" aria-label="período"><button aria-pressed="false">7 dias</button><button aria-pressed="true">30 dias</button><button aria-pressed="false">90 dias</button></div>
+      </div>
+    </header>
+
+    <div class="faixa">
+      <div class="indicador"><span class="rot">Comentários no período</span><span class="num">2.476</span><div class="var"><span class="sobe">+18%</span> contra os 30 dias anteriores</div></div>
+      <div class="indicador"><span class="rot">Cliques no link da bio</span><span class="num">62</span><div class="var">2,5% das visitas ao perfil</div></div>
+      <div class="indicador"><span class="rot">Engajamento real</span><span class="num">21,1%</span><div class="var"><span class="desce">-2 pontos</span> na janela</div></div>
+      <div class="indicador"><span class="rot">Seguidores</span><span class="num">32.652</span><div class="var">faltam 17.348 para 50 mil</div></div>
+    </div>
+
+    <section class="secao" id="cores">
+      <div class="secao-titulo"><h2>Cores</h2><span class="sub">canvas, superfícies, tinta, o acento e as cores de dado</span></div>
+      <div class="amostras">
+        <div class="amostra"><i style="background:var(--color-fundo)"></i><div><b>fundo</b>#101216</div></div>
+        <div class="amostra"><i style="background:var(--color-barra)"></i><div><b>barra</b>#14171b</div></div>
+        <div class="amostra"><i style="background:var(--color-superficie)"></i><div><b>superfície</b>#191d23</div></div>
+        <div class="amostra"><i style="background:var(--color-superficie-2)"></i><div><b>superfície 2</b>#222732</div></div>
+        <div class="amostra"><i style="background:var(--color-linha)"></i><div><b>linha</b>#37404e</div></div>
+        <div class="amostra"><i style="background:var(--color-tinta)"></i><div><b>tinta</b>#bcc2c9, 10.44:1</div></div>
+        <div class="amostra"><i style="background:var(--color-tinta-apoio)"></i><div><b>apoio</b>#9fa6b0</div></div>
+        <div class="amostra"><i style="background:var(--color-teal)"></i><div><b>teal</b>#4fc7bb, área</div></div>
+        <div class="amostra"><i style="background:var(--color-teal-tinta)"></i><div><b>teal tinta</b>#5bbcb2, texto</div></div>
+        <div class="amostra"><i style="background:var(--color-teal-fundo)"></i><div><b>teal fundo</b>#1f3135</div></div>
+        <div class="amostra"><i style="background:var(--color-verde)"></i><div><b>verde</b>comentário, lead</div></div>
+        <div class="amostra"><i style="background:var(--color-azul)"></i><div><b>azul</b>clique</div></div>
+        <div class="amostra"><i style="background:var(--color-ambar)"></i><div><b>âmbar</b>engajamento</div></div>
+        <div class="amostra"><i style="background:var(--color-roxo)"></i><div><b>roxo</b>reel, só dado</div></div>
+        <div class="amostra"><i style="background:var(--color-ardosia)"></i><div><b>ardósia</b>demografia</div></div>
+        <div class="amostra"><i style="background:var(--color-vermelho)"></i><div><b>vermelho</b>queda, erro</div></div>
+      </div>
+    </section>
+
+    <section class="secao" id="tipo">
+      <div class="secao-titulo"><h2>Tipografia</h2><span class="sub">Hanken Grotesk na interface, JetBrains Mono só em código</span></div>
+      <div class="cartao escala">
+        <div><span class="papel">página 30/600</span><span style="font-size:var(--text-display-large);font-weight:600;letter-spacing:var(--tracking-display-large);color:var(--color-tinta)">Funil do período</span></div>
+        <div><span class="papel">indicador 30/600 tnum</span><span style="font-size:var(--text-metric);font-weight:600;letter-spacing:var(--tracking-metric);color:var(--color-tinta)">119.890</span></div>
+        <div><span class="papel">seção 20/600</span><span style="font-size:var(--text-section-heading);font-weight:600;color:var(--color-tinta)">Crescimento de seguidores</span></div>
+        <div><span class="papel">cartão 17/600</span><span style="font-size:var(--text-subheading-large);font-weight:600;color:var(--color-tinta)">Melhor post da janela</span></div>
+        <div><span class="papel">corpo 15/400</span><span>Cada post promete uma recompensa, a pessoa comenta e o comentário vira lead.</span></div>
+        <div><span class="papel">legenda 14/400</span><span style="font-size:var(--text-caption)">coletado em 27/09/2026, 11:40</span></div>
+        <div><span class="papel">grupo 14/500 caixa alta</span><span class="barra-rot" style="padding:0">Operação</span></div>
+        <div><span class="papel">código 14/500 mono</span><code>gift.gabrielsilvestri.com.br/app?src=APP</code></div>
+      </div>
+    </section>
+
+    <section class="secao" id="componentes">
+      <div class="secao-titulo"><h2>Componentes</h2><span class="sub">as receitas de components.css</span></div>
+      <div class="dois">
+        <div class="cartao"><h3>Botões</h3><p class="desc">Um principal por tela. Alvo de 44px, raio 12px, foco em anel teal de 2px.</p>
+          <div class="linha-btn" style="margin-top:16px"><button class="btn btn-principal">Atualizar agora</button><button class="btn">Ver campanhas</button><button class="btn btn-texto">Mostrar mais</button><button class="btn" disabled>Sem dado</button></div></div>
+        <div class="cartao destaque"><span class="eyebrow">Onde você parou</span><h3 style="margin-top:8px">Cartão em destaque</h3><p class="desc">Borda teal e sombra de retomada: o cartão que manda na tela.</p>
+          <div class="linha-btn" style="margin-top:16px"><span class="chip">carrossel</span><span class="chip ok">no ar</span><span class="chip aviso">medindo</span><span class="chip erro">queda</span><span class="chip neutro">não filtra</span></div></div>
+        <div class="cartao"><h3>Campo</h3>
+          <div class="campo" style="margin-top:16px"><label for="de">De</label><input id="de" type="date" value="2026-08-28"><span class="ajuda">A API aceita qualquer intervalo.</span></div></div>
+        <div class="cartao"><h3>Filtro e progresso</h3>
+          <div class="linha-btn" style="margin-top:16px"><button class="filtro" aria-pressed="true">Comentários</button><button class="filtro" aria-pressed="false">Alcance</button><button class="filtro" aria-pressed="false">Salvos</button></div>
+          <div class="progresso" style="margin-top:20px"><i style="width:65%"></i></div>
+          <div class="demo-dica" style="margin-top:16px"><div class="dica">03/09 · alcance <b>38.310</b></div></div></div>
+      </div>
+      <div class="aviso atencao" style="margin-top:16px"><svg class="ico" viewBox="0 0 24 24"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><div>A série de visitas acumula a cada coleta. Janela antes do primeiro ponto aparece como sem leitura, nunca como zero.</div></div>
+      <div class="tabela-caixa" style="margin-top:16px"><table class="tabela"><thead><tr><th>Data</th><th>Tipo</th><th class="n">Alcance</th><th class="n">Comentários</th></tr></thead>
+        <tbody><tr><td>22/09</td><td><span class="chip">reel</span></td><td class="n">119.890</td><td class="n">1.984</td></tr><tr><td>18/09</td><td><span class="chip neutro">carrossel</span></td><td class="n">8.477</td><td class="n">319</td></tr></tbody></table></div>
+    </section>
+  </div></main>
+</div>
+<script>
+  var b = document.getElementById("abrir"), barra = document.getElementById("barra");
+  b.addEventListener("click", function () { var a = barra.classList.toggle("aberta"); b.setAttribute("aria-expanded", a); });
+  document.querySelectorAll(".seg button, .filtro").forEach(function (x) {
+    x.addEventListener("click", function () { x.parentNode.querySelectorAll("button").forEach(function (y) { y.setAttribute("aria-pressed", y === x); }); });
+  });
+</script>
+</body>
+</html>

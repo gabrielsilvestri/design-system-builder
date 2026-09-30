@@ -4,6 +4,11 @@ Workspace para construir design systems de clientes em modo v2 (schema próprio,
 
 A skill `design-system-builder` (`.claude/skills/design-system-builder/SKILL.md`) é a orquestradora: ela roda o preflight, despacha os subagents na ordem certa, roda `export.mjs`, apresenta o gate de aprovação com `score.mjs` e roda `verify.mjs` no final.
 
+## Os design systems da casa (não são de cliente)
+
+- **Business de IA** (definitivo desde 30/09/2026, UI clara): `D:\AI\Lain\Business de IA\design-system\`. Toda peça nova do Business de IA (página, guia, produto, app) nasce nele. Veio do guia do kit de carrossel (`Agentes e Skills\agentes\Carrosseis 4.0\boas-vindas.html`), com a estrutura do Silvestri Dashboard e as cores da edição light do DS Gabriel Silvestri. Mora fora deste workspace de propósito: é do negócio, não de cliente.
+- **Silvestri Dashboard** (escuro): `Silvestri Dashboard Design System\`, dos painéis internos que já rodam nele (painel do Instagram, bielchat).
+
 ## O que o workspace faz
 
 Pega URL do cliente (e opcionalmente PDF + assets), produz:

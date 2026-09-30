@@ -1,0 +1,202 @@
+/* Gerado por _scripts/export.mjs a partir de DESIGN.md (schema v2) */
+/* Não editar manualmente; rodar export.mjs novamente após alterar DESIGN.md */
+
+:root {
+  color-scheme: light dark;
+
+  /* ============ COLORS (canonical slots) ============ */
+  --color-primary: #4fc7bb;
+  --color-on-primary: #101216;
+  --color-secondary: #5bbcb2;
+  --color-on-secondary: #101216;
+  --color-tertiary: #1f3135;
+  --color-on-tertiary: #5bbcb2;
+  --color-neutral: #9fa6b0;
+  --color-surface: #101216;
+  --color-on-surface: #bcc2c9;
+  --color-surface-variant: #191d23;
+  --color-on-surface-variant: #bcc2c9;
+  --color-outline: #37404e;
+  --color-error: #e88080;
+  --color-on-error: #101216;
+  --color-success: #5fc890;
+  --color-warning: #d5a95a;
+  --color-info: #6ea8fe;
+
+  /* ============ NAMED COLORS (do manual) ============ */
+  --color-fundo: #101216;
+  --color-barra: #14171b;
+  --color-superficie: #191d23;
+  --color-superficie-2: #222732;
+  --color-superficie-3: #2a3140;
+  --color-borda-suave: #262c35;  /* 1.33 / 1.20 sobre fundo e superfície (decorativa) */
+  --color-linha: #37404e;  /* 1.79 / 1.62 sobre fundo e superfície (divisória, não limite de controle) */
+  --color-linha-controle: #5a6674;  /* 3.20 / 2.89 sobre fundo e superfície */
+  --color-tinta: #bcc2c9;  /* 10.44 / 10.01 / 9.42 / 8.33 sobre fundo, barra, superfície e superfície-2; abaixo do teto de 11:1 */
+  --color-tinta-apoio: #9fa6b0;  /* 7.64 / 7.32 / 6.89 / 6.09 sobre fundo, barra, superfície e superfície-2 */
+  --color-tinta-sutil: #9098a3;  /* 6.43 / 6.17 / 5.80 / 5.13 sobre fundo, barra, superfície e superfície-2; 4.65 sobre teal-fundo */
+  --color-teal: #4fc7bb;  /* 9.12:1 sobre o fundo; escuro em cima 9.12:1 */
+  --color-teal-hover: #6fd3c8;  /* escuro em cima 10.56:1 */
+  --color-teal-ativo: #45b3a8;  /* escuro em cima 7.38:1 */
+  --color-teal-tinta: #5bbcb2;  /* 8.29 / 7.48 sobre fundo e superfície; 5.99 sobre teal-fundo; 4.98 sobre teal-fundo-2 */
+  --color-teal-borda: #3a8c85;
+  --color-teal-fundo: #1f3135;
+  --color-teal-fundo-2: #243f41;
+  --color-escuro: #101216;
+  --color-verde: #5fc890;  /* 8.18:1 sobre a superfície */
+  --color-ambar: #d5a95a;  /* 7.78:1 sobre a superfície */
+  --color-vermelho: #e88080;  /* 6.31:1 sobre a superfície */
+  --color-azul: #6ea8fe;  /* 7.00:1 sobre a superfície */
+  --color-roxo: #a78bfa;  /* 6.22:1 sobre a superfície */
+  --color-ardosia: #7f8b9e;  /* 4.91:1 sobre a superfície */
+
+  /* ============ TYPOGRAPHY (roles) ============ */
+  --font-display-hero: "Hanken Grotesk", system-ui, sans-serif;
+  --text-display-hero: 36px;
+  --font-weight-display-hero: 600;
+  --leading-display-hero: 1.1;
+  --tracking-display-hero: -0.028em;
+  --font-display-large: "Hanken Grotesk", system-ui, sans-serif;
+  --text-display-large: 30px;
+  --font-weight-display-large: 600;
+  --leading-display-large: 1.2;
+  --tracking-display-large: -0.025em;
+  --font-section-heading: "Hanken Grotesk", system-ui, sans-serif;
+  --text-section-heading: 20px;
+  --font-weight-section-heading: 600;
+  --leading-section-heading: 1.35;
+  --tracking-section-heading: -0.015em;
+  --font-subheading-large: "Hanken Grotesk", system-ui, sans-serif;
+  --text-subheading-large: 17px;
+  --font-weight-subheading-large: 600;
+  --leading-subheading-large: 1.4;
+  --tracking-subheading-large: -0.01em;
+  --font-subheading: "Hanken Grotesk", system-ui, sans-serif;
+  --text-subheading: 15px;
+  --font-weight-subheading: 600;
+  --leading-subheading: 1.45;
+  --tracking-subheading: 0em;
+  --font-metric: "Hanken Grotesk", system-ui, sans-serif;
+  --text-metric: 30px;
+  --font-weight-metric: 600;
+  --leading-metric: 1.15;
+  --tracking-metric: -0.025em;
+  --font-metric-small: "Hanken Grotesk", system-ui, sans-serif;
+  --text-metric-small: 22px;
+  --font-weight-metric-small: 600;
+  --leading-metric-small: 1.2;
+  --tracking-metric-small: -0.02em;
+  --font-body-large: "Hanken Grotesk", system-ui, sans-serif;
+  --text-body-large: 16px;
+  --font-weight-body-large: 400;
+  --leading-body-large: 1.6;
+  --tracking-body-large: 0em;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --text-body: 15px;
+  --font-weight-body: 400;
+  --leading-body: 1.55;
+  --tracking-body: 0em;
+  --font-body-small: "Hanken Grotesk", system-ui, sans-serif;
+  --text-body-small: 14px;
+  --font-weight-body-small: 400;
+  --leading-body-small: 1.5;
+  --tracking-body-small: 0.004em;
+  --font-button: "Hanken Grotesk", system-ui, sans-serif;
+  --text-button: 15px;
+  --font-weight-button: 600;
+  --leading-button: 1.2;
+  --tracking-button: -0.005em;
+  --font-button-small: "Hanken Grotesk", system-ui, sans-serif;
+  --text-button-small: 14px;
+  --font-weight-button-small: 600;
+  --leading-button-small: 1.2;
+  --tracking-button-small: 0em;
+  --font-link: "Hanken Grotesk", system-ui, sans-serif;
+  --text-link: 15px;
+  --font-weight-link: 600;
+  --leading-link: 1.5;
+  --tracking-link: 0em;
+  --font-caption: "Hanken Grotesk", system-ui, sans-serif;
+  --text-caption: 14px;
+  --font-weight-caption: 400;
+  --leading-caption: 1.45;
+  --tracking-caption: 0.004em;
+  --font-caption-small: "Hanken Grotesk", system-ui, sans-serif;
+  --text-caption-small: 14px;
+  --font-weight-caption-small: 500;
+  --leading-caption-small: 1.4;
+  --tracking-caption-small: 0.008em;
+  --font-micro: "Hanken Grotesk", system-ui, sans-serif;
+  --text-micro: 14px;
+  --font-weight-micro: 500;
+  --leading-micro: 1.3;
+  --tracking-micro: 0.04em;
+  --font-code: "JetBrains Mono", "Cascadia Mono", ui-monospace, monospace;
+  --text-code: 14px;
+  --font-weight-code: 500;
+  --leading-code: 1.5;
+  --tracking-code: -0.01em;
+
+  /* ============ SPACING ============ */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-base: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-2xl: 32px;
+  --space-3xl: 40px;
+  --space-4xl: 48px;
+  --space-5xl: 64px;
+  --space-gutter: 16px;
+  --space-container-padding: 40px;
+
+  /* ============ ROUNDED ============ */
+  --radius-none: 0px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* ============ BREAKPOINTS ============ */
+  --breakpoint-mobile: 0px;
+  --breakpoint-tablet: 640px;
+  --breakpoint-desktop: 960px;
+  --breakpoint-wide: 1180px;
+
+  /* ============ SHADOWS ============ */
+  --shadow-flat: none;
+  --shadow-suave: 0 2px 6px rgb(0 0 0 / 34%);
+  --shadow-retomada: 0 5px 20px rgb(0 0 0 / 44%);
+  --shadow-elevado: 0 2px 4px rgb(0 0 0 / 42%), 0 12px 24px -12px rgb(0 0 0 / 52%);
+  --shadow-flutuante: 0 4px 8px rgb(0 0 0 / 45%), 0 24px 48px -20px rgb(0 0 0 / 60%);
+  --shadow-foco: 0 0 0 2px #4fc7bb;
+
+  /* ============ MOTION ============ */
+  --duration-fast: 140ms;
+  --duration-base: 240ms;
+  --duration-slow: 400ms;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ============ CUSTOM (medida de layout e camada de fundo) ============ */
+  --barra-larg: 260px;
+  --coluna: 1120px;
+  --ui-raio-painel: 16px;
+  --ui-raio-controle: 12px;
+  --ui-espaco-card: 24px;
+  --ui-espaco-grade: 16px;
+  --ui-foco-halo: 0 0 0 5px rgb(79 199 187 / 18%);
+
+  /* ============ Z-INDEX ============ */
+  --z-base: 0;
+  --z-raised: 20;
+  --z-sticky: 60;
+  --z-gaveta: 125;
+  --z-modal: 160;
+
+  /* ============ OPACITY ============ */
+  --opacity-invisible: 0;
+  --opacity-muted: 0.4;
+  --opacity-full: 1;
+}

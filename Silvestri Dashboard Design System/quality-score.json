@@ -1,0 +1,43 @@
+{
+  "client": "Silvestri Dashboard Design System",
+  "grade": "A",
+  "overall": 97,
+  "categories": {
+    "colors_coverage": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "typography_coverage": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "component_completeness": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "confidence_high_ratio": {
+      "score": 83,
+      "weight": 0.2,
+      "grade": "B"
+    },
+    "lint_clean": {
+      "score": 100,
+      "weight": 0.15,
+      "grade": "A"
+    },
+    "brand_specificity_donts": {
+      "score": 100,
+      "weight": 0.1,
+      "grade": "A"
+    },
+    "coverage_notes_present": {
+      "score": 100,
+      "weight": 0.1,
+      "grade": "A"
+    }
+  },
+  "generated_at": "2026-09-27T16:50:48.949Z"
+}
