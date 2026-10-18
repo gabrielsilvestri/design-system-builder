@@ -1,0 +1,3 @@
+/* fonts.css · Hanken Grotesk (interface inteira) e JetBrains Mono (só código e endereço),
+   pelo Google Fonts. App com build (Next) carrega as mesmas famílias por next/font. */
+@import url("https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap");
