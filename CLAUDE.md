@@ -8,7 +8,7 @@ A skill `design-system-builder` (`.claude/skills/design-system-builder/SKILL.md`
 
 - **Tourmaline, do Business de IA** (definitivo, claro e escuro, fechado em 01/10/2026): `D:\AI\Lain\Business de IA\design-system\`. Toda peça nova do Business de IA (página, guia, produto, app) nasce nele. Veio do guia do kit de carrossel (`Agentes e Skills\agentes\Carrosseis 4.0\boas-vindas.html`), com a estrutura do Silvestri Dashboard e as cores da edição light do DS Gabriel Silvestri. Mora fora deste workspace de propósito: é do negócio, não de cliente.
 - **Silvestri Dashboard** (escuro): `Silvestri Dashboard Design System\`, dos painéis internos que já rodam nele (painel do Instagram, bielchat).
-- **Turquesa Dither** (escuro e claro alternados, 22/10/2026): `Turquesa Dither Design System\`, página em pixel art com dither Bayer 4x4 em três tons turquesa e motion de dither (esfera viva, faixa ondulando, dissolve). Kit feito à mão, fora do schema v2: copiar `dither.css`, `dither-motion.js` e `assets/`. Origem: a página do curso de UX (uxui.gabrielsilvestri.com.br).
+- **Camada de efeitos do Tourmaline** (22/10/2026): ASCII, interação e dither Bayer em `Business de IA\design-system\efeitos.css` e `efeitos.js`, vitrine em `brandbook/efeitos.html`. O `Turquesa Dither Design System\` daqui está aposentado (ver `APOSENTADO.md` dele).
 
 ## O que o workspace faz
 
