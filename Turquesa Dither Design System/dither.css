@@ -1,0 +1,76 @@
+/* Turquesa Dither: tokens, temas e componentes. Texturas em assets/ (caminho relativo a este arquivo). */
+
+:root{
+  /* os três tons do dither; todo o resto deriva deles */
+  --d0:#101216;--d1:#161a1e;--d2:#1d2327;--dline:#2a3638;
+  --teal:#3a8c85;--teal-hi:#4aa49c;--teal-lt:#6fc1b9;--teal-dk:#1b5651;
+  --l0:#d6f3ef;--l1:#e6f7f4;--l2:#c4e8e3;--lline:#a9d3cd;
+  --mono:'Geist Mono','Cascadia Mono',Consolas,monospace;
+  --sans:'Geist','Segoe UI',Helvetica,Arial,sans-serif;
+  --gut:clamp(1rem,4vw,2.5rem);
+  --pad:clamp(4rem,9vw,7.5rem);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+body{background:var(--d0);color:#b9d8d3;font-family:var(--sans);font-size:clamp(1.0625rem,1rem + .2vw,1.125rem);line-height:1.65;-webkit-font-smoothing:antialiased}
+
+/* temas por seção: escuro e claro alternados, cada um carrega as próprias variáveis */
+.dk{--bg:var(--d0);--tx:#b9d8d3;--mu:#8fb5b0;--hd:#d6f3ef;--ac:var(--teal-lt);--sf:var(--d1);--sf2:var(--d2);--ln:var(--dline);--sh:rgba(0,0,0,.55);background:var(--bg);color:var(--tx)}
+.lt{--bg:var(--l0);--tx:#17302f;--mu:#3d5a57;--hd:#101216;--ac:var(--teal-dk);--sf:var(--l1);--sf2:var(--l2);--ln:var(--lline);--sh:rgba(16,40,38,.35);background:var(--bg);color:var(--tx)}
+:focus-visible{outline:3px solid var(--hd,#d6f3ef);outline-offset:3px}
+
+/* tipo */
+h1,h2,h3{color:var(--hd);font-family:var(--sans);text-wrap:balance}
+h1{font-size:clamp(2.5rem,1.3rem + 4.8vw,4.6rem);line-height:1.02;font-weight:750;letter-spacing:-.045em}
+h2{font-size:clamp(2.0625rem,1.3rem + 3vw,3.5rem);line-height:1.05;font-weight:720;letter-spacing:-.04em}
+h3{font-size:clamp(1.25rem,1.1rem + .5vw,1.5rem);line-height:1.2;font-weight:650;letter-spacing:-.02em}
+p{text-wrap:pretty;max-width:58ch}
+
+/* kicker: rótulo mono com o "degrau" de dois pixels */
+.kick{display:flex;align-items:center;gap:.9rem;font-family:var(--mono);font-size:.97rem;font-weight:500;line-height:1.4;letter-spacing:.06em;text-transform:uppercase;color:var(--ac);margin-bottom:1.25rem}
+.kick::before{content:"";flex:none;width:8px;height:8px;background:var(--ac);box-shadow:8px 8px 0 var(--ac);margin-right:8px;margin-bottom:8px}
+
+/* régua pontilhada (separador e topo de card) */
+.rule{display:block;height:8px;width:100%;background:url(assets/dither-rule.png) repeat-x 0 0/16px 8px;image-rendering:pixelated}
+
+/* ícones em pixel: SVG com shape-rendering crispEdges */
+.ic{display:block;fill:currentColor;shape-rendering:crispEdges}
+
+/* botão com sombra pontilhada que anda no hover */
+.btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:.8rem;min-height:3.5rem;padding:.9rem 1.6rem;background:var(--teal);color:#101216;font-family:var(--sans);font-size:1.0625rem;font-weight:720;line-height:1.2;text-decoration:none;border:0;cursor:pointer;transition:transform .35s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;background:url(assets/dither-shadow.png) 0 0/16px 16px;image-rendering:pixelated;transform:translate(6px,6px);transition:transform .35s var(--ease)}
+.btn:hover{background:var(--teal-hi);transform:translate(-2px,-2px)}
+.btn:hover::before{transform:translate(8px,8px)}
+.btn:active,.btn:active::before{transform:translate(3px,3px)}
+.btn:focus-visible{outline:3px solid var(--hd);outline-offset:5px}
+.btn .ic{width:1.5rem;height:1.5rem;flex:none}
+
+/* bloco com sombra em rampa de dither deslocada (retrato, card de preço) */
+.stackd{position:relative}
+.stackd::before{content:"";position:absolute;inset:0;transform:translate(14px,14px);background:url(assets/dither-ramp-dark.png) repeat-x 0 0/16px 960px;image-rendering:pixelated}
+.lt .stackd::before{background-image:url(assets/dither-ramp-light.png)}
+.stackd>*{position:relative}
+
+/* faixa de transição entre seção escura e clara; o motion troca o PNG por canvas ondulando */
+.band{position:relative;overflow:hidden;display:block;height:96px;background-repeat:repeat-x;background-size:16px 96px;image-rendering:pixelated}
+.band.dl{background-image:url(assets/dither-band-dl.png)}
+.band.ld{background-image:url(assets/dither-band-ld.png)}
+.band canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.band.live{background-image:none}
+
+/* ilustração do hero: esfera viva (canvas) atrás da interface em pixel art + etiquetas de fundamento */
+.heroart{position:relative;width:100%;max-width:30rem}
+.heroart img{position:relative;display:block;width:100%;height:auto;image-rendering:pixelated}
+.heroart .sphere{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated}
+.heroart .tag{position:absolute;font:500 .8125rem/1 var(--mono);letter-spacing:.02em;text-transform:uppercase;color:var(--teal-lt);background:var(--d0);border:1px solid var(--teal);padding:.45rem .6rem;white-space:nowrap}
+.heroart .tag::before{content:"";display:inline-block;width:.5rem;height:.5rem;background:var(--teal-lt);margin-right:.45rem}
+
+/* dissolve de entrada: canvas por cima do bloco, criado e removido pelo dither-motion.js */
+.dz{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;pointer-events:none;z-index:5}
+
+@media (prefers-reduced-motion:no-preference){
+  @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes pix{from{opacity:0}to{opacity:1}}
+  .rise{animation:rise .8s var(--ease) backwards;animation-delay:calc(var(--i,0) * 90ms)}
+  .heroart img{animation:pix .7s steps(6) .25s backwards}
+  .heroart .tag{animation:rise .6s var(--ease) backwards;animation-delay:calc(.8s + var(--i,0) * 140ms)}
+}
